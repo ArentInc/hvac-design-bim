@@ -14,6 +14,13 @@ import type {
   WindowNode,
   ZoneNode,
 } from '../schema'
+import type { AhuNode } from '../schema/nodes/ahu'
+import type { DiffuserNode } from '../schema/nodes/diffuser'
+import type { DuctFittingNode } from '../schema/nodes/duct-fitting'
+import type { DuctSegmentNode } from '../schema/nodes/duct-segment'
+import type { HvacZoneNode } from '../schema/nodes/hvac-zone'
+import type { PipeSegmentNode } from '../schema/nodes/pipe-segment'
+import type { SystemNode } from '../schema/nodes/system'
 import type { AnyNode } from '../schema/types'
 
 // Base event interfaces
@@ -43,6 +50,13 @@ export type RoofEvent = NodeEvent<RoofNode>
 export type RoofSegmentEvent = NodeEvent<RoofSegmentNode>
 export type WindowEvent = NodeEvent<WindowNode>
 export type DoorEvent = NodeEvent<DoorNode>
+export type HvacZoneEvent = NodeEvent<HvacZoneNode>
+export type SystemEvent = NodeEvent<SystemNode>
+export type AhuEvent = NodeEvent<AhuNode>
+export type DiffuserEvent = NodeEvent<DiffuserNode>
+export type DuctSegmentEvent = NodeEvent<DuctSegmentNode>
+export type DuctFittingEvent = NodeEvent<DuctFittingNode>
+export type PipeSegmentEvent = NodeEvent<PipeSegmentNode>
 
 // Event suffixes - exported for use in hooks
 export const eventSuffixes = [
@@ -106,6 +120,13 @@ type EditorEvents = GridEvents &
   NodeEvents<'roof-segment', RoofSegmentEvent> &
   NodeEvents<'window', WindowEvent> &
   NodeEvents<'door', DoorEvent> &
+  NodeEvents<'hvac_zone', HvacZoneEvent> &
+  NodeEvents<'system', SystemEvent> &
+  NodeEvents<'ahu', AhuEvent> &
+  NodeEvents<'diffuser', DiffuserEvent> &
+  NodeEvents<'duct_segment', DuctSegmentEvent> &
+  NodeEvents<'duct_fitting', DuctFittingEvent> &
+  NodeEvents<'pipe_segment', PipeSegmentEvent> &
   CameraControlEvents &
   ToolEvents &
   PresetEvents

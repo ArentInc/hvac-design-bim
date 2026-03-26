@@ -5,6 +5,12 @@ import { BuildingRenderer } from './building/building-renderer'
 import { CeilingRenderer } from './ceiling/ceiling-renderer'
 import { DoorRenderer } from './door/door-renderer'
 import { GuideRenderer } from './guide/guide-renderer'
+import { AhuPlaceholder } from './hvac/ahu-placeholder'
+import { DiffuserPlaceholder } from './hvac/diffuser-placeholder'
+import { DuctFittingRenderer } from './hvac/duct-fitting-renderer'
+import { DuctSegmentRenderer } from './hvac/duct-segment-renderer'
+import { HvacZoneRenderer } from './hvac/hvac-zone-renderer'
+import { PipeSegmentRenderer } from './hvac/pipe-segment-renderer'
 import { ItemRenderer } from './item/item-renderer'
 import { LevelRenderer } from './level/level-renderer'
 import { RoofRenderer } from './roof/roof-renderer'
@@ -37,6 +43,14 @@ export const NodeRenderer = ({ nodeId }: { nodeId: AnyNode['id'] }) => {
       {node.type === 'roof-segment' && <RoofSegmentRenderer node={node} />}
       {node.type === 'scan' && <ScanRenderer node={node} />}
       {node.type === 'guide' && <GuideRenderer node={node} />}
+      {/* HVAC nodes */}
+      {node.type === 'hvac_zone' && <HvacZoneRenderer nodeId={node.id} />}
+      {node.type === 'system' && null}
+      {node.type === 'ahu' && <AhuPlaceholder node={node} />}
+      {node.type === 'diffuser' && <DiffuserPlaceholder node={node} />}
+      {node.type === 'duct_segment' && <DuctSegmentRenderer nodeId={node.id} />}
+      {node.type === 'duct_fitting' && <DuctFittingRenderer nodeId={node.id} />}
+      {node.type === 'pipe_segment' && <PipeSegmentRenderer nodeId={node.id} />}
     </>
   )
 }

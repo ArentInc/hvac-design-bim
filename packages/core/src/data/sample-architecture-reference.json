@@ -1,0 +1,103 @@
+{
+  "buildingName": "サンプルオフィスビル",
+  "levels": [
+    {
+      "levelId": "level_1f",
+      "floorHeight": 0,
+      "ceilingHeight": 2.7,
+      "floorOutline": [
+        { "x": 0, "y": 0 },
+        { "x": 17, "y": 0 },
+        { "x": 17, "y": 12 },
+        { "x": 0, "y": 12 }
+      ],
+      "externalWalls": [
+        {
+          "id": "wall_1f_south",
+          "orientation": "S",
+          "vertices": [
+            { "x": 0, "y": 0, "z": 0 },
+            { "x": 17, "y": 0, "z": 0 },
+            { "x": 17, "y": 0, "z": 2.7 },
+            { "x": 0, "y": 0, "z": 2.7 }
+          ],
+          "wallArea": 45.9,
+          "glazingRatio": 0.4
+        },
+        {
+          "id": "wall_1f_east",
+          "orientation": "E",
+          "vertices": [
+            { "x": 17, "y": 0, "z": 0 },
+            { "x": 17, "y": 12, "z": 0 },
+            { "x": 17, "y": 12, "z": 2.7 },
+            { "x": 17, "y": 0, "z": 2.7 }
+          ],
+          "wallArea": 32.4,
+          "glazingRatio": 0.3
+        },
+        {
+          "id": "wall_1f_north",
+          "orientation": "N",
+          "vertices": [
+            { "x": 17, "y": 12, "z": 0 },
+            { "x": 0, "y": 12, "z": 0 },
+            { "x": 0, "y": 12, "z": 2.7 },
+            { "x": 17, "y": 12, "z": 2.7 }
+          ],
+          "wallArea": 45.9,
+          "glazingRatio": 0.1
+        },
+        {
+          "id": "wall_1f_west",
+          "orientation": "W",
+          "vertices": [
+            { "x": 0, "y": 12, "z": 0 },
+            { "x": 0, "y": 0, "z": 0 },
+            { "x": 0, "y": 0, "z": 2.7 },
+            { "x": 0, "y": 12, "z": 2.7 }
+          ],
+          "wallArea": 32.4,
+          "glazingRatio": 0.2
+        }
+      ]
+    },
+    {
+      "levelId": "level_2f",
+      "floorHeight": 3.5,
+      "ceilingHeight": 2.7,
+      "floorOutline": [
+        { "x": 0, "y": 0 },
+        { "x": 19, "y": 0 },
+        { "x": 19, "y": 10 },
+        { "x": 0, "y": 10 }
+      ],
+      "externalWalls": [
+        {
+          "id": "wall_2f_south",
+          "orientation": "S",
+          "vertices": [
+            { "x": 0, "y": 0, "z": 3.5 },
+            { "x": 19, "y": 0, "z": 3.5 },
+            { "x": 19, "y": 0, "z": 6.2 },
+            { "x": 0, "y": 0, "z": 6.2 }
+          ],
+          "wallArea": 51.3,
+          "glazingRatio": 0.4
+        },
+        {
+          "id": "wall_2f_west",
+          "orientation": "W",
+          "vertices": [
+            { "x": 0, "y": 10, "z": 3.5 },
+            { "x": 0, "y": 0, "z": 3.5 },
+            { "x": 0, "y": 0, "z": 6.2 },
+            { "x": 0, "y": 10, "z": 6.2 }
+          ],
+          "wallArea": 27.0,
+          "glazingRatio": 0.2
+        }
+      ]
+    }
+  ]
+}

@@ -16,7 +16,25 @@ import { useViewer } from '@pascal-app/viewer'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-export type Phase = 'site' | 'structure' | 'furnish'
+export type EditorMode = 'architecture' | 'hvac'
+
+export type ArchitecturePhase = 'site' | 'structure' | 'furnish'
+
+export type HvacPhase = 'zone' | 'equip' | 'route' | 'calc'
+
+export type Phase = ArchitecturePhase | HvacPhase
+
+export type HvacTool =
+  | 'zone_draw'
+  | 'zone_edit'
+  | 'ahu_place'
+  | 'diffuser_place'
+  | 'duct_route'
+  | 'duct_edit'
+  | 'pipe_route'
+  | 'pipe_edit'
+  | 'system_assign'
+  | 'calc_run'
 
 export type Mode = 'select' | 'edit' | 'delete' | 'build'
 
@@ -54,9 +72,23 @@ export type CatalogCategory =
 export type StructureLayer = 'zones' | 'elements'
 
 // Combined tool type
-export type Tool = SiteTool | StructureTool | FurnishTool
+export type Tool = SiteTool | StructureTool | FurnishTool | HvacTool
+
+export const phasesByEditorMode: Record<EditorMode, Phase[]> = {
+  architecture: ['site', 'structure', 'furnish'],
+  hvac: ['zone', 'equip', 'route', 'calc'],
+}
+
+export const toolsByPhase: Record<HvacPhase, HvacTool[]> = {
+  zone: ['zone_draw', 'zone_edit'],
+  equip: ['ahu_place', 'diffuser_place', 'system_assign'],
+  route: ['duct_route', 'duct_edit', 'pipe_route', 'pipe_edit'],
+  calc: ['calc_run'],
+}
 
 type EditorState = {
+  editorMode: EditorMode
+  setEditorMode: (mode: EditorMode) => void
   phase: Phase
   setPhase: (phase: Phase) => void
   mode: Mode
@@ -197,8 +229,17 @@ export function hasCustomPersistedEditorUiState(
 const useEditor = create<EditorState>()(
   persist(
     (set, get) => ({
+      editorMode: 'architecture',
+      setEditorMode: (mode) => {
+        const defaultPhase = mode === 'hvac' ? 'zone' : 'site'
+        set({ editorMode: mode, phase: defaultPhase, mode: 'select', tool: null })
+      },
       phase: DEFAULT_PERSISTED_EDITOR_UI_STATE.phase,
       setPhase: (phase) => {
+        const { editorMode } = get()
+        const validPhases = phasesByEditorMode[editorMode]
+        if (!validPhases.includes(phase)) return
+
         const currentPhase = get().phase
         if (currentPhase === phase) return
 

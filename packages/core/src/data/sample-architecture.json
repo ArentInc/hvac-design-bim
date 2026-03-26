@@ -1,0 +1,63 @@
+{
+  "buildingName": "サンプルオフィスビル",
+  "levels": [
+    {
+      "levelName": "1F",
+      "elevation": 0,
+      "height": 3.5,
+      "zones": [
+        {
+          "zoneName": "事務室A",
+          "usage": "office_general",
+          "floorArea": 120,
+          "boundary": [[0, 0], [12, 0], [12, 10], [0, 10]],
+          "perimeterSegments": [
+            { "orientation": "S", "wallArea": 42.0, "glazingRatio": 0.4 },
+            { "orientation": "E", "wallArea": 35.0, "glazingRatio": 0.3 }
+          ]
+        },
+        {
+          "zoneName": "会議室",
+          "usage": "conference",
+          "floorArea": 50,
+          "boundary": [[12, 0], [17, 0], [17, 10], [12, 10]],
+          "perimeterSegments": [
+            { "orientation": "S", "wallArea": 17.5, "glazingRatio": 0.5 },
+            { "orientation": "E", "wallArea": 35.0, "glazingRatio": 0.3 }
+          ]
+        },
+        {
+          "zoneName": "廊下",
+          "usage": "corridor",
+          "floorArea": 30,
+          "boundary": [[0, 10], [17, 10], [17, 12], [0, 12]],
+          "perimeterSegments": []
+        }
+      ]
+    },
+    {
+      "levelName": "2F",
+      "elevation": 3.5,
+      "height": 3.2,
+      "zones": [
+        {
+          "zoneName": "事務室B",
+          "usage": "office_general",
+          "floorArea": 150,
+          "boundary": [[0, 0], [15, 0], [15, 10], [0, 10]],
+          "perimeterSegments": [
+            { "orientation": "S", "wallArea": 48.0, "glazingRatio": 0.4 },
+            { "orientation": "W", "wallArea": 32.0, "glazingRatio": 0.2 }
+          ]
+        },
+        {
+          "zoneName": "サーバー室",
+          "usage": "office_server",
+          "floorArea": 20,
+          "boundary": [[15, 0], [19, 0], [19, 5], [15, 5]],
+          "perimeterSegments": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,11 +1,18 @@
 import dedent from 'dedent'
 import { z } from 'zod'
 import { BaseNode, nodeType, objectId } from '../base'
+import { AhuNode } from './ahu'
 import { CeilingNode } from './ceiling'
+import { DiffuserNode } from './diffuser'
+import { DuctFittingNode } from './duct-fitting'
+import { DuctSegmentNode } from './duct-segment'
 import { GuideNode } from './guide'
+import { HvacZoneNode } from './hvac-zone'
+import { PipeSegmentNode } from './pipe-segment'
 import { RoofNode } from './roof'
 import { ScanNode } from './scan'
 import { SlabNode } from './slab'
+import { SystemNode } from './system'
 import { WallNode } from './wall'
 import { ZoneNode } from './zone'
 
@@ -22,6 +29,13 @@ export const LevelNode = BaseNode.extend({
         RoofNode.shape.id,
         ScanNode.shape.id,
         GuideNode.shape.id,
+        HvacZoneNode.shape.id,
+        SystemNode.shape.id,
+        AhuNode.shape.id,
+        DiffuserNode.shape.id,
+        DuctSegmentNode.shape.id,
+        DuctFittingNode.shape.id,
+        PipeSegmentNode.shape.id,
       ]),
     )
     .default([]),

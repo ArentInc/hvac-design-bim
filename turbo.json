@@ -29,6 +29,12 @@
       "dependsOn": ["^build"],
       "cache": false,
       "persistent": true
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "inputs": ["src/**/*.ts", "src/**/*.tsx", "vitest.config.ts"],
+      "outputs": [],
+      "cache": false
     }
   }
 }

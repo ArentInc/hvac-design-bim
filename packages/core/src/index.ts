@@ -1,15 +1,31 @@
+// Loaders
+export type {
+  Architecture,
+  ArchitectureLevel,
+  ArchitectureWall,
+} from './loaders/architecture-loader'
+export { parseArchitecture } from './loaders/architecture-loader'
+export type { WallMetadata } from './loaders/architecture-metadata'
+export { extractWallMetadata } from './loaders/architecture-metadata'
+
 // Store
 
 export type {
+  AhuEvent,
   BuildingEvent,
   CameraControlEvent,
   CeilingEvent,
+  DiffuserEvent,
   DoorEvent,
+  DuctFittingEvent,
+  DuctSegmentEvent,
   EventSuffix,
   GridEvent,
+  HvacZoneEvent,
   ItemEvent,
   LevelEvent,
   NodeEvent,
+  PipeSegmentEvent,
   RoofEvent,
   RoofSegmentEvent,
   SiteEvent,
@@ -68,4 +84,6 @@ export {
 } from './systems/wall/wall-mitering'
 export { WallSystem } from './systems/wall/wall-system'
 export { WindowSystem } from './systems/window/window-system'
+// Utilities
+export { calculatePolygonArea } from './utils/polygon-area'
 export { isObject } from './utils/types'

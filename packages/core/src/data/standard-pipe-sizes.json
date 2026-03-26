@@ -1,0 +1,14 @@
+[
+  { "nominalSize": 15, "outerDiameter": 21.7, "innerDiameter": 16.1 },
+  { "nominalSize": 20, "outerDiameter": 27.2, "innerDiameter": 21.6 },
+  { "nominalSize": 25, "outerDiameter": 34.0, "innerDiameter": 27.6 },
+  { "nominalSize": 32, "outerDiameter": 42.7, "innerDiameter": 35.7 },
+  { "nominalSize": 40, "outerDiameter": 48.6, "innerDiameter": 41.2 },
+  { "nominalSize": 50, "outerDiameter": 60.5, "innerDiameter": 52.7 },
+  { "nominalSize": 65, "outerDiameter": 76.3, "innerDiameter": 67.9 },
+  { "nominalSize": 80, "outerDiameter": 89.1, "innerDiameter": 80.7 },
+  { "nominalSize": 100, "outerDiameter": 114.3, "innerDiameter": 105.3 },
+  { "nominalSize": 125, "outerDiameter": 139.8, "innerDiameter": 130.8 },
+  { "nominalSize": 150, "outerDiameter": 165.2, "innerDiameter": 155.2 },
+  { "nominalSize": 200, "outerDiameter": 216.3, "innerDiameter": 204.7 }
+]

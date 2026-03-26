@@ -5,7 +5,12 @@ import { DoubleSide, type Group, type Mesh, Shape, ShapeGeometry, Vector3 } from
 import { EDITOR_LAYER } from '../../../lib/constants'
 import { sfxEmitter } from '../../../lib/sfx-bus'
 import { CursorSphere } from '../shared/cursor-sphere'
-import { createWallOnCurrentLevel, snapWallDraftPoint, WALL_MIN_LENGTH, type WallPlanPoint } from './wall-drafting'
+import {
+  createWallOnCurrentLevel,
+  snapWallDraftPoint,
+  WALL_MIN_LENGTH,
+  type WallPlanPoint,
+} from './wall-drafting'
 
 const WALL_HEIGHT = 2.5
 

@@ -73,6 +73,10 @@ const modesByPhase: Record<Phase, Mode[]> = {
   site: ['select', 'edit'],
   structure: ['select', 'delete', 'build'],
   furnish: ['select', 'delete', 'build'],
+  zone: ['select', 'build'],
+  equip: ['select', 'delete', 'build'],
+  route: ['select', 'delete', 'build'],
+  calc: ['select'],
 }
 
 export function ControlModes() {

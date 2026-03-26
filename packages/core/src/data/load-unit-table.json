@@ -1,0 +1,52 @@
+[
+  {
+    "usage": "office_general",
+    "displayName": "一般事務室",
+    "coolingLoadPerArea": 150,
+    "heatingLoadPerArea": 80,
+    "occupantDensity": 0.15,
+    "ventilationPerPerson": 25,
+    "lightingLoadPerArea": 20,
+    "equipmentLoadPerArea": 25
+  },
+  {
+    "usage": "office_server",
+    "displayName": "サーバー室",
+    "coolingLoadPerArea": 800,
+    "heatingLoadPerArea": 0,
+    "occupantDensity": 0.01,
+    "ventilationPerPerson": 25,
+    "lightingLoadPerArea": 15,
+    "equipmentLoadPerArea": 750
+  },
+  {
+    "usage": "conference",
+    "displayName": "会議室",
+    "coolingLoadPerArea": 200,
+    "heatingLoadPerArea": 100,
+    "occupantDensity": 0.5,
+    "ventilationPerPerson": 30,
+    "lightingLoadPerArea": 25,
+    "equipmentLoadPerArea": 15
+  },
+  {
+    "usage": "reception",
+    "displayName": "受付ロビー",
+    "coolingLoadPerArea": 130,
+    "heatingLoadPerArea": 70,
+    "occupantDensity": 0.1,
+    "ventilationPerPerson": 25,
+    "lightingLoadPerArea": 30,
+    "equipmentLoadPerArea": 10
+  },
+  {
+    "usage": "corridor",
+    "displayName": "廊下・共用部",
+    "coolingLoadPerArea": 60,
+    "heatingLoadPerArea": 40,
+    "occupantDensity": 0.05,
+    "ventilationPerPerson": 20,
+    "lightingLoadPerArea": 15,
+    "equipmentLoadPerArea": 5
+  }
+]

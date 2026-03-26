@@ -22,6 +22,13 @@ export const sceneRegistry = {
     guide: new Set<string>(),
     window: new Set<string>(),
     door: new Set<string>(),
+    hvac_zone: new Set<string>(),
+    system: new Set<string>(),
+    ahu: new Set<string>(),
+    diffuser: new Set<string>(),
+    duct_segment: new Set<string>(),
+    duct_fitting: new Set<string>(),
+    pipe_segment: new Set<string>(),
   },
 
   /** Remove all entries. Call when unloading a scene to prevent stale 3D refs. */

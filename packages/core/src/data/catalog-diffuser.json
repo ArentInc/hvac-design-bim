@@ -1,0 +1,56 @@
+[
+  {
+    "modelId": "DIFF-250",
+    "neckDiameter": 250,
+    "ratedAirflow": 300,
+    "maxAirflow": 450,
+    "noiseLevel": 28,
+    "throwDistance": 2.5,
+    "subTypes": ["anemostat", "universal"]
+  },
+  {
+    "modelId": "DIFF-300",
+    "neckDiameter": 300,
+    "ratedAirflow": 450,
+    "maxAirflow": 650,
+    "noiseLevel": 30,
+    "throwDistance": 3.0,
+    "subTypes": ["anemostat", "universal", "nozzle"]
+  },
+  {
+    "modelId": "DIFF-350",
+    "neckDiameter": 350,
+    "ratedAirflow": 600,
+    "maxAirflow": 900,
+    "noiseLevel": 32,
+    "throwDistance": 3.5,
+    "subTypes": ["anemostat", "universal", "nozzle"]
+  },
+  {
+    "modelId": "DIFF-400",
+    "neckDiameter": 400,
+    "ratedAirflow": 800,
+    "maxAirflow": 1200,
+    "noiseLevel": 34,
+    "throwDistance": 4.0,
+    "subTypes": ["anemostat", "universal", "nozzle", "line"]
+  },
+  {
+    "modelId": "DIFF-500",
+    "neckDiameter": 500,
+    "ratedAirflow": 1200,
+    "maxAirflow": 1800,
+    "noiseLevel": 36,
+    "throwDistance": 5.0,
+    "subTypes": ["anemostat", "universal", "nozzle", "line"]
+  },
+  {
+    "modelId": "DIFF-600",
+    "neckDiameter": 600,
+    "ratedAirflow": 1800,
+    "maxAirflow": 2500,
+    "noiseLevel": 38,
+    "throwDistance": 6.0,
+    "subTypes": ["anemostat", "universal", "nozzle", "line", "return_grille"]
+  }
+]

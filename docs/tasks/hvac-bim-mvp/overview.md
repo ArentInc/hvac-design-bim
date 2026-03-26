@@ -30,7 +30,7 @@
 
 ## 全体進捗
 
-- [ ] Phase 1: 基盤整備 (MVP-0)
+- [x] Phase 1: 基盤整備 (MVP-0)
 - [ ] Phase 2: ゾーニング + 負荷計算 (MVP-1)
 - [ ] Phase 3: 系統構成 + 機器配置 (MVP-2)
 - [ ] Phase 4: ダクト + 配管ルーティング (MVP-3)
@@ -53,16 +53,16 @@
 
 ### タスク一覧
 
-- [ ] [TASK-0001: vitest導入 + テスト基盤構築](TASK-0001.md) - 8h (DIRECT) 🟡
-- [ ] [TASK-0002: HvacZoneNode + SystemNode スキーマ定義](TASK-0002.md) - 8h (TDD) 🔵
-- [ ] [TASK-0003: AhuNode + DiffuserNode スキーマ定義](TASK-0003.md) - 8h (TDD) 🔵
-- [ ] [TASK-0004: DuctSegmentNode + DuctFittingNode + PipeSegmentNode スキーマ定義](TASK-0004.md) - 8h (TDD) 🔵
-- [ ] [TASK-0005: AnyNode統合 + LevelNode.children拡張 + sceneRegistry拡張](TASK-0005.md) - 8h (TDD) 🔵
-- [ ] [TASK-0006: サンプルデータJSON作成](TASK-0006.md) - 8h (DIRECT) 🔵
-- [ ] [TASK-0007: useEditor拡張 — EditorMode + Phase型拡張 + HvacTool型](TASK-0007.md) - 8h (TDD) 🔵
-- [ ] [TASK-0008: イベントバス拡張 — HVACノードイベント型追加](TASK-0008.md) - 4h (TDD) 🔵
-- [ ] [TASK-0009: 接続グラフユーティリティ — hvac-graph.ts](TASK-0009.md) - 8h (TDD) 🟡
-- [ ] [TASK-0010: モード切替UI + フェーズ切替タブ + NodeRenderer分岐追加](TASK-0010.md) - 8h (TDD) 🔵
+- [x] [TASK-0001: vitest導入 + テスト基盤構築](TASK-0001.md) - 8h (DIRECT) 🟡
+- [x] [TASK-0002: HvacZoneNode + SystemNode スキーマ定義](TASK-0002.md) - 8h (TDD) 🔵
+- [x] [TASK-0003: AhuNode + DiffuserNode スキーマ定義](TASK-0003.md) - 8h (TDD) 🔵
+- [x] [TASK-0004: DuctSegmentNode + DuctFittingNode + PipeSegmentNode スキーマ定義](TASK-0004.md) - 8h (TDD) 🔵
+- [x] [TASK-0005: AnyNode統合 + LevelNode.children拡張 + sceneRegistry拡張](TASK-0005.md) - 8h (TDD) 🔵
+- [x] [TASK-0006: サンプルデータJSON作成](TASK-0006.md) - 8h (DIRECT) 🔵
+- [x] [TASK-0007: useEditor拡張 — EditorMode + Phase型拡張 + HvacTool型](TASK-0007.md) - 8h (TDD) 🔵
+- [x] [TASK-0008: イベントバス拡張 — HVACノードイベント型追加](TASK-0008.md) - 4h (TDD) 🔵
+- [x] [TASK-0009: 接続グラフユーティリティ — hvac-graph.ts](TASK-0009.md) - 8h (TDD) 🟡
+- [x] [TASK-0010: モード切替UI + フェーズ切替タブ + NodeRenderer分岐追加](TASK-0010.md) - 8h (TDD) 🔵
 
 ### 依存関係
 
@@ -84,10 +84,10 @@ TASK-0006 (独立)
 
 ### タスク一覧
 
-- [ ] [TASK-0011: 建築参照読込 + サンプル建築JSON表示](TASK-0011.md) - 8h (TDD) 🔵
-- [ ] [TASK-0012: HvacZoneRenderer — ゾーン3D描画](TASK-0012.md) - 8h (TDD) 🔵
-- [ ] [TASK-0013: ZoneDrawTool — ゾーン境界描画ツール](TASK-0013.md) - 8h (TDD) 🔵
-- [ ] [TASK-0014: PerimeterEditTool — 外皮条件入力](TASK-0014.md) - 8h (TDD) 🔵
+- [x] [TASK-0011: 建築参照読込 + サンプル建築JSON表示](TASK-0011.md) - 8h (TDD) 🔵
+- [x] [TASK-0012: HvacZoneRenderer — ゾーン3D描画](TASK-0012.md) - 8h (TDD) 🔵
+- [x] [TASK-0013: ZoneDrawTool — ゾーン境界描画ツール](TASK-0013.md) - 8h (TDD) 🔵
+- [x] [TASK-0014: PerimeterEditTool — 外皮条件入力](TASK-0014.md) - 8h (TDD) 🔵
 - [ ] [TASK-0015: LoadCalcSystem — 負荷概算計算エンジン](TASK-0015.md) - 8h (TDD) 🔵
 - [ ] [TASK-0016: HvacZonePanel + CalcResultPanel — ゾーンプロパティ表示](TASK-0016.md) - 8h (TDD) 🔵
 - [ ] [TASK-0017: ZoneListPanel — ゾーン一覧サイドバー](TASK-0017.md) - 8h (TDD) 🔵
@@ -117,9 +117,9 @@ TASK-0013 → TASK-0018
 - [ ] [TASK-0019: SystemAggregationSystem — 系統集計計算](TASK-0019.md) - 8h (TDD) 🔵
 - [ ] [TASK-0020: ZoneGroupingTool — ゾーングルーピング](TASK-0020.md) - 8h (TDD) 🔵
 - [ ] [TASK-0021: EquipmentSelectionSystem — AHU候補選定ロジック](TASK-0021.md) - 8h (TDD) 🔵
-- [ ] [TASK-0022: AhuRenderer — AHU 3D表示（直方体+ポート円筒）](TASK-0022.md) - 8h (TDD) 🔵
+- [x] [TASK-0022: AhuRenderer — AHU 3D表示（直方体+ポート円筒）](TASK-0022.md) - 8h (TDD) 🔵
 - [ ] [TASK-0023: AhuPlaceTool — AHU配置ツール](TASK-0023.md) - 8h (TDD) 🔵
-- [ ] [TASK-0024: DiffuserRenderer — 制気口3D表示](TASK-0024.md) - 8h (TDD) 🔵
+- [x] [TASK-0024: DiffuserRenderer — 制気口3D表示](TASK-0024.md) - 8h (TDD) 🔵
 - [ ] [TASK-0025: DiffuserPlaceTool — 制気口配置 + 風量均等配分](TASK-0025.md) - 8h (TDD) 🔵
 - [ ] [TASK-0026: SystemPanel + AhuPanel + DiffuserPanel](TASK-0026.md) - 8h (TDD) 🔵
 - [ ] [TASK-0027: SystemTreePanel + EquipmentCatalogPanel](TASK-0027.md) - 8h (TDD) 🔵
@@ -145,14 +145,14 @@ TASK-0020, TASK-0021 → TASK-0027
 
 ### タスク一覧
 
-- [ ] [TASK-0028: DuctSegmentRenderer — ダクト3D表示](TASK-0028.md) - 8h (TDD) 🔵
-- [ ] [TASK-0029: DuctFittingRenderer — 継手3D表示](TASK-0029.md) - 8h (TDD) 🔵
+- [x] [TASK-0028: DuctSegmentRenderer — ダクト3D表示](TASK-0028.md) - 8h (TDD) 🔵
+- [x] [TASK-0029: DuctFittingRenderer — 継手3D表示](TASK-0029.md) - 8h (TDD) 🔵
 - [ ] [TASK-0030: DuctRouteTool — ダクト手動ルーティング + ポートスナップ](TASK-0030.md) - 8h (TDD) 🔵
 - [ ] [TASK-0031: AirflowDistributionSystem — 風量自動配分](TASK-0031.md) - 8h (TDD) 🔵
 - [ ] [TASK-0032: DuctSizingSystem — ダクト寸法選定（等速法）](TASK-0032.md) - 8h (TDD) 🔵
 - [ ] [TASK-0033: DuctVisualSystem — ダクト太さ・色・ラベル更新](TASK-0033.md) - 8h (TDD) 🔵
 - [ ] [TASK-0034: PressureLossSystem — ダクト圧損計算](TASK-0034.md) - 8h (TDD) 🔵
-- [ ] [TASK-0035: PipeSegmentRenderer — 配管3D表示](TASK-0035.md) - 8h (TDD) 🔵
+- [x] [TASK-0035: PipeSegmentRenderer — 配管3D表示](TASK-0035.md) - 8h (TDD) 🔵
 - [ ] [TASK-0036: PipeRouteTool + PipeSizingSystem — 配管ルーティング + 口径選定](TASK-0036.md) - 8h (TDD) 🔵
 - [ ] [TASK-0037: DuctPanel + PipePanel + PipeVisualSystem](TASK-0037.md) - 8h (TDD) 🔵
 

@@ -1,16 +1,28 @@
 import {
+  type AhuEvent,
+  type AhuNode,
   type BuildingEvent,
   type BuildingNode,
   type CeilingEvent,
   type CeilingNode,
+  type DiffuserEvent,
+  type DiffuserNode,
   type DoorEvent,
   type DoorNode,
+  type DuctFittingEvent,
+  type DuctFittingNode,
+  type DuctSegmentEvent,
+  type DuctSegmentNode,
   type EventSuffix,
   emitter,
+  type HvacZoneEvent,
+  type HvacZoneNode,
   type ItemEvent,
   type ItemNode,
   type LevelEvent,
   type LevelNode,
+  type PipeSegmentEvent,
+  type PipeSegmentNode,
   type RoofEvent,
   type RoofNode,
   type RoofSegmentEvent,
@@ -42,6 +54,12 @@ type NodeConfig = {
   'roof-segment': { node: RoofSegmentNode; event: RoofSegmentEvent }
   window: { node: WindowNode; event: WindowEvent }
   door: { node: DoorNode; event: DoorEvent }
+  hvac_zone: { node: HvacZoneNode; event: HvacZoneEvent }
+  ahu: { node: AhuNode; event: AhuEvent }
+  diffuser: { node: DiffuserNode; event: DiffuserEvent }
+  duct_segment: { node: DuctSegmentNode; event: DuctSegmentEvent }
+  duct_fitting: { node: DuctFittingNode; event: DuctFittingEvent }
+  pipe_segment: { node: PipeSegmentNode; event: PipeSegmentEvent }
 }
 
 type NodeType = keyof NodeConfig

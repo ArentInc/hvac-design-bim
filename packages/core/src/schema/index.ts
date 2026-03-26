@@ -4,10 +4,15 @@ export { BaseNode, generateId, Material, nodeType, objectId } from './base'
 export { CameraSchema } from './camera'
 // Collections
 export { type Collection, type CollectionId, generateCollectionId } from './collections'
+export { AhuNode } from './nodes/ahu'
 export { BuildingNode } from './nodes/building'
 export { CeilingNode } from './nodes/ceiling'
+export { DiffuserNode } from './nodes/diffuser'
 export { DoorNode, DoorSegment } from './nodes/door'
+export { DuctFittingNode } from './nodes/duct-fitting'
+export { DuctSegmentNode } from './nodes/duct-segment'
 export { GuideNode } from './nodes/guide'
+export { HvacZoneNode } from './nodes/hvac-zone'
 export type {
   AnimationEffect,
   Asset,
@@ -22,6 +27,7 @@ export type {
 } from './nodes/item'
 export { getScaledDimensions, ItemNode } from './nodes/item'
 export { LevelNode } from './nodes/level'
+export { PipeSegmentNode } from './nodes/pipe-segment'
 export { RoofNode } from './nodes/roof'
 export { RoofSegmentNode, RoofType } from './nodes/roof-segment'
 export { ScanNode } from './nodes/scan'

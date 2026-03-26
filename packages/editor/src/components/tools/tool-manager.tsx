@@ -5,6 +5,7 @@ import { CeilingBoundaryEditor } from './ceiling/ceiling-boundary-editor'
 import { CeilingHoleEditor } from './ceiling/ceiling-hole-editor'
 import { CeilingTool } from './ceiling/ceiling-tool'
 import { DoorTool } from './door/door-tool'
+import { ZoneDrawTool } from './hvac/zone-draw-tool'
 import { ItemTool } from './item/item-tool'
 import { MoveTool } from './item/move-tool'
 import { RoofTool } from './roof/roof-tool'
@@ -34,6 +35,13 @@ const tools: Record<Phase, Partial<Record<Tool, React.FC>>> = {
   furnish: {
     item: ItemTool,
   },
+  zone: {
+    // 【zone_draw】: HvacZone ゾーン境界描画ツール（TASK-0013, REQ-202）
+    zone_draw: ZoneDrawTool,
+  },
+  equip: {},
+  route: {},
+  calc: {},
 }
 
 export const ToolManager: React.FC = () => {
