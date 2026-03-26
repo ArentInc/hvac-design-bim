@@ -325,9 +325,9 @@ describe('distributeAirflow — サイクル検出', () => {
     const nodes: Record<string, AnyNode> = {
       ahu_1: makeAhu('ahu_1', 'ahu_port_sa', 500),
       seg_main: makeDuctSegment('seg_main', 'ahu_port_sa', 'teeA_in'),
-      tee_A: {
+      duct_fit_tee_A: {
         object: 'node',
-        id: 'tee_A',
+        id: 'duct_fit_tee_A',
         type: 'duct_fitting',
         fittingType: 'tee',
         position: [1, 0, 0],

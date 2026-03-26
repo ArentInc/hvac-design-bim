@@ -10,6 +10,7 @@
  */
 
 import { useFrame } from '@react-three/fiber'
+import type { AnyNodeId } from '../../schema/types'
 import useScene from '../../store/use-scene'
 import { distributeAirflow, findDirtyAirflowSystems } from './airflow-distribution'
 
@@ -37,12 +38,12 @@ export function AirflowDistributionSystem() {
 
       // 各 DuctSegment の airflowRate を更新 (REQ-801)
       for (const [segmentId, airflowRate] of result.airflowMap) {
-        const node = nodes[segmentId]
+        const node = nodes[segmentId as AnyNodeId]
         if (!node || node.type !== 'duct_segment') continue
 
         // 変更がある場合のみ更新（不要な再描画を防止）
         if (node.airflowRate !== airflowRate) {
-          updateNode(segmentId as keyof typeof nodes, { airflowRate })
+          updateNode(segmentId as AnyNodeId, { airflowRate })
         }
       }
     }

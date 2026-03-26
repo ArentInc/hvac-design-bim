@@ -9,6 +9,7 @@
  */
 
 import { useFrame } from '@react-three/fiber'
+import type { AnyNodeId } from '../../schema/types'
 import useScene from '../../store/use-scene'
 import { calcDuctSize, findDirtyDuctSegmentsForSizing, selectDuctVelocity } from './duct-sizing'
 
@@ -21,7 +22,7 @@ export function DuctSizingSystem() {
     if (segmentIds.length === 0) return
 
     for (const segId of segmentIds) {
-      const seg = nodes[segId]
+      const seg = nodes[segId as AnyNodeId]
       if (!seg || seg.type !== 'duct_segment') continue
       if (seg.airflowRate == null || seg.airflowRate <= 0) continue
 
@@ -34,7 +35,7 @@ export function DuctSizingSystem() {
 
       // 変更がある場合のみ更新（不要な dirty マークを防止）
       if (seg.width !== result.width || seg.height !== result.height) {
-        updateNode(segId as keyof typeof nodes, {
+        updateNode(segId as AnyNodeId, {
           width: result.width,
           height: result.height,
         })

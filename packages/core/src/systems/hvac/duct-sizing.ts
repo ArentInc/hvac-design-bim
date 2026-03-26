@@ -61,7 +61,7 @@ export interface DuctSizeResult {
  */
 export function snapToStandardDim(mm: number): number {
   const found = STANDARD_DIMS_MM.find((d) => d >= mm)
-  return found ?? STANDARD_DIMS_MM[STANDARD_DIMS_MM.length - 1]
+  return found ?? STANDARD_DIMS_MM[STANDARD_DIMS_MM.length - 1]!
 }
 
 /**

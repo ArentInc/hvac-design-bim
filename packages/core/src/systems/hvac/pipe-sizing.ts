@@ -147,7 +147,7 @@ export function snapToStandardSize(theoreticalDiameterMm: number): PipeSizeEntry
   }
 
   // 【上限超過】: 最大口径（200A）を返す（TC-017対応）
-  return PIPE_SIZES[PIPE_SIZES.length - 1]
+  return PIPE_SIZES[PIPE_SIZES.length - 1]!
 }
 
 /**
@@ -182,7 +182,7 @@ export function validateVelocityConstraint(
   // 【反復調整ループ】: 流速制約を満たすまで口径を調整（最大ループ数でガード）
   const maxIterations = PIPE_SIZES.length
   for (let iter = 0; iter < maxIterations; iter++) {
-    const entry = PIPE_SIZES[currentIdx]
+    const entry = PIPE_SIZES[currentIdx]!
     const d = entry.innerDiameter / 1000 // 【単位変換】: mm → m
     const area = Math.PI * (d / 2) ** 2 // 【断面積】: m2
     const velocity = flowRate / area // 【実流速】: m/s
@@ -232,7 +232,7 @@ export function validateVelocityConstraint(
 
   // 【フォールバック】: ループ終了後（理論上到達しない — PIPE_SIZES.length回反復で必ず収束）
   // 安全策として最終インデックスの口径を返す
-  const finalEntry = PIPE_SIZES[currentIdx]
+  const finalEntry = PIPE_SIZES[currentIdx]!
   const d = finalEntry.innerDiameter / 1000
   const area = Math.PI * (d / 2) ** 2
   const velocity = flowRate / area
