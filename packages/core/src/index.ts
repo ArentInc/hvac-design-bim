@@ -67,6 +67,14 @@ export { clearSceneHistory, default as useScene } from './store/use-scene'
 // Systems
 export { CeilingSystem } from './systems/ceiling/ceiling-system'
 export { DoorSystem } from './systems/door/door-system'
+export type { DistributeAirflowResult } from './systems/hvac/airflow-distribution'
+export {
+  AHU_AIRFLOW_TOLERANCE,
+  distributeAirflow,
+  findDirtyAirflowSystems,
+} from './systems/hvac/airflow-distribution'
+// HVAC Systems
+export { AirflowDistributionSystem } from './systems/hvac/airflow-distribution-system'
 export type { AhuCatalogEntry, EquipmentSelectionResult } from './systems/hvac/equipment-selection'
 export {
   DEFAULT_SELECTION_MARGIN,
@@ -74,8 +82,18 @@ export {
   selectEquipment,
   sortAhuCandidates,
 } from './systems/hvac/equipment-selection'
-// HVAC Systems
 export { EquipmentSelectionSystem } from './systems/hvac/equipment-selection-system'
+// 🔵 配管口径選定 — TASK-0036 (REQ-1103, REQ-1104)
+export type { SelectPipeSizeResult } from './systems/hvac/pipe-sizing'
+export {
+  calculateFlowRate,
+  calculatePressureDrop,
+  calculateTheoreticalDiameter,
+  PIPE_SIZING_DEFAULTS,
+  selectPipeSize,
+  snapToStandardSize,
+  validateVelocityConstraint,
+} from './systems/hvac/pipe-sizing'
 export type { AggregatedLoadResult } from './systems/hvac/system-aggregation'
 export {
   aggregateSystemLoad,

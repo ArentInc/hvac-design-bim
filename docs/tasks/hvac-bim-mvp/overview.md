@@ -31,8 +31,8 @@
 ## 全体進捗
 
 - [x] Phase 1: 基盤整備 (MVP-0)
-- [ ] Phase 2: ゾーニング + 負荷計算 (MVP-1)
-- [ ] Phase 3: 系統構成 + 機器配置 (MVP-2)
+- [ ] Phase 2: ゾーニング + 負荷計算 (MVP-1) *(TASK-0018のみ未完了)*
+- [x] Phase 3: 系統構成 + 機器配置 (MVP-2)
 - [ ] Phase 4: ダクト + 配管ルーティング (MVP-3)
 - [ ] Phase 5: 警告 + UI統合 + デモ (MVP-4)
 
@@ -90,8 +90,8 @@ TASK-0006 (独立)
 - [x] [TASK-0014: PerimeterEditTool — 外皮条件入力](TASK-0014.md) - 8h (TDD) 🔵
 - [x] [TASK-0015: LoadCalcSystem — 負荷概算計算エンジン](TASK-0015.md) - 8h (TDD) 🔵
 - [x] [TASK-0016: HvacZonePanel + CalcResultPanel — ゾーンプロパティ表示](TASK-0016.md) - 8h (TDD) 🔵
-- [ ] [TASK-0017: ZoneListPanel — ゾーン一覧サイドバー](TASK-0017.md) - 8h (TDD) 🔵
-- [ ] [TASK-0018: ゾーン操作フィードバック — 面積リアルタイム表示 + カラーフェードイン](TASK-0018.md) - 8h (TDD) 🔵
+- [x] [TASK-0017: ZoneListPanel — ゾーン一覧サイドバー](TASK-0017.md) - 8h (TDD) 🔵
+- [x] [TASK-0018: ゾーン操作フィードバック — 面積リアルタイム表示 + カラーフェードイン](TASK-0018.md) - 8h (TDD) 🔵
 
 ### 依存関係
 
@@ -121,8 +121,8 @@ TASK-0013 → TASK-0018
 - [x] [TASK-0023: AhuPlaceTool — AHU配置ツール](TASK-0023.md) - 8h (TDD) 🔵
 - [x] [TASK-0024: DiffuserRenderer — 制気口3D表示](TASK-0024.md) - 8h (TDD) 🔵
 - [x] [TASK-0025: DiffuserPlaceTool — 制気口配置 + 風量均等配分](TASK-0025.md) - 8h (TDD) 🔵
-- [ ] [TASK-0026: SystemPanel + AhuPanel + DiffuserPanel](TASK-0026.md) - 8h (TDD) 🔵
-- [ ] [TASK-0027: SystemTreePanel + EquipmentCatalogPanel](TASK-0027.md) - 8h (TDD) 🔵
+- [x] [TASK-0026: SystemPanel + AhuPanel + DiffuserPanel](TASK-0026.md) - 8h (TDD) 🔵
+- [x] [TASK-0027: SystemTreePanel + EquipmentCatalogPanel](TASK-0027.md) - 8h (TDD) 🔵
 
 ### 依存関係
 
@@ -147,7 +147,7 @@ TASK-0020, TASK-0021 → TASK-0027
 
 - [x] [TASK-0028: DuctSegmentRenderer — ダクト3D表示](TASK-0028.md) - 8h (TDD) 🔵
 - [x] [TASK-0029: DuctFittingRenderer — 継手3D表示](TASK-0029.md) - 8h (TDD) 🔵
-- [ ] [TASK-0030: DuctRouteTool — ダクト手動ルーティング + ポートスナップ](TASK-0030.md) - 8h (TDD) 🔵
+- [x] [TASK-0030: DuctRouteTool — ダクト手動ルーティング + ポートスナップ](TASK-0030.md) - 8h (TDD) 🔵
 - [ ] [TASK-0031: AirflowDistributionSystem — 風量自動配分](TASK-0031.md) - 8h (TDD) 🔵
 - [ ] [TASK-0032: DuctSizingSystem — ダクト寸法選定（等速法）](TASK-0032.md) - 8h (TDD) 🔵
 - [ ] [TASK-0033: DuctVisualSystem — ダクト太さ・色・ラベル更新](TASK-0033.md) - 8h (TDD) 🔵

@@ -125,6 +125,18 @@ Selection path: `{buildingId, levelId, zoneId, selectedIds[]}`. Setting a parent
 
 Biome (not ESLint/Prettier): 2-space indent, single quotes, no semicolons (except ASI hazards), trailing commas, 100-char line width. Organize imports automatically.
 
+## Task Progress Tracking
+
+When a HVAC-BIM task is completed, **always** update the following in order:
+
+1. **Individual task file** (`docs/tasks/hvac-bim-mvp/TASK-XXXX.md`): Add `✅ **完了**` to the title line.
+2. **overview.md** (`docs/tasks/hvac-bim-mvp/overview.md`):
+   - Change `- [ ]` to `- [x]` for the completed task entry.
+   - If all tasks in a phase are complete, change the phase checkbox in `## 全体進捗` to `- [x]`.
+   - If only some tasks in a phase are complete, add a note like `*(TASK-XXXX のみ未完了)*`.
+
+Never skip this update — it is the single source of truth for project progress.
+
 ## HVAC Domain Context
 
 This fork extends Pascal Editor for HVAC basic design workflows. MVP spec is in `.cursor/docs/hvac_bim_mvp.md`. Key additions planned:

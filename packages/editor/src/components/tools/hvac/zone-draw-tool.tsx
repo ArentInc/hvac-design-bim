@@ -9,11 +9,33 @@
 
 import { emitter, type GridEvent, HvacZoneNode, useScene } from '@pascal-app/core'
 import { useViewer } from '@pascal-app/viewer'
+import { Html } from '@react-three/drei'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { BufferGeometry, DoubleSide, type Group, type Line, Shape, Vector3 } from 'three'
 import { EDITOR_LAYER } from '../../../lib/constants'
 import { CursorSphere } from '../shared/cursor-sphere'
 import { calculatePolygonArea } from './polygon-area'
+
+/**
+ * 【ヘルパー関数】: ポリゴン頂点リストの重心（座標平均）を算出する
+ * 【単一責任】: 面積オーバーレイのラベル配置座標計算に使用
+ * 【REQ-1601】: 描画中にラベルをポリゴン中心付近に表示するための補助関数
+ * 🔵 信頼性レベル: TASK-0018 テスト1「ポリゴン中心計算」に明示
+ * @param vertices - 頂点リスト（x, y 座標のオブジェクト配列）
+ * @returns 重心座標 {x, y}
+ */
+export function calculatePolygonCenter(vertices: { x: number; y: number }[]): {
+  x: number
+  y: number
+} {
+  if (vertices.length === 0) return { x: 0, y: 0 }
+  const sumX = vertices.reduce((s, v) => s + v.x, 0)
+  const sumY = vertices.reduce((s, v) => s + v.y, 0)
+  return {
+    x: sumX / vertices.length,
+    y: sumY / vertices.length,
+  }
+}
 
 /**
  * 【設定定数】: プレビューメッシュの Y オフセット（フロア面との Z-fighting 防止）
@@ -409,12 +431,28 @@ export const ZoneDrawTool: React.FC = () => {
       {areaLabel &&
         points.length >= 3 &&
         (() => {
-          // 【重心計算】: ポリゴン中心付近にラベルを配置
-          const cx = points.reduce((s, [x]) => s + x, 0) / points.length
-          const cz = points.reduce((s, [, z]) => s + z, 0) / points.length
+          // 【重心計算】: calculatePolygonCenter でポリゴン中心を算出
+          const vertices = points.map(([x, z]) => ({ x, y: z }))
+          const center = calculatePolygonCenter(vertices)
           return (
-            <group position={[cx, levelY + Y_OFFSET + 0.05, cz]}>
-              {/* ラベルは Billboard テキストとして配置（将来的に @react-three/drei Text に移行可） */}
+            <group position={[center.x, levelY + Y_OFFSET + 0.05, center.y]}>
+              {/* 【REQ-1601】: @react-three/drei の Html で 3D 空間内にHTMLオーバーレイを表示 */}
+              <Html center style={{ pointerEvents: 'none' }}>
+                <div
+                  style={{
+                    background: 'rgba(0,0,0,0.7)',
+                    color: 'white',
+                    padding: '4px 8px',
+                    borderRadius: 4,
+                    fontWeight: 'bold',
+                    whiteSpace: 'nowrap',
+                    userSelect: 'none',
+                  }}
+                >
+                  <span style={{ fontSize: 18 }}>{areaLabel.replace(' m²', '')}</span>
+                  <span style={{ fontSize: 12, marginLeft: 2, opacity: 0.8 }}> m²</span>
+                </div>
+              </Html>
             </group>
           )
         })()}
