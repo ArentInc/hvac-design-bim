@@ -88,7 +88,10 @@ function makeSystem(
       opts.totalAirflow !== undefined
         ? { totalCoolingLoad: 15000, totalHeatingLoad: 12000, totalAirflow: opts.totalAirflow }
         : null,
-    status: 'configured',
+    status: 'equipment_selected',
+    selectionMargin: 1.1,
+    equipmentCandidates: [],
+    selectionStatus: 'candidates-available',
     parentId: 'level_demo',
     visible: true,
     metadata: {},
