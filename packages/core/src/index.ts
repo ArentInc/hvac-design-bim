@@ -58,12 +58,15 @@ export {
 } from './lib/space-detection'
 // Schema
 export * from './schema'
+// 🔵 バリデーションシステム — TASK-0038 (REQ-1201)
+export type { Warning, WarningCode, WarningSeverity } from './schema/hvac/warning'
 export {
   type ControlValue,
   type ItemInteractiveState,
   useInteractive,
 } from './store/use-interactive'
 export { clearSceneHistory, default as useScene } from './store/use-scene'
+export { default as useValidation } from './store/use-validation'
 // Systems
 export { CeilingSystem } from './systems/ceiling/ceiling-system'
 export { DoorSystem } from './systems/door/door-system'
@@ -100,6 +103,19 @@ export {
   findSystemsForZone,
 } from './systems/hvac/system-aggregation'
 export { SystemAggregationSystem } from './systems/hvac/system-aggregation-system'
+export {
+  AIRFLOW_MISMATCH_THRESHOLD,
+  checkAirflowMismatch,
+  checkAirflowNotSet,
+  checkPipeNotConnected,
+  checkPressureNotCalculated,
+  checkSizeNotDetermined,
+  checkUnconnectedPorts,
+  checkVelocityExceeded,
+  checkZoneNoSystem,
+  DUCT_MAX_VELOCITY_MS,
+  ValidationSystem,
+} from './systems/hvac/validation-system'
 export { ItemSystem } from './systems/item/item-system'
 export { RoofSystem } from './systems/roof/roof-system'
 export { SlabSystem } from './systems/slab/slab-system'
@@ -117,6 +133,13 @@ export {
 } from './systems/wall/wall-mitering'
 export { WallSystem } from './systems/wall/wall-system'
 export { WindowSystem } from './systems/window/window-system'
+// Constants
+export {
+  formatHvacLoadValue,
+  getZoneColorByUsage,
+  ZONE_DEFAULT_COLOR,
+  ZONE_USAGE_COLORS,
+} from './constants/hvac-colors'
 // Utilities
 export { calculatePolygonArea } from './utils/polygon-area'
 export { isObject } from './utils/types'

@@ -1,19 +1,17 @@
-import { type HvacZoneNode, useRegistry, useScene } from '@pascal-app/core'
+import {
+  type HvacZoneNode,
+  useRegistry,
+  useScene,
+  ZONE_DEFAULT_COLOR,
+  ZONE_USAGE_COLORS,
+} from '@pascal-app/core'
 import { useFrame } from '@react-three/fiber'
 import { useEffect, useMemo, useRef } from 'react'
 import { Color, DoubleSide, type Mesh, type MeshBasicMaterial, Shape } from 'three'
 import { useNodeEvents } from '../../../hooks/use-node-events'
 import { ZONE_LAYER } from '../../../lib/layers'
 
-export const ZONE_USAGE_COLORS: Record<string, string> = {
-  office_general: '#42A5F5',
-  conference: '#FFA726',
-  reception: '#66BB6A',
-  office_server: '#EF5350',
-  corridor: '#BDBDBD',
-}
-
-export const ZONE_DEFAULT_COLOR = '#9E9E9E'
+export { ZONE_DEFAULT_COLOR, ZONE_USAGE_COLORS }
 
 const ZONE_OPACITY = 0.4
 const Y_OFFSET = 0.01

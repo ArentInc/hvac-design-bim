@@ -33,7 +33,7 @@
 - [x] Phase 1: 基盤整備 (MVP-0)
 - [x] Phase 2: ゾーニング + 負荷計算 (MVP-1)
 - [x] Phase 3: 系統構成 + 機器配置 (MVP-2)
-- [ ] Phase 4: ダクト + 配管ルーティング (MVP-3)
+- [x] Phase 4: ダクト + 配管ルーティング (MVP-3)
 - [ ] Phase 5: 警告 + UI統合 + デモ (MVP-4)
 
 ## マイルストーン
@@ -154,7 +154,7 @@ TASK-0020, TASK-0021 → TASK-0027
 - [x] [TASK-0034: PressureLossSystem — ダクト圧損計算](TASK-0034.md) - 8h (TDD) 🔵
 - [x] [TASK-0035: PipeSegmentRenderer — 配管3D表示](TASK-0035.md) - 8h (TDD) 🔵
 - [x] [TASK-0036: PipeRouteTool + PipeSizingSystem — 配管ルーティング + 口径選定](TASK-0036.md) - 8h (TDD) 🔵
-- [ ] [TASK-0037: DuctPanel + PipePanel + PipeVisualSystem](TASK-0037.md) - 8h (TDD) 🔵
+- [x] [TASK-0037: DuctPanel + PipePanel + PipeVisualSystem](TASK-0037.md) - 8h (TDD) 🔵
 
 ### 依存関係
 
@@ -178,10 +178,10 @@ TASK-0033, TASK-0036 → TASK-0037
 
 ### タスク一覧
 
-- [ ] [TASK-0038: ValidationSystem — 警告バリデーションエンジン](TASK-0038.md) - 8h (TDD) 🔵
-- [ ] [TASK-0039: WarningBadgeSystem — ノード上警告バッジ表示](TASK-0039.md) - 8h (TDD) 🔵
-- [ ] [TASK-0040: WarningListPanel — 警告一覧 + ノード選択ズーム](TASK-0040.md) - 8h (TDD) 🔵
-- [ ] [TASK-0041: 再計算カスケード統合 — 全計算パイプライン結合テスト](TASK-0041.md) - 8h (TDD) 🔵
+- [x] [TASK-0038: ValidationSystem — 警告バリデーションエンジン](TASK-0038.md) - 8h (TDD) 🔵
+- [x] [TASK-0039: WarningBadgeSystem — ノード上警告バッジ表示](TASK-0039.md) - 8h (TDD) 🔵
+- [x] [TASK-0040: WarningListPanel — 警告一覧 + ノード選択ズーム](TASK-0040.md) - 8h (TDD) 🔵
+- [x] [TASK-0041: 再計算カスケード統合 — 全計算パイプライン結合テスト](TASK-0041.md) - 8h (TDD) 🔵
 - [ ] [TASK-0042: プリセットデータ作成（5段階）+ 読込UI](TASK-0042.md) - 8h (DIRECT) 🔵
 - [ ] [TASK-0043: 保存/復元検証 — HVACノードのIndexedDB永続化](TASK-0043.md) - 8h (TDD) 🔵
 - [ ] [TASK-0044: 画面表示仕様 — ゾーンカラー、ダクトラベル、配管色分け統合](TASK-0044.md) - 8h (TDD) 🔵
