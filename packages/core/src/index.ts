@@ -67,6 +67,21 @@ export { clearSceneHistory, default as useScene } from './store/use-scene'
 // Systems
 export { CeilingSystem } from './systems/ceiling/ceiling-system'
 export { DoorSystem } from './systems/door/door-system'
+export type { AhuCatalogEntry, EquipmentSelectionResult } from './systems/hvac/equipment-selection'
+export {
+  DEFAULT_SELECTION_MARGIN,
+  filterAhuCandidates,
+  selectEquipment,
+  sortAhuCandidates,
+} from './systems/hvac/equipment-selection'
+// HVAC Systems
+export { EquipmentSelectionSystem } from './systems/hvac/equipment-selection-system'
+export type { AggregatedLoadResult } from './systems/hvac/system-aggregation'
+export {
+  aggregateSystemLoad,
+  findSystemsForZone,
+} from './systems/hvac/system-aggregation'
+export { SystemAggregationSystem } from './systems/hvac/system-aggregation-system'
 export { ItemSystem } from './systems/item/item-system'
 export { RoofSystem } from './systems/roof/roof-system'
 export { SlabSystem } from './systems/slab/slab-system'

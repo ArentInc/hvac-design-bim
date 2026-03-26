@@ -234,7 +234,8 @@ export function calculateRequiredAirflow(
   // 【風量計算】: coolingLoad / (ρ x Cp x ΔT) x 3600 で m^3/h を算出 🔵
   // ρ=1.2 kg/m^3, Cp=1005 J/(kg·K)
   const airflowM3PerS =
-    coolingLoad / (PHYSICS_CONSTANTS.AIR_DENSITY * PHYSICS_CONSTANTS.AIR_SPECIFIC_HEAT * supplyAirTempDiff)
+    coolingLoad /
+    (PHYSICS_CONSTANTS.AIR_DENSITY * PHYSICS_CONSTANTS.AIR_SPECIFIC_HEAT * supplyAirTempDiff)
   const airflowM3PerH = airflowM3PerS * 3600
 
   // 【整数丸め】: Math.round で m^3/h の整数値に丸める 🔵

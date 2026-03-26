@@ -88,8 +88,8 @@ TASK-0006 (独立)
 - [x] [TASK-0012: HvacZoneRenderer — ゾーン3D描画](TASK-0012.md) - 8h (TDD) 🔵
 - [x] [TASK-0013: ZoneDrawTool — ゾーン境界描画ツール](TASK-0013.md) - 8h (TDD) 🔵
 - [x] [TASK-0014: PerimeterEditTool — 外皮条件入力](TASK-0014.md) - 8h (TDD) 🔵
-- [ ] [TASK-0015: LoadCalcSystem — 負荷概算計算エンジン](TASK-0015.md) - 8h (TDD) 🔵
-- [ ] [TASK-0016: HvacZonePanel + CalcResultPanel — ゾーンプロパティ表示](TASK-0016.md) - 8h (TDD) 🔵
+- [x] [TASK-0015: LoadCalcSystem — 負荷概算計算エンジン](TASK-0015.md) - 8h (TDD) 🔵
+- [x] [TASK-0016: HvacZonePanel + CalcResultPanel — ゾーンプロパティ表示](TASK-0016.md) - 8h (TDD) 🔵
 - [ ] [TASK-0017: ZoneListPanel — ゾーン一覧サイドバー](TASK-0017.md) - 8h (TDD) 🔵
 - [ ] [TASK-0018: ゾーン操作フィードバック — 面積リアルタイム表示 + カラーフェードイン](TASK-0018.md) - 8h (TDD) 🔵
 
@@ -114,13 +114,13 @@ TASK-0013 → TASK-0018
 
 ### タスク一覧
 
-- [ ] [TASK-0019: SystemAggregationSystem — 系統集計計算](TASK-0019.md) - 8h (TDD) 🔵
-- [ ] [TASK-0020: ZoneGroupingTool — ゾーングルーピング](TASK-0020.md) - 8h (TDD) 🔵
-- [ ] [TASK-0021: EquipmentSelectionSystem — AHU候補選定ロジック](TASK-0021.md) - 8h (TDD) 🔵
+- [x] [TASK-0019: SystemAggregationSystem — 系統集計計算](TASK-0019.md) - 8h (TDD) 🔵
+- [x] [TASK-0020: ZoneGroupingTool — ゾーングルーピング](TASK-0020.md) - 8h (TDD) 🔵
+- [x] [TASK-0021: EquipmentSelectionSystem — AHU候補選定ロジック](TASK-0021.md) - 8h (TDD) 🔵
 - [x] [TASK-0022: AhuRenderer — AHU 3D表示（直方体+ポート円筒）](TASK-0022.md) - 8h (TDD) 🔵
-- [ ] [TASK-0023: AhuPlaceTool — AHU配置ツール](TASK-0023.md) - 8h (TDD) 🔵
+- [x] [TASK-0023: AhuPlaceTool — AHU配置ツール](TASK-0023.md) - 8h (TDD) 🔵
 - [x] [TASK-0024: DiffuserRenderer — 制気口3D表示](TASK-0024.md) - 8h (TDD) 🔵
-- [ ] [TASK-0025: DiffuserPlaceTool — 制気口配置 + 風量均等配分](TASK-0025.md) - 8h (TDD) 🔵
+- [x] [TASK-0025: DiffuserPlaceTool — 制気口配置 + 風量均等配分](TASK-0025.md) - 8h (TDD) 🔵
 - [ ] [TASK-0026: SystemPanel + AhuPanel + DiffuserPanel](TASK-0026.md) - 8h (TDD) 🔵
 - [ ] [TASK-0027: SystemTreePanel + EquipmentCatalogPanel](TASK-0027.md) - 8h (TDD) 🔵
 
