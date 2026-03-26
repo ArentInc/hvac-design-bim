@@ -24,6 +24,8 @@ export const SystemNode = BaseNode.extend({
   equipmentCandidates: z.array(z.string()).optional().default([]),
   selectionStatus: EquipmentSelectionStatus.optional().default('pending'),
   recommendedEquipmentId: z.string().nullable().optional(),
+  // TASK-0034: Pressure loss calculation result
+  requiredFanPressure: z.number().nullable().optional(),
 })
 
 export type SystemNode = z.infer<typeof SystemNode>

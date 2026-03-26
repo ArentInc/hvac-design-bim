@@ -127,15 +127,18 @@ Biome (not ESLint/Prettier): 2-space indent, single quotes, no semicolons (excep
 
 ## Task Progress Tracking
 
-When a HVAC-BIM task is completed, **always** update the following in order:
+When a HVAC-BIM task is completed, **always** update the following in order. This is mandatory — never skip.
 
-1. **Individual task file** (`docs/tasks/hvac-bim-mvp/TASK-XXXX.md`): Add `✅ **完了**` to the title line.
+1. **Individual task file** (`docs/tasks/hvac-bim-mvp/TASK-XXXX.md`):
+   - Edit the title (line 1) to append `✅ **完了**`
+   - Example: `# TASK-0031: AirflowDistributionSystem — 風量自動配分 ✅ **完了**`
+
 2. **overview.md** (`docs/tasks/hvac-bim-mvp/overview.md`):
-   - Change `- [ ]` to `- [x]` for the completed task entry.
-   - If all tasks in a phase are complete, change the phase checkbox in `## 全体進捗` to `- [x]`.
-   - If only some tasks in a phase are complete, add a note like `*(TASK-XXXX のみ未完了)*`.
+   - Change `- [ ]` to `- [x]` for the completed task entry in the phase task list.
+   - If **all tasks in a phase** are `[x]`, update the phase line in `## 全体進捗` to `- [x]`.
+   - Remove any `*(TASK-XXXX のみ未完了)*` notes once those tasks are done.
 
-Never skip this update — it is the single source of truth for project progress.
+Do both updates immediately after confirming implementation exists — do not wait for the user to ask.
 
 ## HVAC Domain Context
 
