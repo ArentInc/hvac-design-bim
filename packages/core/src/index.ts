@@ -10,6 +10,15 @@ export { extractWallMetadata } from './loaders/architecture-metadata'
 
 // Store
 
+// Constants
+export {
+  formatHvacLoadValue,
+  getZoneColorByUsage,
+  ZONE_DEFAULT_COLOR,
+  ZONE_USAGE_COLORS,
+} from './constants/hvac-colors'
+// Presets
+export { HVAC_PRESETS, type PresetData } from './data/presets'
 export type {
   AhuEvent,
   BuildingEvent,
@@ -133,13 +142,6 @@ export {
 } from './systems/wall/wall-mitering'
 export { WallSystem } from './systems/wall/wall-system'
 export { WindowSystem } from './systems/window/window-system'
-// Constants
-export {
-  formatHvacLoadValue,
-  getZoneColorByUsage,
-  ZONE_DEFAULT_COLOR,
-  ZONE_USAGE_COLORS,
-} from './constants/hvac-colors'
 // Utilities
 export { calculatePolygonArea } from './utils/polygon-area'
 export { isObject } from './utils/types'

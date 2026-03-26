@@ -40,6 +40,14 @@ vi.mock('../../../hooks/use-node-events', () => ({
 vi.mock('@pascal-app/core', () => ({
   useRegistry: vi.fn(),
   useScene: vi.fn(),
+  ZONE_USAGE_COLORS: {
+    office_general: '#42A5F5',
+    conference: '#FFA726',
+    reception: '#66BB6A',
+    office_server: '#EF5350',
+    corridor: '#BDBDBD',
+  },
+  ZONE_DEFAULT_COLOR: '#9E9E9E',
 }))
 vi.mock('../../../lib/layers', () => ({
   ZONE_LAYER: 2,

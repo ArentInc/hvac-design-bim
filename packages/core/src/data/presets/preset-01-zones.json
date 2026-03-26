@@ -1,0 +1,155 @@
+{
+  "_description": "Stage 1: ゾーン作成・負荷計算済み",
+  "nodes": {
+    "site_preset": {
+      "object": "node",
+      "type": "site",
+      "id": "site_preset",
+      "parentId": null,
+      "visible": true,
+      "metadata": {},
+      "polygon": {
+        "type": "polygon",
+        "points": [[-15, -15], [15, -15], [15, 15], [-15, 15]]
+      },
+      "children": [
+        {
+          "object": "node",
+          "type": "building",
+          "id": "building_preset",
+          "parentId": "site_preset",
+          "visible": true,
+          "metadata": {},
+          "children": ["level_preset_1f", "level_preset_2f"],
+          "position": [0, 0, 0],
+          "rotation": [0, 0, 0]
+        }
+      ]
+    },
+    "building_preset": {
+      "object": "node",
+      "type": "building",
+      "id": "building_preset",
+      "parentId": "site_preset",
+      "visible": true,
+      "metadata": {},
+      "children": ["level_preset_1f", "level_preset_2f"],
+      "position": [0, 0, 0],
+      "rotation": [0, 0, 0]
+    },
+    "level_preset_1f": {
+      "object": "node",
+      "type": "level",
+      "id": "level_preset_1f",
+      "parentId": "building_preset",
+      "visible": true,
+      "metadata": {},
+      "children": ["hvac_zone_p01", "hvac_zone_p02"],
+      "level": 0
+    },
+    "level_preset_2f": {
+      "object": "node",
+      "type": "level",
+      "id": "level_preset_2f",
+      "parentId": "building_preset",
+      "visible": true,
+      "metadata": {},
+      "children": ["hvac_zone_p03"],
+      "level": 1
+    },
+    "hvac_zone_p01": {
+      "object": "node",
+      "type": "hvac_zone",
+      "id": "hvac_zone_p01",
+      "parentId": "level_preset_1f",
+      "visible": true,
+      "metadata": {},
+      "zoneName": "1F 事務室",
+      "usage": "office_general",
+      "floorArea": 100,
+      "ceilingHeight": 2.7,
+      "occupantDensity": 0.15,
+      "boundary": [[0, 0], [10, 0], [10, 10], [0, 10]],
+      "designConditions": {
+        "coolingSetpoint": 26,
+        "heatingSetpoint": 22,
+        "relativeHumidity": 50,
+        "supplyAirTempDiff": 10
+      },
+      "perimeterSegments": [],
+      "systemId": null,
+      "calcResult": {
+        "coolingLoad": 15000,
+        "heatingLoad": 8000,
+        "requiredAirflow": 4478,
+        "internalLoad": 15000,
+        "envelopeLoad": 0,
+        "perimeterLoadBreakdown": [],
+        "status": "success"
+      }
+    },
+    "hvac_zone_p02": {
+      "object": "node",
+      "type": "hvac_zone",
+      "id": "hvac_zone_p02",
+      "parentId": "level_preset_1f",
+      "visible": true,
+      "metadata": {},
+      "zoneName": "1F 会議室",
+      "usage": "conference",
+      "floorArea": 30,
+      "ceilingHeight": 2.7,
+      "occupantDensity": 0.5,
+      "boundary": [[10, 0], [16, 0], [16, 5], [10, 5]],
+      "designConditions": {
+        "coolingSetpoint": 26,
+        "heatingSetpoint": 22,
+        "relativeHumidity": 50,
+        "supplyAirTempDiff": 10
+      },
+      "perimeterSegments": [],
+      "systemId": null,
+      "calcResult": {
+        "coolingLoad": 6000,
+        "heatingLoad": 3000,
+        "requiredAirflow": 1791,
+        "internalLoad": 6000,
+        "envelopeLoad": 0,
+        "perimeterLoadBreakdown": [],
+        "status": "success"
+      }
+    },
+    "hvac_zone_p03": {
+      "object": "node",
+      "type": "hvac_zone",
+      "id": "hvac_zone_p03",
+      "parentId": "level_preset_2f",
+      "visible": true,
+      "metadata": {},
+      "zoneName": "2F サーバー室",
+      "usage": "office_server",
+      "floorArea": 50,
+      "ceilingHeight": 2.7,
+      "occupantDensity": 0.01,
+      "boundary": [[0, 0], [10, 0], [10, 5], [0, 5]],
+      "designConditions": {
+        "coolingSetpoint": 24,
+        "heatingSetpoint": 18,
+        "relativeHumidity": 50,
+        "supplyAirTempDiff": 10
+      },
+      "perimeterSegments": [],
+      "systemId": null,
+      "calcResult": {
+        "coolingLoad": 40000,
+        "heatingLoad": 0,
+        "requiredAirflow": 11940,
+        "internalLoad": 40000,
+        "envelopeLoad": 0,
+        "perimeterLoadBreakdown": [],
+        "status": "success"
+      }
+    }
+  },
+  "rootNodeIds": ["site_preset"]
+}

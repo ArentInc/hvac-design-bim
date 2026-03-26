@@ -1,0 +1,62 @@
+{
+  "_description": "Stage 0: 建築モデルのみ（空の状態）",
+  "nodes": {
+    "site_preset": {
+      "object": "node",
+      "type": "site",
+      "id": "site_preset",
+      "parentId": null,
+      "visible": true,
+      "metadata": {},
+      "polygon": {
+        "type": "polygon",
+        "points": [[-15, -15], [15, -15], [15, 15], [-15, 15]]
+      },
+      "children": [
+        {
+          "object": "node",
+          "type": "building",
+          "id": "building_preset",
+          "parentId": "site_preset",
+          "visible": true,
+          "metadata": {},
+          "children": ["level_preset_1f", "level_preset_2f"],
+          "position": [0, 0, 0],
+          "rotation": [0, 0, 0]
+        }
+      ]
+    },
+    "building_preset": {
+      "object": "node",
+      "type": "building",
+      "id": "building_preset",
+      "parentId": "site_preset",
+      "visible": true,
+      "metadata": {},
+      "children": ["level_preset_1f", "level_preset_2f"],
+      "position": [0, 0, 0],
+      "rotation": [0, 0, 0]
+    },
+    "level_preset_1f": {
+      "object": "node",
+      "type": "level",
+      "id": "level_preset_1f",
+      "parentId": "building_preset",
+      "visible": true,
+      "metadata": {},
+      "children": [],
+      "level": 0
+    },
+    "level_preset_2f": {
+      "object": "node",
+      "type": "level",
+      "id": "level_preset_2f",
+      "parentId": "building_preset",
+      "visible": true,
+      "metadata": {},
+      "children": [],
+      "level": 1
+    }
+  },
+  "rootNodeIds": ["site_preset"]
+}

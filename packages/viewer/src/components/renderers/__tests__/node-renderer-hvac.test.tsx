@@ -69,6 +69,14 @@ vi.mock('@pascal-app/core', () => ({
     byType: {},
     clear: vi.fn(),
   },
+  ZONE_USAGE_COLORS: {
+    office_general: '#42A5F5',
+    conference: '#FFA726',
+    reception: '#66BB6A',
+    office_server: '#EF5350',
+    corridor: '#BDBDBD',
+  },
+  ZONE_DEFAULT_COLOR: '#9E9E9E',
 }))
 
 // Mock viewer store
