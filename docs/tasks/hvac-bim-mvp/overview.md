@@ -149,9 +149,9 @@ TASK-0020, TASK-0021 → TASK-0027
 - [x] [TASK-0029: DuctFittingRenderer — 継手3D表示](TASK-0029.md) - 8h (TDD) 🔵
 - [x] [TASK-0030: DuctRouteTool — ダクト手動ルーティング + ポートスナップ](TASK-0030.md) - 8h (TDD) 🔵
 - [x] [TASK-0031: AirflowDistributionSystem — 風量自動配分](TASK-0031.md) - 8h (TDD) 🔵
-- [ ] [TASK-0032: DuctSizingSystem — ダクト寸法選定（等速法）](TASK-0032.md) - 8h (TDD) 🔵
-- [ ] [TASK-0033: DuctVisualSystem — ダクト太さ・色・ラベル更新](TASK-0033.md) - 8h (TDD) 🔵
-- [ ] [TASK-0034: PressureLossSystem — ダクト圧損計算](TASK-0034.md) - 8h (TDD) 🔵
+- [x] [TASK-0032: DuctSizingSystem — ダクト寸法選定（等速法）](TASK-0032.md) - 8h (TDD) 🔵
+- [x] [TASK-0033: DuctVisualSystem — ダクト太さ・色・ラベル更新](TASK-0033.md) - 8h (TDD) 🔵
+- [x] [TASK-0034: PressureLossSystem — ダクト圧損計算](TASK-0034.md) - 8h (TDD) 🔵
 - [x] [TASK-0035: PipeSegmentRenderer — 配管3D表示](TASK-0035.md) - 8h (TDD) 🔵
 - [x] [TASK-0036: PipeRouteTool + PipeSizingSystem — 配管ルーティング + 口径選定](TASK-0036.md) - 8h (TDD) 🔵
 - [ ] [TASK-0037: DuctPanel + PipePanel + PipeVisualSystem](TASK-0037.md) - 8h (TDD) 🔵

@@ -12,7 +12,7 @@
  * 🔵 信頼性レベル: TASK-0033 architecture.md viewerシステムパターンに準拠
  */
 
-import type { AnyNode } from '@pascal-app/core'
+import type { AnyNode, AnyNodeId } from '@pascal-app/core'
 import { sceneRegistry, useScene } from '@pascal-app/core'
 import { useFrame } from '@react-three/fiber'
 import type { Mesh } from 'three'
@@ -149,7 +149,7 @@ export function DuctVisualSystem() {
 
     // dirtyNodes に duct_segment が含まれるか確認
     const hasDirtyDucts = Array.from(dirtyNodes).some(
-      (id) => nodes[id]?.type === 'duct_segment',
+      (id) => nodes[id as AnyNodeId]?.type === 'duct_segment',
     )
     if (!hasDirtyDucts) return
 
@@ -158,7 +158,7 @@ export function DuctVisualSystem() {
       const obj = sceneRegistry.nodes.get(ductId)
       if (!obj) return
 
-      const seg = nodes[ductId]
+      const seg = nodes[ductId as AnyNodeId]
       if (!seg || seg.type !== 'duct_segment') return
 
       // 接続状態を判定

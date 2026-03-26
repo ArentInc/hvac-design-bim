@@ -75,11 +75,10 @@ export function PressureLossSystem() {
       const requiredFanPressure = calcRequiredFanPressure(maxLoss)
 
       // SystemNode に反映
-      const systemNode = Object.values(nodes).find(
-        (n) => n.type === 'system' && n.id === systemId,
-      )
+      const systemNode = Object.values(nodes).find((n) => n.type === 'system' && n.id === systemId)
       if (systemNode) {
-        const prev = (systemNode as typeof systemNode & { requiredFanPressure?: number }).requiredFanPressure
+        const prev = (systemNode as typeof systemNode & { requiredFanPressure?: number })
+          .requiredFanPressure
         if (prev !== requiredFanPressure) {
           updateNode(systemId as keyof typeof nodes, { requiredFanPressure })
         }

@@ -33,11 +33,11 @@ vi.mock('@pascal-app/core', () => ({
 }))
 
 import {
+  calcDuctMeshScale,
   DUCT_COLOR_CONNECTED,
   DUCT_COLOR_PARTIAL,
   DUCT_COLOR_UNSIZED,
   DUCT_MIN_SCALE,
-  calcDuctMeshScale,
   formatAirflowLabel,
   formatDimensionLabel,
   getDuctColor,

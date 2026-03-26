@@ -37,12 +37,12 @@ export const FAN_PRESSURE_SAFETY_FACTOR = 1.1
 
 /** 継手タイプ → 局所損失係数 ζ */
 export const FITTING_LOSS_COEFFICIENTS: Record<string, number> = {
-  elbow: 0.3,   // エルボ 90°
-  tee: 0.5,     // T分岐（直進側）
-  wye: 0.5,     // Y分岐
-  cross: 1.0,   // 十字継手
+  elbow: 0.3, // エルボ 90°
+  tee: 0.5, // T分岐（直進側）
+  wye: 0.5, // Y分岐
+  cross: 1.0, // 十字継手
   reducer: 0.2, // レデューサー
-  cap: 1.0,     // キャップ
+  cap: 1.0, // キャップ
 }
 
 /** T分岐の分岐側の局所損失係数 */
@@ -88,7 +88,8 @@ export function calcStraightDuctLoss(
   const dh = calcEquivalentDiameter(widthM, heightM) // m
 
   // flexible 材質: 摩擦係数を4倍 (REQ-1003)
-  const lambda = material === 'flexible' ? LAMBDA_GALVANIZED * LAMBDA_FLEXIBLE_MULTIPLIER : LAMBDA_GALVANIZED
+  const lambda =
+    material === 'flexible' ? LAMBDA_GALVANIZED * LAMBDA_FLEXIBLE_MULTIPLIER : LAMBDA_GALVANIZED
 
   // ΔP = λ × (L / Dh) × (ρ × v² / 2)
   return lambda * (length / dh) * ((AIR_DENSITY_KG_M3 * v * v) / 2)
@@ -237,10 +238,7 @@ export function findDirtySystemsForPressureLoss(
 // ============================================================================
 
 /** 2点間のユークリッド距離 (m) */
-function calcSegmentLength(
-  start: [number, number, number],
-  end: [number, number, number],
-): number {
+function calcSegmentLength(start: [number, number, number], end: [number, number, number]): number {
   const dx = end[0] - start[0]
   const dy = end[1] - start[1]
   const dz = end[2] - start[2]

@@ -474,7 +474,6 @@ describe('異常系: ゼロ除算・入力バリデーション', () => {
     // 🟡 信頼性レベル: 要件定義書 4.4 に「try-catch でキャッチ、status: 'error' を返す」と記載
 
     // 【テストデータ準備】: perimeterSegments に不正な値（型キャストで強制的に渡す）
-    // biome-ignore lint: テスト目的で意図的に不正な型を渡す
     const zone = {
       floorArea: 100,
       usage: 'office_general' as const,

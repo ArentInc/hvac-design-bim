@@ -91,10 +91,7 @@ export function applyAspectRatioConstraint(width: number, height: number): DuctS
  * @param velocityMs - 目標風速 (m/s)
  * @returns スナップ済みの {width, height}、風量ゼロ以下は null
  */
-export function calcDuctSize(
-  airflowRateM3h: number,
-  velocityMs: number,
-): DuctSizeResult | null {
+export function calcDuctSize(airflowRateM3h: number, velocityMs: number): DuctSizeResult | null {
   if (airflowRateM3h <= 0) return null
 
   const q = airflowRateM3h / 3600 // m³/h → m³/s

@@ -15,11 +15,11 @@
 import { describe, expect, it } from 'vitest'
 import type { AnyNode } from '../../../schema/types'
 import {
-  BRANCH_DUCT_VELOCITY_MS,
-  MAIN_DUCT_VELOCITY_MS,
   applyAspectRatioConstraint,
+  BRANCH_DUCT_VELOCITY_MS,
   calcDuctSize,
   findDirtyDuctSegmentsForSizing,
+  MAIN_DUCT_VELOCITY_MS,
   selectDuctVelocity,
   snapToStandardDim,
 } from '../duct-sizing'
@@ -267,8 +267,8 @@ describe('calcDuctSize — 風量ゼロ時スキップ', () => {
     // 🔵 信頼性レベル: TASK-0032 実装詳細セクション1に明示
 
     const nodes: Record<string, AnyNode> = {
-      seg_a: makeDuctSegment('seg_a', 'port1', 'port2', null),  // 風量未設定
-      seg_b: makeDuctSegment('seg_b', 'port3', 'port4', 600),   // 風量あり
+      seg_a: makeDuctSegment('seg_a', 'port1', 'port2', null), // 風量未設定
+      seg_b: makeDuctSegment('seg_b', 'port3', 'port4', 600), // 風量あり
     }
 
     const result = findDirtyDuctSegmentsForSizing(new Set(['seg_a', 'seg_b']), nodes)

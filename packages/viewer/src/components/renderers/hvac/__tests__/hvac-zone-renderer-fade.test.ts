@@ -80,7 +80,7 @@ describe('TASK-0018: フェードイン カラー選択ロジック', () => {
   it('テスト5a: calcResult=null → ZONE_DEFAULT_COLOR が返る', () => {
     // 🔵 信頼性レベル: TASK-0018 テスト4「フェードイン開始検出」に関連
     const node = {
-      id: 'hvac_zone_001',
+      id: 'hvac_zone_001' as const,
       type: 'hvac_zone' as const,
       usage: 'office_general' as const,
       calcResult: null,
@@ -106,6 +106,7 @@ describe('TASK-0018: フェードイン カラー選択ロジック', () => {
       children: [],
       object: 'node' as const,
       visible: true,
+      metadata: {},
     }
     expect(getZoneColor(node)).toBe(ZONE_DEFAULT_COLOR)
   })
@@ -121,7 +122,7 @@ describe('TASK-0018: フェードイン カラー選択ロジック', () => {
       status: 'success' as const,
     }
     const node = {
-      id: 'hvac_zone_001',
+      id: 'hvac_zone_001' as const,
       type: 'hvac_zone' as const,
       usage: 'office_general' as const,
       calcResult,
@@ -147,6 +148,7 @@ describe('TASK-0018: フェードイン カラー選択ロジック', () => {
       children: [],
       object: 'node' as const,
       visible: true,
+      metadata: {},
     }
     expect(getZoneColor(node)).toBe(ZONE_USAGE_COLORS['office_general'])
     expect(getZoneColor(node)).toBe('#42A5F5')

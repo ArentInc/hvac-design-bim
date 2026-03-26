@@ -16,12 +16,12 @@
 import { describe, expect, it } from 'vitest'
 import type { AnyNode } from '../../../schema/types'
 import {
-  FAN_PRESSURE_SAFETY_FACTOR,
-  FITTING_LOSS_COEFFICIENTS,
   calcEquivalentDiameter,
   calcFittingLoss,
   calcRequiredFanPressure,
   calcStraightDuctLoss,
+  FAN_PRESSURE_SAFETY_FACTOR,
+  FITTING_LOSS_COEFFICIENTS,
   findMaxPathPressureLoss,
 } from '../pressure-loss'
 
