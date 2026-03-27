@@ -93,6 +93,7 @@
       "zoneName": "1F 事務室",
       "usage": "office_general",
       "floorArea": 100,
+      "floorHeight": 0,
       "ceilingHeight": 2.7,
       "occupantDensity": 0.15,
       "boundary": [[0, 0], [10, 0], [10, 10], [0, 10]],
@@ -106,8 +107,8 @@
         "coolingLoad": 18500, "heatingLoad": 9200, "requiredAirflow": 5522,
         "internalLoad": 12000, "envelopeLoad": 6500,
         "perimeterLoadBreakdown": [
-          { "orientation": "S", "coolingLoad": 4200, "heatingLoad": 3100 },
-          { "orientation": "W", "coolingLoad": 2300, "heatingLoad": 1800 }
+          { "orientation": "S", "solarCorrectionFactor": 1.15, "envelopeLoadContribution": 4200 },
+          { "orientation": "W", "solarCorrectionFactor": 0.90, "envelopeLoadContribution": 2300 }
         ],
         "status": "success"
       }
@@ -122,6 +123,7 @@
       "zoneName": "1F 会議室",
       "usage": "conference",
       "floorArea": 30,
+      "floorHeight": 0,
       "ceilingHeight": 2.7,
       "occupantDensity": 0.5,
       "boundary": [[10, 0], [16, 0], [16, 5], [10, 5]],
@@ -135,8 +137,8 @@
         "coolingLoad": 8800, "heatingLoad": 3600, "requiredAirflow": 2627,
         "internalLoad": 5500, "envelopeLoad": 3300,
         "perimeterLoadBreakdown": [
-          { "orientation": "S", "coolingLoad": 2100, "heatingLoad": 1500 },
-          { "orientation": "E", "coolingLoad": 1200, "heatingLoad": 900 }
+          { "orientation": "S", "solarCorrectionFactor": 1.15, "envelopeLoadContribution": 2100 },
+          { "orientation": "E", "solarCorrectionFactor": 0.85, "envelopeLoadContribution": 1200 }
         ],
         "status": "success"
       }
@@ -151,6 +153,7 @@
       "zoneName": "2F サーバー室",
       "usage": "office_server",
       "floorArea": 50,
+      "floorHeight": 3.5,
       "ceilingHeight": 2.7,
       "occupantDensity": 0.01,
       "boundary": [[0, 0], [10, 0], [10, 5], [0, 5]],
@@ -209,12 +212,12 @@
       "metadata": {},
       "tag": "AHU-A",
       "equipmentName": "AHU-S-5000",
-      "position": [1, 0, 9],
+      "position": [1, 2.7, 9],
       "rotation": [0, 0, 0],
-      "dimensions": { "width": 1.5, "height": 1.0, "depth": 0.8 },
+      "dimensions": { "width": 1.5, "height": 0.5, "depth": 0.8 },
       "ports": [
-        { "id": "port_sa", "label": "SA", "medium": "supply_air", "position": [0.75, 0.5, 0], "direction": [1, 0, 0], "connectedSegmentId": null },
-        { "id": "port_ra", "label": "RA", "medium": "return_air", "position": [-0.75, 0.5, 0], "direction": [-1, 0, 0], "connectedSegmentId": null }
+        { "id": "port_sa", "label": "SA", "medium": "supply_air", "position": [0.75, 0, 0], "direction": [1, 0, 0], "connectedSegmentId": null },
+        { "id": "port_ra", "label": "RA", "medium": "return_air", "position": [-0.75, 0, 0], "direction": [-1, 0, 0], "connectedSegmentId": null }
       ],
       "airflowRate": 5000,
       "coolingCapacity": 30,
@@ -231,12 +234,12 @@
       "metadata": {},
       "tag": "AHU-B",
       "equipmentName": "AHU-M-10000",
-      "position": [1, 3.5, 9],
+      "position": [1, 6.2, 9],
       "rotation": [0, 0, 0],
-      "dimensions": { "width": 2.0, "height": 1.2, "depth": 1.0 },
+      "dimensions": { "width": 2.0, "height": 0.5, "depth": 1.0 },
       "ports": [
-        { "id": "port_sa", "label": "SA", "medium": "supply_air", "position": [1.0, 0.6, 0], "direction": [1, 0, 0], "connectedSegmentId": null },
-        { "id": "port_ra", "label": "RA", "medium": "return_air", "position": [-1.0, 0.6, 0], "direction": [-1, 0, 0], "connectedSegmentId": null }
+        { "id": "port_sa", "label": "SA", "medium": "supply_air", "position": [1.0, 0, 0], "direction": [1, 0, 0], "connectedSegmentId": null },
+        { "id": "port_ra", "label": "RA", "medium": "return_air", "position": [-1.0, 0, 0], "direction": [-1, 0, 0], "connectedSegmentId": null }
       ],
       "airflowRate": 10000,
       "coolingCapacity": 60,

@@ -34,6 +34,7 @@ const makeZone = (
   zoneName: `ゾーン-${id}`,
   usage: 'office_general' as const,
   floorArea: 50.0,
+  floorHeight: 0,
   ceilingHeight: 2.7,
   occupantDensity: 0.15,
   boundary: [[0, 0], [10, 0], [10, 5], [0, 5]] as [number, number][],

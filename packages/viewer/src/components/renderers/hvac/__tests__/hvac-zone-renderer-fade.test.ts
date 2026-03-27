@@ -94,6 +94,7 @@ describe('TASK-0018: フェードイン カラー選択ロジック', () => {
       calcResult: null,
       zoneName: 'テスト',
       floorArea: 50,
+      floorHeight: 0,
       ceilingHeight: 2.7,
       occupantDensity: 0.15,
       boundary: [
@@ -136,6 +137,7 @@ describe('TASK-0018: フェードイン カラー選択ロジック', () => {
       calcResult,
       zoneName: 'テスト',
       floorArea: 50,
+      floorHeight: 0,
       ceilingHeight: 2.7,
       occupantDensity: 0.15,
       boundary: [

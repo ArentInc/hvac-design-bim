@@ -32,6 +32,7 @@ export const HvacZoneNode = BaseNode.extend({
   zoneName: z.string(),
   usage: ZoneUsage,
   floorArea: z.number().positive(),
+  floorHeight: z.number().default(0),
   ceilingHeight: z.number().default(2.7),
   occupantDensity: z.number().default(0.15),
   boundary: z.array(z.tuple([z.number(), z.number()])),

@@ -7,14 +7,13 @@ import {
 } from '@pascal-app/core'
 import { useFrame } from '@react-three/fiber'
 import { useEffect, useMemo, useRef } from 'react'
-import { Color, DoubleSide, type Mesh, type MeshBasicMaterial, Shape } from 'three'
+import { Color, DoubleSide, ExtrudeGeometry, type Mesh, type MeshBasicMaterial, Shape } from 'three'
 import { useNodeEvents } from '../../../hooks/use-node-events'
 import { ZONE_LAYER } from '../../../lib/layers'
 
 export { ZONE_DEFAULT_COLOR, ZONE_USAGE_COLORS }
 
-const ZONE_OPACITY = 0.4
-const Y_OFFSET = 0.01
+const ZONE_OPACITY = 0.3
 
 // 【アニメーション設定】: フェードイン所要時間 0.5秒
 const FADE_DURATION = 0.5
@@ -61,10 +60,11 @@ export function HvacZoneRenderer({ nodeId }: HvacZoneRendererProps) {
   useRegistry(nodeId, 'hvac_zone', ref)
   const handlers = useNodeEvents(node!, 'hvac_zone')
 
-  const shape = useMemo(() => {
+  const geometry = useMemo(() => {
     if (!node?.boundary || node.boundary.length < 3) return null
-    return createZoneShape(node.boundary)
-  }, [node?.boundary])
+    const shape = createZoneShape(node.boundary)
+    return new ExtrudeGeometry(shape, { depth: node.ceilingHeight, bevelEnabled: false })
+  }, [node?.boundary, node?.ceilingHeight])
 
   const targetColor = useMemo(() => {
     if (!node) return ZONE_DEFAULT_COLOR
@@ -111,17 +111,17 @@ export function HvacZoneRenderer({ nodeId }: HvacZoneRendererProps) {
     materialRef.current.color.copy(fromColor)
   })
 
-  if (!node || !shape) return null
+  if (!node || !geometry) return null
 
   return (
     <mesh
       ref={ref}
       layers={ZONE_LAYER}
-      position={[0, Y_OFFSET, 0]}
+      position={[0, node.floorHeight, 0]}
       rotation={[-Math.PI / 2, 0, 0]}
       {...handlers}
     >
-      <shapeGeometry args={[shape]} />
+      <primitive object={geometry} attach="geometry" />
       {/* 【カラー管理】: useEffect/useFrame が materialRef を通じて直接カラーを制御する */}
       <meshBasicMaterial
         ref={materialRef}

@@ -338,6 +338,16 @@ describe('プリセット読込後の操作継続 (TASK-0042)', () => {
     )
     expect(hasHvacNodes).toBe(true)
   })
+
+  it('テスト2c: preset-04-complete は既存バリデーションで警告0件になる', () => {
+    const preset = HVAC_PRESETS.find((p) => p.stage === 4)
+    expect(preset).toBeDefined()
+
+    const nodes = preset!.data.nodes as Record<string, AnyNode>
+    const warnings = runAllChecks(nodes)
+
+    expect(warnings).toHaveLength(0)
+  })
 })
 
 // ============================================================================

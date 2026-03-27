@@ -54,34 +54,40 @@ export function DuctSegmentRenderer({ nodeId }: { nodeId: string }) {
     return { position, rotation: [euler.x, euler.y, euler.z] as [number, number, number], length }
   }, [node?.start, node?.end, node])
 
+  // Dashed line in LOCAL space (Z-axis aligned).
+  // Group is placed at midpoint with rotation, so DuctVisualSystem scale does not distort positions.
   const dashedLine = useMemo(() => {
-    if (!node) return null
+    if (!transform) return null
+    const { length } = transform
     const geom = new THREE.BufferGeometry().setFromPoints([
-      new THREE.Vector3(...node.start),
-      new THREE.Vector3(...node.end),
+      new THREE.Vector3(0, 0, -length / 2),
+      new THREE.Vector3(0, 0, length / 2),
     ])
     const mat = new THREE.LineDashedMaterial({ color: DASHED_COLOR, dashSize: 0.1, gapSize: 0.05 })
     const line = new THREE.Line(geom, mat)
     line.computeLineDistances()
     return line
-  }, [node?.start, node?.end, node])
+  }, [transform])
 
   if (!node || !transform) return null
 
   const determined = isDuctSizeDetermined(node.width, node.height)
 
   if (!determined) {
-    return <group ref={ref}>{dashedLine && <primitive object={dashedLine} />}</group>
+    return (
+      <group ref={ref} position={transform.position} rotation={transform.rotation}>
+        {dashedLine && <primitive object={dashedLine} />}
+      </group>
+    )
   }
 
   const { position, rotation, length } = transform
-  const w = node.width!
-  const h = node.height!
 
+  // Unit cross-section (1m × 1m); DuctVisualSystem scales X and Y to physical mm/1000 dimensions.
   return (
     <group ref={ref} position={position} rotation={rotation} {...handlers}>
       <mesh>
-        <boxGeometry args={[w, h, length]} />
+        <boxGeometry args={[1, 1, length]} />
         <meshStandardMaterial color={DUCT_COLOR} />
       </mesh>
     </group>
