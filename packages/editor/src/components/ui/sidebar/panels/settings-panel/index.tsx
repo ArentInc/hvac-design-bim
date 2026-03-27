@@ -2,6 +2,7 @@ import { emitter, useScene } from '@pascal-app/core'
 import { useViewer } from '@pascal-app/viewer'
 import { TreeView, VisualJson } from '@visual-json/react'
 import { Camera, Download, Save, Trash2, Upload } from 'lucide-react'
+import { PresetSelector } from '../../../preset-selector'
 import {
   type KeyboardEvent,
   type SyntheticEvent,
@@ -373,6 +374,12 @@ export function SettingsPanel({
           ref={fileInputRef}
           type="file"
         />
+      </div>
+
+      {/* HVAC Presets Section */}
+      <div className="space-y-2">
+        <label className="font-medium text-muted-foreground text-xs uppercase">HVACプリセット</label>
+        <PresetSelector />
       </div>
 
       {/* Audio Section */}

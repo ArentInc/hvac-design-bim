@@ -1,5 +1,5 @@
 {
-  "_description": "Stage 3: ダクト・配管接続済み（計算前）",
+  "_description": "Stage 3: ダクト・配管接続済み（計算前）— AHUからディフューザーへのダクトルートと冷温水配管が接続済み、寸法・圧損未計算",
   "nodes": {
     "site_preset": {
       "object": "node",
@@ -10,7 +10,7 @@
       "metadata": {},
       "polygon": {
         "type": "polygon",
-        "points": [[-15, -15], [15, -15], [15, 15], [-15, 15]]
+        "points": [[-2, -2], [18, -2], [18, 12], [-2, 12]]
       },
       "children": [
         {
@@ -45,9 +45,11 @@
       "visible": true,
       "metadata": {},
       "children": [
+        "wall_00_1f_s", "wall_00_1f_e", "wall_00_1f_n", "wall_00_1f_w",
+        "wall_00_1f_int_ew", "wall_00_1f_int_ns",
+        "slab_00_1f", "ceiling_00_1f",
         "hvac_zone_p01", "hvac_zone_p02",
-        "system_pA", "ahu_pA",
-        "diffuser_p01", "diffuser_p02",
+        "system_pA", "ahu_pA", "diffuser_p01", "diffuser_p02",
         "duct_seg_pA_main", "duct_seg_pA_br1", "duct_seg_pA_br2",
         "pipe_seg_pA_supply"
       ],
@@ -61,412 +63,145 @@
       "visible": true,
       "metadata": {},
       "children": [
-        "hvac_zone_p03",
-        "system_pB", "ahu_pB",
-        "diffuser_p03",
-        "duct_seg_pB_main",
-        "pipe_seg_pB_supply"
+        "wall_00_2f_s", "wall_00_2f_e", "wall_00_2f_n", "wall_00_2f_w",
+        "wall_00_2f_int_ew",
+        "slab_00_2f", "ceiling_00_2f",
+        "hvac_zone_p03", "system_pB", "ahu_pB", "diffuser_p03",
+        "duct_seg_pB_main", "pipe_seg_pB_supply"
       ],
       "level": 1
     },
+    "wall_00_1f_s": { "object": "node", "type": "wall", "id": "wall_00_1f_s", "parentId": "level_preset_1f", "visible": true, "metadata": {}, "children": [], "start": [0, 0], "end": [16, 0], "height": 3.5, "thickness": 0.2, "frontSide": "interior", "backSide": "exterior" },
+    "wall_00_1f_e": { "object": "node", "type": "wall", "id": "wall_00_1f_e", "parentId": "level_preset_1f", "visible": true, "metadata": {}, "children": [], "start": [16, 0], "end": [16, 10], "height": 3.5, "thickness": 0.2, "frontSide": "interior", "backSide": "exterior" },
+    "wall_00_1f_n": { "object": "node", "type": "wall", "id": "wall_00_1f_n", "parentId": "level_preset_1f", "visible": true, "metadata": {}, "children": [], "start": [16, 10], "end": [0, 10], "height": 3.5, "thickness": 0.2, "frontSide": "exterior", "backSide": "interior" },
+    "wall_00_1f_w": { "object": "node", "type": "wall", "id": "wall_00_1f_w", "parentId": "level_preset_1f", "visible": true, "metadata": {}, "children": [], "start": [0, 10], "end": [0, 0], "height": 3.5, "thickness": 0.2, "frontSide": "exterior", "backSide": "interior" },
+    "wall_00_1f_int_ew": { "object": "node", "type": "wall", "id": "wall_00_1f_int_ew", "parentId": "level_preset_1f", "visible": true, "metadata": {}, "children": [], "start": [10, 0], "end": [10, 10], "height": 3.5, "thickness": 0.15, "frontSide": "interior", "backSide": "interior" },
+    "wall_00_1f_int_ns": { "object": "node", "type": "wall", "id": "wall_00_1f_int_ns", "parentId": "level_preset_1f", "visible": true, "metadata": {}, "children": [], "start": [10, 5], "end": [16, 5], "height": 3.5, "thickness": 0.15, "frontSide": "interior", "backSide": "interior" },
+    "slab_00_1f": { "object": "node", "type": "slab", "id": "slab_00_1f", "parentId": "level_preset_1f", "visible": true, "metadata": {}, "polygon": [[0,0],[16,0],[16,10],[0,10]], "holes": [], "elevation": 0.05 },
+    "ceiling_00_1f": { "object": "node", "type": "ceiling", "id": "ceiling_00_1f", "parentId": "level_preset_1f", "visible": true, "metadata": {}, "children": [], "polygon": [[0,0],[16,0],[16,10],[0,10]], "holes": [], "height": 3.0 },
+    "wall_00_2f_s": { "object": "node", "type": "wall", "id": "wall_00_2f_s", "parentId": "level_preset_2f", "visible": true, "metadata": {}, "children": [], "start": [0, 0], "end": [16, 0], "height": 3.2, "thickness": 0.2, "frontSide": "interior", "backSide": "exterior" },
+    "wall_00_2f_e": { "object": "node", "type": "wall", "id": "wall_00_2f_e", "parentId": "level_preset_2f", "visible": true, "metadata": {}, "children": [], "start": [16, 0], "end": [16, 10], "height": 3.2, "thickness": 0.2, "frontSide": "interior", "backSide": "exterior" },
+    "wall_00_2f_n": { "object": "node", "type": "wall", "id": "wall_00_2f_n", "parentId": "level_preset_2f", "visible": true, "metadata": {}, "children": [], "start": [16, 10], "end": [0, 10], "height": 3.2, "thickness": 0.2, "frontSide": "exterior", "backSide": "interior" },
+    "wall_00_2f_w": { "object": "node", "type": "wall", "id": "wall_00_2f_w", "parentId": "level_preset_2f", "visible": true, "metadata": {}, "children": [], "start": [0, 10], "end": [0, 0], "height": 3.2, "thickness": 0.2, "frontSide": "exterior", "backSide": "interior" },
+    "wall_00_2f_int_ew": { "object": "node", "type": "wall", "id": "wall_00_2f_int_ew", "parentId": "level_preset_2f", "visible": true, "metadata": {}, "children": [], "start": [10, 0], "end": [10, 10], "height": 3.2, "thickness": 0.15, "frontSide": "interior", "backSide": "interior" },
+    "slab_00_2f": { "object": "node", "type": "slab", "id": "slab_00_2f", "parentId": "level_preset_2f", "visible": true, "metadata": {}, "polygon": [[0,0],[16,0],[16,10],[0,10]], "holes": [], "elevation": 0.05 },
+    "ceiling_00_2f": { "object": "node", "type": "ceiling", "id": "ceiling_00_2f", "parentId": "level_preset_2f", "visible": true, "metadata": {}, "children": [], "polygon": [[0,0],[16,0],[16,10],[0,10]], "holes": [], "height": 3.0 },
     "hvac_zone_p01": {
-      "object": "node",
-      "type": "hvac_zone",
-      "id": "hvac_zone_p01",
-      "parentId": "level_preset_1f",
-      "visible": true,
-      "metadata": {},
-      "zoneName": "1F 事務室",
-      "usage": "office_general",
-      "floorArea": 100,
-      "ceilingHeight": 2.7,
-      "occupantDensity": 0.15,
+      "object": "node", "type": "hvac_zone", "id": "hvac_zone_p01", "parentId": "level_preset_1f", "visible": true, "metadata": {},
+      "zoneName": "1F 事務室", "usage": "office_general", "floorArea": 100, "ceilingHeight": 2.7, "occupantDensity": 0.15,
       "boundary": [[0, 0], [10, 0], [10, 10], [0, 10]],
-      "designConditions": {
-        "coolingSetpoint": 26,
-        "heatingSetpoint": 22,
-        "relativeHumidity": 50,
-        "supplyAirTempDiff": 10
-      },
-      "perimeterSegments": [],
+      "designConditions": { "coolingSetpoint": 26, "heatingSetpoint": 22, "relativeHumidity": 50, "supplyAirTempDiff": 10 },
+      "perimeterSegments": [
+        { "orientation": "S", "wallArea": 35.0, "glazingRatio": 0.4 },
+        { "orientation": "W", "wallArea": 35.0, "glazingRatio": 0.2 }
+      ],
       "systemId": "system_pA",
-      "calcResult": {
-        "coolingLoad": 15000,
-        "heatingLoad": 8000,
-        "requiredAirflow": 4478,
-        "internalLoad": 15000,
-        "envelopeLoad": 0,
-        "perimeterLoadBreakdown": [],
-        "status": "success"
-      }
+      "calcResult": { "coolingLoad": 18500, "heatingLoad": 9200, "requiredAirflow": 5522, "internalLoad": 12000, "envelopeLoad": 6500, "perimeterLoadBreakdown": [{"orientation":"S","coolingLoad":4200,"heatingLoad":3100},{"orientation":"W","coolingLoad":2300,"heatingLoad":1800}], "status": "success" }
     },
     "hvac_zone_p02": {
-      "object": "node",
-      "type": "hvac_zone",
-      "id": "hvac_zone_p02",
-      "parentId": "level_preset_1f",
-      "visible": true,
-      "metadata": {},
-      "zoneName": "1F 会議室",
-      "usage": "conference",
-      "floorArea": 30,
-      "ceilingHeight": 2.7,
-      "occupantDensity": 0.5,
+      "object": "node", "type": "hvac_zone", "id": "hvac_zone_p02", "parentId": "level_preset_1f", "visible": true, "metadata": {},
+      "zoneName": "1F 会議室", "usage": "conference", "floorArea": 30, "ceilingHeight": 2.7, "occupantDensity": 0.5,
       "boundary": [[10, 0], [16, 0], [16, 5], [10, 5]],
-      "designConditions": {
-        "coolingSetpoint": 26,
-        "heatingSetpoint": 22,
-        "relativeHumidity": 50,
-        "supplyAirTempDiff": 10
-      },
-      "perimeterSegments": [],
+      "designConditions": { "coolingSetpoint": 26, "heatingSetpoint": 22, "relativeHumidity": 50, "supplyAirTempDiff": 10 },
+      "perimeterSegments": [
+        { "orientation": "S", "wallArea": 21.0, "glazingRatio": 0.5 },
+        { "orientation": "E", "wallArea": 17.5, "glazingRatio": 0.3 }
+      ],
       "systemId": "system_pA",
-      "calcResult": {
-        "coolingLoad": 6000,
-        "heatingLoad": 3000,
-        "requiredAirflow": 1791,
-        "internalLoad": 6000,
-        "envelopeLoad": 0,
-        "perimeterLoadBreakdown": [],
-        "status": "success"
-      }
+      "calcResult": { "coolingLoad": 8800, "heatingLoad": 3600, "requiredAirflow": 2627, "internalLoad": 5500, "envelopeLoad": 3300, "perimeterLoadBreakdown": [{"orientation":"S","coolingLoad":2100,"heatingLoad":1500},{"orientation":"E","coolingLoad":1200,"heatingLoad":900}], "status": "success" }
     },
     "hvac_zone_p03": {
-      "object": "node",
-      "type": "hvac_zone",
-      "id": "hvac_zone_p03",
-      "parentId": "level_preset_2f",
-      "visible": true,
-      "metadata": {},
-      "zoneName": "2F サーバー室",
-      "usage": "office_server",
-      "floorArea": 50,
-      "ceilingHeight": 2.7,
-      "occupantDensity": 0.01,
+      "object": "node", "type": "hvac_zone", "id": "hvac_zone_p03", "parentId": "level_preset_2f", "visible": true, "metadata": {},
+      "zoneName": "2F サーバー室", "usage": "office_server", "floorArea": 50, "ceilingHeight": 2.7, "occupantDensity": 0.01,
       "boundary": [[0, 0], [10, 0], [10, 5], [0, 5]],
-      "designConditions": {
-        "coolingSetpoint": 24,
-        "heatingSetpoint": 18,
-        "relativeHumidity": 50,
-        "supplyAirTempDiff": 10
-      },
+      "designConditions": { "coolingSetpoint": 24, "heatingSetpoint": 18, "relativeHumidity": 50, "supplyAirTempDiff": 10 },
       "perimeterSegments": [],
       "systemId": "system_pB",
-      "calcResult": {
-        "coolingLoad": 40000,
-        "heatingLoad": 0,
-        "requiredAirflow": 11940,
-        "internalLoad": 40000,
-        "envelopeLoad": 0,
-        "perimeterLoadBreakdown": [],
-        "status": "success"
-      }
+      "calcResult": { "coolingLoad": 40000, "heatingLoad": 0, "requiredAirflow": 11940, "internalLoad": 40000, "envelopeLoad": 0, "perimeterLoadBreakdown": [], "status": "success" }
     },
     "system_pA": {
-      "object": "node",
-      "type": "system",
-      "id": "system_pA",
-      "parentId": "level_preset_1f",
-      "visible": true,
-      "metadata": {},
-      "systemName": "系統A（1F事務・会議）",
-      "servedZoneIds": ["hvac_zone_p01", "hvac_zone_p02"],
-      "ahuId": "ahu_pA",
-      "aggregatedLoad": {
-        "totalCoolingLoad": 21000,
-        "totalHeatingLoad": 11000,
-        "totalAirflow": 6269
-      },
-      "status": "routed",
-      "selectionMargin": 1.1,
-      "equipmentCandidates": ["AHU-S-5000"],
-      "selectionStatus": "candidates-available",
-      "recommendedEquipmentId": "AHU-S-5000",
-      "requiredFanPressure": null
+      "object": "node", "type": "system", "id": "system_pA", "parentId": "level_preset_1f", "visible": true, "metadata": {},
+      "systemName": "系統A（1F事務・会議）", "servedZoneIds": ["hvac_zone_p01", "hvac_zone_p02"], "ahuId": "ahu_pA",
+      "aggregatedLoad": { "totalCoolingLoad": 27300, "totalHeatingLoad": 12800, "totalAirflow": 8149 },
+      "status": "routed", "selectionMargin": 1.1, "equipmentCandidates": ["AHU-S-5000"], "selectionStatus": "candidates-available", "recommendedEquipmentId": "AHU-S-5000", "requiredFanPressure": null
     },
     "system_pB": {
-      "object": "node",
-      "type": "system",
-      "id": "system_pB",
-      "parentId": "level_preset_2f",
-      "visible": true,
-      "metadata": {},
-      "systemName": "系統B（2Fサーバー室）",
-      "servedZoneIds": ["hvac_zone_p03"],
-      "ahuId": "ahu_pB",
-      "aggregatedLoad": {
-        "totalCoolingLoad": 40000,
-        "totalHeatingLoad": 0,
-        "totalAirflow": 11940
-      },
-      "status": "routed",
-      "selectionMargin": 1.1,
-      "equipmentCandidates": ["AHU-M-10000"],
-      "selectionStatus": "candidates-available",
-      "recommendedEquipmentId": "AHU-M-10000",
-      "requiredFanPressure": null
+      "object": "node", "type": "system", "id": "system_pB", "parentId": "level_preset_2f", "visible": true, "metadata": {},
+      "systemName": "系統B（2Fサーバー室）", "servedZoneIds": ["hvac_zone_p03"], "ahuId": "ahu_pB",
+      "aggregatedLoad": { "totalCoolingLoad": 40000, "totalHeatingLoad": 0, "totalAirflow": 11940 },
+      "status": "routed", "selectionMargin": 1.1, "equipmentCandidates": ["AHU-M-10000"], "selectionStatus": "candidates-available", "recommendedEquipmentId": "AHU-M-10000", "requiredFanPressure": null
     },
     "ahu_pA": {
-      "object": "node",
-      "type": "ahu",
-      "id": "ahu_pA",
-      "parentId": "level_preset_1f",
-      "visible": true,
-      "metadata": {},
-      "tag": "AHU-A",
-      "equipmentName": "AHU-S-5000",
-      "position": [-5, 0, 5],
-      "rotation": [0, 0, 0],
+      "object": "node", "type": "ahu", "id": "ahu_pA", "parentId": "level_preset_1f", "visible": true, "metadata": {},
+      "tag": "AHU-A", "equipmentName": "AHU-S-5000", "position": [1, 0, 9], "rotation": [0, 0, 0],
       "dimensions": { "width": 1.5, "height": 1.0, "depth": 0.8 },
       "ports": [
-        {
-          "id": "port_sa",
-          "label": "SA",
-          "medium": "supply_air",
-          "position": [0.75, 0.5, 0],
-          "direction": [1, 0, 0],
-          "connectedSegmentId": "duct_seg_pA_main"
-        },
-        {
-          "id": "port_ra",
-          "label": "RA",
-          "medium": "return_air",
-          "position": [-0.75, 0.5, 0],
-          "direction": [-1, 0, 0],
-          "connectedSegmentId": null
-        }
+        { "id": "port_sa", "label": "SA", "medium": "supply_air", "position": [0.75, 0.5, 0], "direction": [1, 0, 0], "connectedSegmentId": "duct_seg_pA_main" },
+        { "id": "port_ra", "label": "RA", "medium": "return_air", "position": [-0.75, 0.5, 0], "direction": [-1, 0, 0], "connectedSegmentId": null }
       ],
-      "airflowRate": 5000,
-      "coolingCapacity": 30,
-      "heatingCapacity": 18,
-      "staticPressure": 350,
-      "systemId": "system_pA"
+      "airflowRate": 5000, "coolingCapacity": 30, "heatingCapacity": 18, "staticPressure": 350, "systemId": "system_pA"
     },
     "ahu_pB": {
-      "object": "node",
-      "type": "ahu",
-      "id": "ahu_pB",
-      "parentId": "level_preset_2f",
-      "visible": true,
-      "metadata": {},
-      "tag": "AHU-B",
-      "equipmentName": "AHU-M-10000",
-      "position": [-5, 3.5, 5],
-      "rotation": [0, 0, 0],
+      "object": "node", "type": "ahu", "id": "ahu_pB", "parentId": "level_preset_2f", "visible": true, "metadata": {},
+      "tag": "AHU-B", "equipmentName": "AHU-M-10000", "position": [1, 3.5, 9], "rotation": [0, 0, 0],
       "dimensions": { "width": 2.0, "height": 1.2, "depth": 1.0 },
       "ports": [
-        {
-          "id": "port_sa",
-          "label": "SA",
-          "medium": "supply_air",
-          "position": [1.0, 0.6, 0],
-          "direction": [1, 0, 0],
-          "connectedSegmentId": "duct_seg_pB_main"
-        },
-        {
-          "id": "port_ra",
-          "label": "RA",
-          "medium": "return_air",
-          "position": [-1.0, 0.6, 0],
-          "direction": [-1, 0, 0],
-          "connectedSegmentId": null
-        }
+        { "id": "port_sa", "label": "SA", "medium": "supply_air", "position": [1.0, 0.6, 0], "direction": [1, 0, 0], "connectedSegmentId": "duct_seg_pB_main" },
+        { "id": "port_ra", "label": "RA", "medium": "return_air", "position": [-1.0, 0.6, 0], "direction": [-1, 0, 0], "connectedSegmentId": null }
       ],
-      "airflowRate": 10000,
-      "coolingCapacity": 60,
-      "heatingCapacity": 0,
-      "staticPressure": 400,
-      "systemId": "system_pB"
+      "airflowRate": 10000, "coolingCapacity": 60, "heatingCapacity": 0, "staticPressure": 400, "systemId": "system_pB"
     },
     "diffuser_p01": {
-      "object": "node",
-      "type": "diffuser",
-      "id": "diffuser_p01",
-      "parentId": "level_preset_1f",
-      "visible": true,
-      "metadata": {},
-      "tag": "SA-1F-01",
-      "subType": "anemostat",
-      "position": [3, 2.4, 3],
-      "neckDiameter": 200,
-      "airflowRate": 2239,
-      "port": {
-        "id": "port_d",
-        "label": "SA",
-        "medium": "supply_air",
-        "position": [0, 0.2, 0],
-        "direction": [0, 1, 0],
-        "connectedSegmentId": "duct_seg_pA_br1"
-      },
-      "hostDuctId": "duct_seg_pA_br1",
-      "systemId": "system_pA",
-      "zoneId": "hvac_zone_p01"
+      "object": "node", "type": "diffuser", "id": "diffuser_p01", "parentId": "level_preset_1f", "visible": true, "metadata": {},
+      "tag": "SA-1F-01", "subType": "anemostat", "position": [5, 2.7, 5], "neckDiameter": 200, "airflowRate": 5522,
+      "port": { "id": "port_d", "label": "SA", "medium": "supply_air", "position": [0, 0.2, 0], "direction": [0, 1, 0], "connectedSegmentId": "duct_seg_pA_br1" },
+      "hostDuctId": "duct_seg_pA_br1", "systemId": "system_pA", "zoneId": "hvac_zone_p01"
     },
     "diffuser_p02": {
-      "object": "node",
-      "type": "diffuser",
-      "id": "diffuser_p02",
-      "parentId": "level_preset_1f",
-      "visible": true,
-      "metadata": {},
-      "tag": "SA-1F-02",
-      "subType": "anemostat",
-      "position": [12, 2.4, 3],
-      "neckDiameter": 150,
-      "airflowRate": 1791,
-      "port": {
-        "id": "port_d",
-        "label": "SA",
-        "medium": "supply_air",
-        "position": [0, 0.2, 0],
-        "direction": [0, 1, 0],
-        "connectedSegmentId": "duct_seg_pA_br2"
-      },
-      "hostDuctId": "duct_seg_pA_br2",
-      "systemId": "system_pA",
-      "zoneId": "hvac_zone_p02"
+      "object": "node", "type": "diffuser", "id": "diffuser_p02", "parentId": "level_preset_1f", "visible": true, "metadata": {},
+      "tag": "SA-1F-02", "subType": "anemostat", "position": [13, 2.7, 2.5], "neckDiameter": 150, "airflowRate": 2627,
+      "port": { "id": "port_d", "label": "SA", "medium": "supply_air", "position": [0, 0.2, 0], "direction": [0, 1, 0], "connectedSegmentId": "duct_seg_pA_br2" },
+      "hostDuctId": "duct_seg_pA_br2", "systemId": "system_pA", "zoneId": "hvac_zone_p02"
     },
     "diffuser_p03": {
-      "object": "node",
-      "type": "diffuser",
-      "id": "diffuser_p03",
-      "parentId": "level_preset_2f",
-      "visible": true,
-      "metadata": {},
-      "tag": "SA-2F-01",
-      "subType": "universal",
-      "position": [5, 6.2, 2.5],
-      "neckDiameter": 400,
-      "airflowRate": 11940,
-      "port": {
-        "id": "port_d",
-        "label": "SA",
-        "medium": "supply_air",
-        "position": [0, 0.2, 0],
-        "direction": [0, 1, 0],
-        "connectedSegmentId": "duct_seg_pB_main"
-      },
-      "hostDuctId": "duct_seg_pB_main",
-      "systemId": "system_pB",
-      "zoneId": "hvac_zone_p03"
+      "object": "node", "type": "diffuser", "id": "diffuser_p03", "parentId": "level_preset_2f", "visible": true, "metadata": {},
+      "tag": "SA-2F-01", "subType": "universal", "position": [5, 6.2, 2.5], "neckDiameter": 400, "airflowRate": 11940,
+      "port": { "id": "port_d", "label": "SA", "medium": "supply_air", "position": [0, 0.2, 0], "direction": [0, 1, 0], "connectedSegmentId": "duct_seg_pB_main" },
+      "hostDuctId": "duct_seg_pB_main", "systemId": "system_pB", "zoneId": "hvac_zone_p03"
     },
     "duct_seg_pA_main": {
-      "object": "node",
-      "type": "duct_segment",
-      "id": "duct_seg_pA_main",
-      "parentId": "level_preset_1f",
-      "visible": true,
-      "metadata": {},
-      "start": [-3.5, 2.4, 5],
-      "end": [5, 2.4, 5],
-      "medium": "supply_air",
-      "shape": "rectangular",
-      "width": null,
-      "height": null,
-      "diameter": null,
-      "ductMaterial": "galvanized_steel",
-      "airflowRate": null,
-      "startPortId": "port_sa",
-      "endPortId": "port_branch_1",
-      "systemId": "system_pA",
-      "calcResult": null
+      "object": "node", "type": "duct_segment", "id": "duct_seg_pA_main", "parentId": "level_preset_1f", "visible": true, "metadata": {},
+      "start": [2.5, 2.7, 9], "end": [5, 2.7, 9],
+      "medium": "supply_air", "shape": "rectangular", "width": null, "height": null, "diameter": null,
+      "ductMaterial": "galvanized_steel", "airflowRate": null, "startPortId": "port_sa", "endPortId": "port_branch_1", "systemId": "system_pA", "calcResult": null
     },
     "duct_seg_pA_br1": {
-      "object": "node",
-      "type": "duct_segment",
-      "id": "duct_seg_pA_br1",
-      "parentId": "level_preset_1f",
-      "visible": true,
-      "metadata": {},
-      "start": [3, 2.4, 5],
-      "end": [3, 2.4, 3],
-      "medium": "supply_air",
-      "shape": "rectangular",
-      "width": null,
-      "height": null,
-      "diameter": null,
-      "ductMaterial": "galvanized_steel",
-      "airflowRate": null,
-      "startPortId": "port_branch_1",
-      "endPortId": "port_d",
-      "systemId": "system_pA",
-      "calcResult": null
+      "object": "node", "type": "duct_segment", "id": "duct_seg_pA_br1", "parentId": "level_preset_1f", "visible": true, "metadata": {},
+      "start": [5, 2.7, 9], "end": [5, 2.7, 5],
+      "medium": "supply_air", "shape": "rectangular", "width": null, "height": null, "diameter": null,
+      "ductMaterial": "galvanized_steel", "airflowRate": null, "startPortId": "port_branch_1", "endPortId": "port_d", "systemId": "system_pA", "calcResult": null
     },
     "duct_seg_pA_br2": {
-      "object": "node",
-      "type": "duct_segment",
-      "id": "duct_seg_pA_br2",
-      "parentId": "level_preset_1f",
-      "visible": true,
-      "metadata": {},
-      "start": [5, 2.4, 5],
-      "end": [12, 2.4, 3],
-      "medium": "supply_air",
-      "shape": "rectangular",
-      "width": null,
-      "height": null,
-      "diameter": null,
-      "ductMaterial": "galvanized_steel",
-      "airflowRate": null,
-      "startPortId": "port_branch_1",
-      "endPortId": "port_d",
-      "systemId": "system_pA",
-      "calcResult": null
+      "object": "node", "type": "duct_segment", "id": "duct_seg_pA_br2", "parentId": "level_preset_1f", "visible": true, "metadata": {},
+      "start": [5, 2.7, 9], "end": [13, 2.7, 2.5],
+      "medium": "supply_air", "shape": "rectangular", "width": null, "height": null, "diameter": null,
+      "ductMaterial": "galvanized_steel", "airflowRate": null, "startPortId": "port_branch_1", "endPortId": "port_d", "systemId": "system_pA", "calcResult": null
     },
     "duct_seg_pB_main": {
-      "object": "node",
-      "type": "duct_segment",
-      "id": "duct_seg_pB_main",
-      "parentId": "level_preset_2f",
-      "visible": true,
-      "metadata": {},
-      "start": [-4, 6.2, 5],
-      "end": [5, 6.2, 2.5],
-      "medium": "supply_air",
-      "shape": "rectangular",
-      "width": null,
-      "height": null,
-      "diameter": null,
-      "ductMaterial": "galvanized_steel",
-      "airflowRate": null,
-      "startPortId": "port_sa",
-      "endPortId": "port_d",
-      "systemId": "system_pB",
-      "calcResult": null
+      "object": "node", "type": "duct_segment", "id": "duct_seg_pB_main", "parentId": "level_preset_2f", "visible": true, "metadata": {},
+      "start": [3, 6.2, 9], "end": [5, 6.2, 2.5],
+      "medium": "supply_air", "shape": "rectangular", "width": null, "height": null, "diameter": null,
+      "ductMaterial": "galvanized_steel", "airflowRate": null, "startPortId": "port_sa", "endPortId": "port_d", "systemId": "system_pB", "calcResult": null
     },
     "pipe_seg_pA_supply": {
-      "object": "node",
-      "type": "pipe_segment",
-      "id": "pipe_seg_pA_supply",
-      "parentId": "level_preset_1f",
-      "visible": true,
-      "metadata": {},
-      "start": [-7, 0, 5],
-      "end": [-5, 0, 5],
-      "medium": "chilled_water",
-      "nominalSize": null,
-      "outerDiameter": null,
-      "startPortId": "",
-      "endPortId": "",
-      "systemId": "system_pA",
-      "calcResult": null
+      "object": "node", "type": "pipe_segment", "id": "pipe_seg_pA_supply", "parentId": "level_preset_1f", "visible": true, "metadata": {},
+      "start": [0, 0, 9], "end": [1, 0, 9],
+      "medium": "chilled_water", "nominalSize": null, "outerDiameter": null, "startPortId": "", "endPortId": "", "systemId": "system_pA", "calcResult": null
     },
     "pipe_seg_pB_supply": {
-      "object": "node",
-      "type": "pipe_segment",
-      "id": "pipe_seg_pB_supply",
-      "parentId": "level_preset_2f",
-      "visible": true,
-      "metadata": {},
-      "start": [-7, 3.5, 5],
-      "end": [-5, 3.5, 5],
-      "medium": "chilled_water",
-      "nominalSize": null,
-      "outerDiameter": null,
-      "startPortId": "",
-      "endPortId": "",
-      "systemId": "system_pB",
-      "calcResult": null
+      "object": "node", "type": "pipe_segment", "id": "pipe_seg_pB_supply", "parentId": "level_preset_2f", "visible": true, "metadata": {},
+      "start": [0, 3.5, 9], "end": [1, 3.5, 9],
+      "medium": "chilled_water", "nominalSize": null, "outerDiameter": null, "startPortId": "", "endPortId": "", "systemId": "system_pB", "calcResult": null
     }
   },
   "rootNodeIds": ["site_preset"]

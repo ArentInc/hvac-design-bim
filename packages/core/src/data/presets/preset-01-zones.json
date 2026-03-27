@@ -1,5 +1,5 @@
 {
-  "_description": "Stage 1: ゾーン作成・負荷計算済み",
+  "_description": "Stage 1: ゾーン作成・負荷計算済み — 建築モデル上にHVACゾーン3つを定義、外皮条件・負荷計算済み",
   "nodes": {
     "site_preset": {
       "object": "node",
@@ -10,7 +10,7 @@
       "metadata": {},
       "polygon": {
         "type": "polygon",
-        "points": [[-15, -15], [15, -15], [15, 15], [-15, 15]]
+        "points": [[-2, -2], [18, -2], [18, 12], [-2, 12]]
       },
       "children": [
         {
@@ -44,7 +44,12 @@
       "parentId": "building_preset",
       "visible": true,
       "metadata": {},
-      "children": ["hvac_zone_p01", "hvac_zone_p02"],
+      "children": [
+        "wall_00_1f_s", "wall_00_1f_e", "wall_00_1f_n", "wall_00_1f_w",
+        "wall_00_1f_int_ew", "wall_00_1f_int_ns",
+        "slab_00_1f", "ceiling_00_1f",
+        "hvac_zone_p01", "hvac_zone_p02"
+      ],
       "level": 0
     },
     "level_preset_2f": {
@@ -54,9 +59,29 @@
       "parentId": "building_preset",
       "visible": true,
       "metadata": {},
-      "children": ["hvac_zone_p03"],
+      "children": [
+        "wall_00_2f_s", "wall_00_2f_e", "wall_00_2f_n", "wall_00_2f_w",
+        "wall_00_2f_int_ew",
+        "slab_00_2f", "ceiling_00_2f",
+        "hvac_zone_p03"
+      ],
       "level": 1
     },
+    "wall_00_1f_s": { "object": "node", "type": "wall", "id": "wall_00_1f_s", "parentId": "level_preset_1f", "visible": true, "metadata": {}, "children": [], "start": [0, 0], "end": [16, 0], "height": 3.5, "thickness": 0.2, "frontSide": "interior", "backSide": "exterior" },
+    "wall_00_1f_e": { "object": "node", "type": "wall", "id": "wall_00_1f_e", "parentId": "level_preset_1f", "visible": true, "metadata": {}, "children": [], "start": [16, 0], "end": [16, 10], "height": 3.5, "thickness": 0.2, "frontSide": "interior", "backSide": "exterior" },
+    "wall_00_1f_n": { "object": "node", "type": "wall", "id": "wall_00_1f_n", "parentId": "level_preset_1f", "visible": true, "metadata": {}, "children": [], "start": [16, 10], "end": [0, 10], "height": 3.5, "thickness": 0.2, "frontSide": "exterior", "backSide": "interior" },
+    "wall_00_1f_w": { "object": "node", "type": "wall", "id": "wall_00_1f_w", "parentId": "level_preset_1f", "visible": true, "metadata": {}, "children": [], "start": [0, 10], "end": [0, 0], "height": 3.5, "thickness": 0.2, "frontSide": "exterior", "backSide": "interior" },
+    "wall_00_1f_int_ew": { "object": "node", "type": "wall", "id": "wall_00_1f_int_ew", "parentId": "level_preset_1f", "visible": true, "metadata": {}, "children": [], "start": [10, 0], "end": [10, 10], "height": 3.5, "thickness": 0.15, "frontSide": "interior", "backSide": "interior" },
+    "wall_00_1f_int_ns": { "object": "node", "type": "wall", "id": "wall_00_1f_int_ns", "parentId": "level_preset_1f", "visible": true, "metadata": {}, "children": [], "start": [10, 5], "end": [16, 5], "height": 3.5, "thickness": 0.15, "frontSide": "interior", "backSide": "interior" },
+    "slab_00_1f": { "object": "node", "type": "slab", "id": "slab_00_1f", "parentId": "level_preset_1f", "visible": true, "metadata": {}, "polygon": [[0,0],[16,0],[16,10],[0,10]], "holes": [], "elevation": 0.05 },
+    "ceiling_00_1f": { "object": "node", "type": "ceiling", "id": "ceiling_00_1f", "parentId": "level_preset_1f", "visible": true, "metadata": {}, "children": [], "polygon": [[0,0],[16,0],[16,10],[0,10]], "holes": [], "height": 3.0 },
+    "wall_00_2f_s": { "object": "node", "type": "wall", "id": "wall_00_2f_s", "parentId": "level_preset_2f", "visible": true, "metadata": {}, "children": [], "start": [0, 0], "end": [16, 0], "height": 3.2, "thickness": 0.2, "frontSide": "interior", "backSide": "exterior" },
+    "wall_00_2f_e": { "object": "node", "type": "wall", "id": "wall_00_2f_e", "parentId": "level_preset_2f", "visible": true, "metadata": {}, "children": [], "start": [16, 0], "end": [16, 10], "height": 3.2, "thickness": 0.2, "frontSide": "interior", "backSide": "exterior" },
+    "wall_00_2f_n": { "object": "node", "type": "wall", "id": "wall_00_2f_n", "parentId": "level_preset_2f", "visible": true, "metadata": {}, "children": [], "start": [16, 10], "end": [0, 10], "height": 3.2, "thickness": 0.2, "frontSide": "exterior", "backSide": "interior" },
+    "wall_00_2f_w": { "object": "node", "type": "wall", "id": "wall_00_2f_w", "parentId": "level_preset_2f", "visible": true, "metadata": {}, "children": [], "start": [0, 10], "end": [0, 0], "height": 3.2, "thickness": 0.2, "frontSide": "exterior", "backSide": "interior" },
+    "wall_00_2f_int_ew": { "object": "node", "type": "wall", "id": "wall_00_2f_int_ew", "parentId": "level_preset_2f", "visible": true, "metadata": {}, "children": [], "start": [10, 0], "end": [10, 10], "height": 3.2, "thickness": 0.15, "frontSide": "interior", "backSide": "interior" },
+    "slab_00_2f": { "object": "node", "type": "slab", "id": "slab_00_2f", "parentId": "level_preset_2f", "visible": true, "metadata": {}, "polygon": [[0,0],[16,0],[16,10],[0,10]], "holes": [], "elevation": 0.05 },
+    "ceiling_00_2f": { "object": "node", "type": "ceiling", "id": "ceiling_00_2f", "parentId": "level_preset_2f", "visible": true, "metadata": {}, "children": [], "polygon": [[0,0],[16,0],[16,10],[0,10]], "holes": [], "height": 3.0 },
     "hvac_zone_p01": {
       "object": "node",
       "type": "hvac_zone",
@@ -76,15 +101,21 @@
         "relativeHumidity": 50,
         "supplyAirTempDiff": 10
       },
-      "perimeterSegments": [],
+      "perimeterSegments": [
+        { "orientation": "S", "wallArea": 35.0, "glazingRatio": 0.4 },
+        { "orientation": "W", "wallArea": 35.0, "glazingRatio": 0.2 }
+      ],
       "systemId": null,
       "calcResult": {
-        "coolingLoad": 15000,
-        "heatingLoad": 8000,
-        "requiredAirflow": 4478,
-        "internalLoad": 15000,
-        "envelopeLoad": 0,
-        "perimeterLoadBreakdown": [],
+        "coolingLoad": 18500,
+        "heatingLoad": 9200,
+        "requiredAirflow": 5522,
+        "internalLoad": 12000,
+        "envelopeLoad": 6500,
+        "perimeterLoadBreakdown": [
+          { "orientation": "S", "coolingLoad": 4200, "heatingLoad": 3100 },
+          { "orientation": "W", "coolingLoad": 2300, "heatingLoad": 1800 }
+        ],
         "status": "success"
       }
     },
@@ -107,15 +138,21 @@
         "relativeHumidity": 50,
         "supplyAirTempDiff": 10
       },
-      "perimeterSegments": [],
+      "perimeterSegments": [
+        { "orientation": "S", "wallArea": 21.0, "glazingRatio": 0.5 },
+        { "orientation": "E", "wallArea": 17.5, "glazingRatio": 0.3 }
+      ],
       "systemId": null,
       "calcResult": {
-        "coolingLoad": 6000,
-        "heatingLoad": 3000,
-        "requiredAirflow": 1791,
-        "internalLoad": 6000,
-        "envelopeLoad": 0,
-        "perimeterLoadBreakdown": [],
+        "coolingLoad": 8800,
+        "heatingLoad": 3600,
+        "requiredAirflow": 2627,
+        "internalLoad": 5500,
+        "envelopeLoad": 3300,
+        "perimeterLoadBreakdown": [
+          { "orientation": "S", "coolingLoad": 2100, "heatingLoad": 1500 },
+          { "orientation": "E", "coolingLoad": 1200, "heatingLoad": 900 }
+        ],
         "status": "success"
       }
     },

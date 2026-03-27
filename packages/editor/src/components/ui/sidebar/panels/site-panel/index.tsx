@@ -14,6 +14,7 @@ import { useViewer } from '@pascal-app/viewer'
 import {
   Camera,
   ChevronDown,
+  FlaskConical,
   Loader2,
   MoreHorizontal,
   Pencil,
@@ -34,6 +35,7 @@ import { deleteLevelWithFallbackSelection } from './../../../../../lib/level-sel
 import { cn } from './../../../../../lib/utils'
 import useEditor from './../../../../../store/use-editor'
 import { useUploadStore } from '../../../../../store/use-upload'
+import { PresetSelector } from '../../../preset-selector'
 import { InlineRenameInput } from './inline-rename-input'
 import { focusTreeNode, TreeNode } from './tree-node'
 import { TreeNodeDragProvider } from './tree-node-drag'
@@ -1424,6 +1426,38 @@ function BuildingItem({
   )
 }
 
+// ============================================================================
+// DEMO PRESET SECTION
+// ============================================================================
+
+function DemoPresetSection() {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <div className="border-border/50 border-b px-3 py-2">
+      <Popover onOpenChange={setOpen} open={open}>
+        <PopoverTrigger asChild>
+          <button
+            className="flex w-full items-center gap-2 rounded-lg border border-border/40 bg-accent/20 px-3 py-2 text-left text-xs text-muted-foreground transition-colors hover:bg-accent/40 hover:text-foreground"
+            type="button"
+          >
+            <FlaskConical className="h-3.5 w-3.5 shrink-0" />
+            <span>デモプリセットを読み込む</span>
+          </button>
+        </PopoverTrigger>
+        <PopoverContent
+          align="start"
+          className="w-72 overflow-hidden rounded-xl border-border/50 bg-sidebar/95 p-0 shadow-2xl backdrop-blur-xl"
+          side="right"
+          sideOffset={8}
+        >
+          <PresetSelector onClose={() => setOpen(false)} />
+        </PopoverContent>
+      </Popover>
+    </div>
+  )
+}
+
 export interface SitePanelProps {
   projectId?: string
   onUploadAsset?: (projectId: string, levelId: string, file: File, type: 'scan' | 'guide') => void
@@ -1508,6 +1542,20 @@ export function SitePanel({ projectId, onUploadAsset, onDeleteAsset }: SitePanel
               </motion.div>
             )}
           </AnimatePresence>
+
+          {/* Demo Preset Loader */}
+          {phase === 'site' && (
+            <motion.div
+              animate={{ height: 'auto', opacity: 1 }}
+              className="shrink-0 overflow-hidden"
+              exit={{ height: 0, opacity: 0 }}
+              initial={{ height: 0, opacity: 0 }}
+              layout="position"
+              transition={{ type: 'spring', bounce: 0, duration: 0.4 }}
+            >
+              <DemoPresetSection />
+            </motion.div>
+          )}
 
           {/* Buildings List */}
           {buildings.length === 0 ? (
