@@ -24,7 +24,9 @@ import { ZoneSystem } from '../systems/zone/zone-system'
 import { ToolManager } from '../tools/tool-manager'
 import { ActionMenu } from '../ui/action-menu'
 import { HelperManager } from '../ui/helpers/helper-manager'
+import { ModeSwitcher, PhaseGuidanceBanner, PhaseTabs } from '../ui/mode-switcher'
 import { PanelManager } from '../ui/panels/panel-manager'
+import { PresetSelector } from '../ui/preset-selector'
 import { ErrorBoundary } from '../ui/primitives/error-boundary'
 import { SidebarProvider } from '../ui/primitives/sidebar'
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/primitives/tooltip'
@@ -42,6 +44,28 @@ import { SelectionManager } from './selection-manager'
 import { SiteEdgeLabels } from './site-edge-labels'
 import { ThumbnailGenerator } from './thumbnail-generator'
 import { WallMeasurementLabel } from './wall-measurement-label'
+
+function DefaultSidebarTop() {
+  const [showPresets, setShowPresets] = useState(false)
+
+  return (
+    <>
+      <div className="flex items-center justify-between gap-2">
+        <ModeSwitcher />
+        <button
+          className="rounded px-2 py-1 text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+          onClick={() => setShowPresets((v) => !v)}
+          type="button"
+        >
+          {showPresets ? '閉じる' : 'プリセット'}
+        </button>
+      </div>
+      <PhaseTabs />
+      <PhaseGuidanceBanner />
+      {showPresets && <PresetSelector onClose={() => setShowPresets(false)} />}
+    </>
+  )
+}
 
 let hasInitializedEditorRuntime = false
 const CAMERA_CONTROLS_HINT_DISMISSED_STORAGE_KEY = 'editor-camera-controls-hint-dismissed:v1'
@@ -319,6 +343,7 @@ export default function Editor({
   sitePanelProps,
   presetsAdapter,
 }: EditorProps) {
+  const resolvedSidebarTop = sidebarTop ?? <DefaultSidebarTop />
   useKeyboard()
 
   const { isLoadingSceneRef } = useAutoSave({
@@ -435,7 +460,7 @@ export default function Editor({
               <AppSidebar
                 appMenuButton={appMenuButton}
                 settingsPanelProps={settingsPanelProps}
-                sidebarTop={sidebarTop}
+                sidebarTop={resolvedSidebarTop}
                 sitePanelProps={sitePanelProps}
               />
             </SidebarProvider>

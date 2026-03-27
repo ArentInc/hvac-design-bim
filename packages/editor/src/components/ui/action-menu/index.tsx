@@ -9,6 +9,7 @@ import { ItemCatalog } from '../item-catalog/item-catalog'
 import { CameraActions } from './camera-actions'
 import { ControlModes } from './control-modes'
 import { FurnishTools } from './furnish-tools'
+import { HvacTools } from './hvac-tools'
 import { StructureTools } from './structure-tools'
 import { ViewToggles } from './view-toggles'
 
@@ -138,6 +139,77 @@ export function ActionMenu({ className }: { className?: string }) {
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* HVAC Tools Row - Animated */}
+        <AnimatePresence>
+          {['zone', 'equip', 'route'].includes(phase) && mode === 'build' && (
+            <motion.div
+              animate={{
+                opacity: 1,
+                maxHeight: 80,
+                paddingTop: 8,
+                paddingBottom: 8,
+                borderBottomWidth: 1,
+              }}
+              className={cn('max-h-20 overflow-hidden border-border border-b px-2 py-2')}
+              exit={{
+                opacity: 0,
+                maxHeight: 0,
+                paddingTop: 0,
+                paddingBottom: 0,
+                borderBottomWidth: 0,
+              }}
+              initial={{
+                opacity: 0,
+                maxHeight: 0,
+                paddingTop: 0,
+                paddingBottom: 0,
+                borderBottomWidth: 0,
+              }}
+              transition={transition}
+            >
+              <div className="mx-auto w-max">
+                <HvacTools />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* HVAC Calc Tools - Always visible in calc phase */}
+        <AnimatePresence>
+          {phase === 'calc' && (
+            <motion.div
+              animate={{
+                opacity: 1,
+                maxHeight: 80,
+                paddingTop: 8,
+                paddingBottom: 8,
+                borderBottomWidth: 1,
+              }}
+              className={cn('max-h-20 overflow-hidden border-border border-b px-2 py-2')}
+              exit={{
+                opacity: 0,
+                maxHeight: 0,
+                paddingTop: 0,
+                paddingBottom: 0,
+                borderBottomWidth: 0,
+              }}
+              initial={{
+                opacity: 0,
+                maxHeight: 0,
+                paddingTop: 0,
+                paddingBottom: 0,
+                borderBottomWidth: 0,
+              }}
+              transition={transition}
+            >
+              <div className="mx-auto w-max">
+                <HvacTools />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* Control Mode Row - Always visible, centered */}
         <div className="flex items-center justify-center gap-1 px-2 py-1.5">
           <ControlModes />

@@ -10,8 +10,8 @@
  * 【テストフレームワーク】: Vitest + @testing-library/react (happy-dom)
  */
 
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { cleanup, render, screen } from '@testing-library/react'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 const mockSetSelection = vi.hoisted(() => vi.fn())
 
@@ -40,15 +40,13 @@ vi.mock('../../components/ui/panels/hvac/format-load', () => ({
 
 import { useScene } from '@pascal-app/core'
 import { useViewer } from '@pascal-app/viewer'
-import { SystemTreePanel } from '../../components/ui/panels/hvac/system-tree-panel'
-import { SystemPanel } from '../../components/ui/panels/hvac/system-panel'
-import { HvacZonePanel } from '../../components/ui/panels/hvac/hvac-zone-panel'
-import { AhuPanel } from '../../components/ui/panels/hvac/ahu-panel'
-import { DiffuserPanel } from '../../components/ui/panels/hvac/diffuser-panel'
-import { CalcResultPanel } from '../../components/ui/panels/hvac/calc-result-panel'
 import { DuctPanel } from '../../components/sidebars/hvac/duct-panel'
 import { PipePanel } from '../../components/sidebars/hvac/pipe-panel'
-import { getPresetNodes, filterNodesByType } from './helpers/preset-fixtures'
+import { AhuPanel } from '../../components/ui/panels/hvac/ahu-panel'
+import { DiffuserPanel } from '../../components/ui/panels/hvac/diffuser-panel'
+import { HvacZonePanel } from '../../components/ui/panels/hvac/hvac-zone-panel'
+import { SystemTreePanel } from '../../components/ui/panels/hvac/system-tree-panel'
+import { filterNodesByType, getPresetNodes } from './helpers/preset-fixtures'
 
 const stage4Nodes = getPresetNodes(4)
 
@@ -126,7 +124,8 @@ describe('UI統合テスト: 全フェーズ横断データ整合性 (Stage 4)',
       for (const port of ahu.ports) {
         if (port.connectedSegmentId) {
           // 接続先がダクトまたは配管のいずれかに実在すること
-          const exists = ductIds.has(port.connectedSegmentId) || pipeIds.has(port.connectedSegmentId)
+          const exists =
+            ductIds.has(port.connectedSegmentId) || pipeIds.has(port.connectedSegmentId)
           expect(exists).toBe(true)
         }
       }

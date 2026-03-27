@@ -9,15 +9,14 @@
 
 import type { Mock } from 'vitest'
 import { vi } from 'vitest'
-
-// プリセットデータ直接import（@pascal-app/coreのモック干渉回避）
-import preset00 from '../../../../../core/src/data/presets/preset-00-empty.json'
-import preset01 from '../../../../../core/src/data/presets/preset-01-zones.json'
 import {
   buildPresetStage02,
   buildPresetStage03,
   buildPresetStage04,
 } from '../../../../../core/src/data/presets/generated-hvac-presets'
+// プリセットデータ直接import（@pascal-app/coreのモック干渉回避）
+import preset00 from '../../../../../core/src/data/presets/preset-00-empty.json'
+import preset01 from '../../../../../core/src/data/presets/preset-01-zones.json'
 
 type NodesDict = Record<string, any>
 
@@ -63,11 +62,7 @@ export function filterNodesByType(nodes: NodesDict, type: string): any[] {
 /**
  * useSceneモックを標準パターンでセットアップする
  */
-export function setupSceneMock(
-  useScene: Mock,
-  nodes: NodesDict,
-  updateNode = vi.fn(),
-) {
+export function setupSceneMock(useScene: Mock, nodes: NodesDict, updateNode = vi.fn()) {
   useScene.mockImplementation((selector?: (state: any) => any) => {
     const state = { nodes, updateNode }
     return selector ? selector(state) : state

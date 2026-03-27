@@ -5,8 +5,8 @@
  * 【テストフレームワーク】: Vitest + @testing-library/react (happy-dom)
  */
 
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 vi.mock('@pascal-app/viewer', () => ({
   useViewer: {
@@ -27,8 +27,8 @@ vi.mock('@pascal-app/core', () => ({
   },
 }))
 
-import useEditor from '../../store/use-editor'
 import { ModeSwitcher, PhaseTabs } from '../../components/ui/mode-switcher'
+import useEditor from '../../store/use-editor'
 
 beforeEach(() => {
   useEditor.setState({
@@ -45,7 +45,12 @@ afterEach(() => {
 
 describe('UI統合テスト: モード切替 + フェーズ遷移', () => {
   it('テスト1: 建築→HVACモード切替でphaseがzoneに遷移しZone/Equip/Route/Calcタブが表示される', () => {
-    render(<><ModeSwitcher /><PhaseTabs /></>)
+    render(
+      <>
+        <ModeSwitcher />
+        <PhaseTabs />
+      </>,
+    )
 
     // 初期状態: 建築モード
     expect(useEditor.getState().editorMode).toBe('architecture')
@@ -86,7 +91,12 @@ describe('UI統合テスト: モード切替 + フェーズ遷移', () => {
 
   it('テスト3: HVAC→建築モード復帰でphaseがsiteに戻りSite/Structure/Furnishタブが表示される', () => {
     useEditor.setState({ editorMode: 'hvac', phase: 'zone', mode: 'select', tool: null })
-    render(<><ModeSwitcher /><PhaseTabs /></>)
+    render(
+      <>
+        <ModeSwitcher />
+        <PhaseTabs />
+      </>,
+    )
 
     // 建築ボタンクリック
     const archBtn = screen.getByText('建築').closest('button')

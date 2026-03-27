@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
-import { HVAC_PRESETS } from '../../../data/presets'
 import catalogAhu from '../../../data/catalog-ahu.json'
 import catalogDiffuser from '../../../data/catalog-diffuser.json'
+import { HVAC_PRESETS } from '../../../data/presets'
 import standardDuctSizes from '../../../data/standard-duct-sizes.json'
 import standardPipeSizes from '../../../data/standard-pipe-sizes.json'
 import { AnyNode } from '../../../schema/types'
@@ -77,7 +77,10 @@ describe('preset quality', () => {
             continue
           }
 
-          expect(nodes[child.id], `${preset.stage}:${nodeId}:embedded-child:${child.id}`).toBeDefined()
+          expect(
+            nodes[child.id],
+            `${preset.stage}:${nodeId}:embedded-child:${child.id}`,
+          ).toBeDefined()
         }
       }
 
@@ -148,11 +151,15 @@ describe('preset quality', () => {
 
         const model = catalogAhu.find((entry) => entry.modelId === system.recommendedEquipmentId)
         expect(model, `stage ${preset.stage}:${system.id}:catalog`).toBeDefined()
-        expect(model!.airflowRate, `${preset.stage}:${system.id}:airflow margin`).toBeGreaterThanOrEqual(
-          system.aggregatedLoad!.totalAirflow * system.selectionMargin,
-        )
-        expect(model!.coolingCapacity, `${preset.stage}:${system.id}:cooling margin`).toBeGreaterThanOrEqual(
-          system.aggregatedLoad!.totalCoolingLoad / 1000 * system.selectionMargin,
+        expect(
+          model!.airflowRate,
+          `${preset.stage}:${system.id}:airflow margin`,
+        ).toBeGreaterThanOrEqual(system.aggregatedLoad!.totalAirflow * system.selectionMargin)
+        expect(
+          model!.coolingCapacity,
+          `${preset.stage}:${system.id}:cooling margin`,
+        ).toBeGreaterThanOrEqual(
+          (system.aggregatedLoad!.totalCoolingLoad / 1000) * system.selectionMargin,
         )
       }
     }

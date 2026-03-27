@@ -6,8 +6,8 @@
  * 【テストフレームワーク】: Vitest + @testing-library/react (happy-dom)
  */
 
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 vi.mock('@pascal-app/viewer', () => ({
   useViewer: vi.fn(),
@@ -23,7 +23,12 @@ import { useViewer } from '@pascal-app/viewer'
 import { DuctPanel } from '../../components/sidebars/hvac/duct-panel'
 import { PipePanel } from '../../components/sidebars/hvac/pipe-panel'
 import { WarningListPanel } from '../../components/ui/sidebar/panels/warning-list-panel'
-import { getPresetNodes, filterNodesByType, setupSceneMock, setupViewerMock } from './helpers/preset-fixtures'
+import {
+  filterNodesByType,
+  getPresetNodes,
+  setupSceneMock,
+  setupViewerMock,
+} from './helpers/preset-fixtures'
 
 const stage4Nodes = getPresetNodes(4)
 

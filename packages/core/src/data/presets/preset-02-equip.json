@@ -45,11 +45,20 @@
       "visible": true,
       "metadata": {},
       "children": [
-        "wall_00_1f_s", "wall_00_1f_e", "wall_00_1f_n", "wall_00_1f_w",
-        "wall_00_1f_int_ew", "wall_00_1f_int_ns",
-        "slab_00_1f", "ceiling_00_1f",
-        "hvac_zone_p01", "hvac_zone_p02",
-        "system_pA", "ahu_pA", "diffuser_p01", "diffuser_p02"
+        "wall_00_1f_s",
+        "wall_00_1f_e",
+        "wall_00_1f_n",
+        "wall_00_1f_w",
+        "wall_00_1f_int_ew",
+        "wall_00_1f_int_ns",
+        "slab_00_1f",
+        "ceiling_00_1f",
+        "hvac_zone_p01",
+        "hvac_zone_p02",
+        "system_pA",
+        "ahu_pA",
+        "diffuser_p01",
+        "diffuser_p02"
       ],
       "level": 0
     },
@@ -61,28 +70,231 @@
       "visible": true,
       "metadata": {},
       "children": [
-        "wall_00_2f_s", "wall_00_2f_e", "wall_00_2f_n", "wall_00_2f_w",
+        "wall_00_2f_s",
+        "wall_00_2f_e",
+        "wall_00_2f_n",
+        "wall_00_2f_w",
         "wall_00_2f_int_ew",
-        "slab_00_2f", "ceiling_00_2f",
-        "hvac_zone_p03", "system_pB", "ahu_pB", "diffuser_p03"
+        "slab_00_2f",
+        "ceiling_00_2f",
+        "hvac_zone_p03",
+        "system_pB",
+        "ahu_pB",
+        "diffuser_p03"
       ],
       "level": 1
     },
-    "wall_00_1f_s": { "object": "node", "type": "wall", "id": "wall_00_1f_s", "parentId": "level_preset_1f", "visible": true, "metadata": {}, "children": [], "start": [0, 0], "end": [16, 0], "height": 3.5, "thickness": 0.2, "frontSide": "interior", "backSide": "exterior" },
-    "wall_00_1f_e": { "object": "node", "type": "wall", "id": "wall_00_1f_e", "parentId": "level_preset_1f", "visible": true, "metadata": {}, "children": [], "start": [16, 0], "end": [16, 10], "height": 3.5, "thickness": 0.2, "frontSide": "interior", "backSide": "exterior" },
-    "wall_00_1f_n": { "object": "node", "type": "wall", "id": "wall_00_1f_n", "parentId": "level_preset_1f", "visible": true, "metadata": {}, "children": [], "start": [16, 10], "end": [0, 10], "height": 3.5, "thickness": 0.2, "frontSide": "exterior", "backSide": "interior" },
-    "wall_00_1f_w": { "object": "node", "type": "wall", "id": "wall_00_1f_w", "parentId": "level_preset_1f", "visible": true, "metadata": {}, "children": [], "start": [0, 10], "end": [0, 0], "height": 3.5, "thickness": 0.2, "frontSide": "exterior", "backSide": "interior" },
-    "wall_00_1f_int_ew": { "object": "node", "type": "wall", "id": "wall_00_1f_int_ew", "parentId": "level_preset_1f", "visible": true, "metadata": {}, "children": [], "start": [10, 0], "end": [10, 10], "height": 3.5, "thickness": 0.15, "frontSide": "interior", "backSide": "interior" },
-    "wall_00_1f_int_ns": { "object": "node", "type": "wall", "id": "wall_00_1f_int_ns", "parentId": "level_preset_1f", "visible": true, "metadata": {}, "children": [], "start": [10, 5], "end": [16, 5], "height": 3.5, "thickness": 0.15, "frontSide": "interior", "backSide": "interior" },
-    "slab_00_1f": { "object": "node", "type": "slab", "id": "slab_00_1f", "parentId": "level_preset_1f", "visible": true, "metadata": {}, "polygon": [[0,0],[16,0],[16,10],[0,10]], "holes": [], "elevation": 0.05 },
-    "ceiling_00_1f": { "object": "node", "type": "ceiling", "id": "ceiling_00_1f", "parentId": "level_preset_1f", "visible": true, "metadata": {}, "children": [], "polygon": [[0,0],[16,0],[16,10],[0,10]], "holes": [], "height": 3.0 },
-    "wall_00_2f_s": { "object": "node", "type": "wall", "id": "wall_00_2f_s", "parentId": "level_preset_2f", "visible": true, "metadata": {}, "children": [], "start": [0, 0], "end": [16, 0], "height": 3.2, "thickness": 0.2, "frontSide": "interior", "backSide": "exterior" },
-    "wall_00_2f_e": { "object": "node", "type": "wall", "id": "wall_00_2f_e", "parentId": "level_preset_2f", "visible": true, "metadata": {}, "children": [], "start": [16, 0], "end": [16, 10], "height": 3.2, "thickness": 0.2, "frontSide": "interior", "backSide": "exterior" },
-    "wall_00_2f_n": { "object": "node", "type": "wall", "id": "wall_00_2f_n", "parentId": "level_preset_2f", "visible": true, "metadata": {}, "children": [], "start": [16, 10], "end": [0, 10], "height": 3.2, "thickness": 0.2, "frontSide": "exterior", "backSide": "interior" },
-    "wall_00_2f_w": { "object": "node", "type": "wall", "id": "wall_00_2f_w", "parentId": "level_preset_2f", "visible": true, "metadata": {}, "children": [], "start": [0, 10], "end": [0, 0], "height": 3.2, "thickness": 0.2, "frontSide": "exterior", "backSide": "interior" },
-    "wall_00_2f_int_ew": { "object": "node", "type": "wall", "id": "wall_00_2f_int_ew", "parentId": "level_preset_2f", "visible": true, "metadata": {}, "children": [], "start": [10, 0], "end": [10, 10], "height": 3.2, "thickness": 0.15, "frontSide": "interior", "backSide": "interior" },
-    "slab_00_2f": { "object": "node", "type": "slab", "id": "slab_00_2f", "parentId": "level_preset_2f", "visible": true, "metadata": {}, "polygon": [[0,0],[16,0],[16,10],[0,10]], "holes": [], "elevation": 0.05 },
-    "ceiling_00_2f": { "object": "node", "type": "ceiling", "id": "ceiling_00_2f", "parentId": "level_preset_2f", "visible": true, "metadata": {}, "children": [], "polygon": [[0,0],[16,0],[16,10],[0,10]], "holes": [], "height": 3.0 },
+    "wall_00_1f_s": {
+      "object": "node",
+      "type": "wall",
+      "id": "wall_00_1f_s",
+      "parentId": "level_preset_1f",
+      "visible": true,
+      "metadata": {},
+      "children": [],
+      "start": [0, 0],
+      "end": [16, 0],
+      "height": 3.5,
+      "thickness": 0.2,
+      "frontSide": "interior",
+      "backSide": "exterior"
+    },
+    "wall_00_1f_e": {
+      "object": "node",
+      "type": "wall",
+      "id": "wall_00_1f_e",
+      "parentId": "level_preset_1f",
+      "visible": true,
+      "metadata": {},
+      "children": [],
+      "start": [16, 0],
+      "end": [16, 10],
+      "height": 3.5,
+      "thickness": 0.2,
+      "frontSide": "interior",
+      "backSide": "exterior"
+    },
+    "wall_00_1f_n": {
+      "object": "node",
+      "type": "wall",
+      "id": "wall_00_1f_n",
+      "parentId": "level_preset_1f",
+      "visible": true,
+      "metadata": {},
+      "children": [],
+      "start": [16, 10],
+      "end": [0, 10],
+      "height": 3.5,
+      "thickness": 0.2,
+      "frontSide": "exterior",
+      "backSide": "interior"
+    },
+    "wall_00_1f_w": {
+      "object": "node",
+      "type": "wall",
+      "id": "wall_00_1f_w",
+      "parentId": "level_preset_1f",
+      "visible": true,
+      "metadata": {},
+      "children": [],
+      "start": [0, 10],
+      "end": [0, 0],
+      "height": 3.5,
+      "thickness": 0.2,
+      "frontSide": "exterior",
+      "backSide": "interior"
+    },
+    "wall_00_1f_int_ew": {
+      "object": "node",
+      "type": "wall",
+      "id": "wall_00_1f_int_ew",
+      "parentId": "level_preset_1f",
+      "visible": true,
+      "metadata": {},
+      "children": [],
+      "start": [10, 0],
+      "end": [10, 10],
+      "height": 3.5,
+      "thickness": 0.15,
+      "frontSide": "interior",
+      "backSide": "interior"
+    },
+    "wall_00_1f_int_ns": {
+      "object": "node",
+      "type": "wall",
+      "id": "wall_00_1f_int_ns",
+      "parentId": "level_preset_1f",
+      "visible": true,
+      "metadata": {},
+      "children": [],
+      "start": [10, 5],
+      "end": [16, 5],
+      "height": 3.5,
+      "thickness": 0.15,
+      "frontSide": "interior",
+      "backSide": "interior"
+    },
+    "slab_00_1f": {
+      "object": "node",
+      "type": "slab",
+      "id": "slab_00_1f",
+      "parentId": "level_preset_1f",
+      "visible": true,
+      "metadata": {},
+      "polygon": [[0, 0], [16, 0], [16, 10], [0, 10]],
+      "holes": [],
+      "elevation": 0.05
+    },
+    "ceiling_00_1f": {
+      "object": "node",
+      "type": "ceiling",
+      "id": "ceiling_00_1f",
+      "parentId": "level_preset_1f",
+      "visible": true,
+      "metadata": {},
+      "children": [],
+      "polygon": [[0, 0], [16, 0], [16, 10], [0, 10]],
+      "holes": [],
+      "height": 3.0
+    },
+    "wall_00_2f_s": {
+      "object": "node",
+      "type": "wall",
+      "id": "wall_00_2f_s",
+      "parentId": "level_preset_2f",
+      "visible": true,
+      "metadata": {},
+      "children": [],
+      "start": [0, 0],
+      "end": [16, 0],
+      "height": 3.2,
+      "thickness": 0.2,
+      "frontSide": "interior",
+      "backSide": "exterior"
+    },
+    "wall_00_2f_e": {
+      "object": "node",
+      "type": "wall",
+      "id": "wall_00_2f_e",
+      "parentId": "level_preset_2f",
+      "visible": true,
+      "metadata": {},
+      "children": [],
+      "start": [16, 0],
+      "end": [16, 10],
+      "height": 3.2,
+      "thickness": 0.2,
+      "frontSide": "interior",
+      "backSide": "exterior"
+    },
+    "wall_00_2f_n": {
+      "object": "node",
+      "type": "wall",
+      "id": "wall_00_2f_n",
+      "parentId": "level_preset_2f",
+      "visible": true,
+      "metadata": {},
+      "children": [],
+      "start": [16, 10],
+      "end": [0, 10],
+      "height": 3.2,
+      "thickness": 0.2,
+      "frontSide": "exterior",
+      "backSide": "interior"
+    },
+    "wall_00_2f_w": {
+      "object": "node",
+      "type": "wall",
+      "id": "wall_00_2f_w",
+      "parentId": "level_preset_2f",
+      "visible": true,
+      "metadata": {},
+      "children": [],
+      "start": [0, 10],
+      "end": [0, 0],
+      "height": 3.2,
+      "thickness": 0.2,
+      "frontSide": "exterior",
+      "backSide": "interior"
+    },
+    "wall_00_2f_int_ew": {
+      "object": "node",
+      "type": "wall",
+      "id": "wall_00_2f_int_ew",
+      "parentId": "level_preset_2f",
+      "visible": true,
+      "metadata": {},
+      "children": [],
+      "start": [10, 0],
+      "end": [10, 10],
+      "height": 3.2,
+      "thickness": 0.15,
+      "frontSide": "interior",
+      "backSide": "interior"
+    },
+    "slab_00_2f": {
+      "object": "node",
+      "type": "slab",
+      "id": "slab_00_2f",
+      "parentId": "level_preset_2f",
+      "visible": true,
+      "metadata": {},
+      "polygon": [[0, 0], [16, 0], [16, 10], [0, 10]],
+      "holes": [],
+      "elevation": 0.05
+    },
+    "ceiling_00_2f": {
+      "object": "node",
+      "type": "ceiling",
+      "id": "ceiling_00_2f",
+      "parentId": "level_preset_2f",
+      "visible": true,
+      "metadata": {},
+      "children": [],
+      "polygon": [[0, 0], [16, 0], [16, 10], [0, 10]],
+      "holes": [],
+      "height": 3.0
+    },
     "hvac_zone_p01": {
       "object": "node",
       "type": "hvac_zone",
@@ -97,18 +309,26 @@
       "ceilingHeight": 2.7,
       "occupantDensity": 0.15,
       "boundary": [[0, 0], [10, 0], [10, 10], [0, 10]],
-      "designConditions": { "coolingSetpoint": 26, "heatingSetpoint": 22, "relativeHumidity": 50, "supplyAirTempDiff": 10 },
+      "designConditions": {
+        "coolingSetpoint": 26,
+        "heatingSetpoint": 22,
+        "relativeHumidity": 50,
+        "supplyAirTempDiff": 10
+      },
       "perimeterSegments": [
         { "orientation": "S", "wallArea": 35.0, "glazingRatio": 0.4 },
         { "orientation": "W", "wallArea": 35.0, "glazingRatio": 0.2 }
       ],
       "systemId": "system_pA",
       "calcResult": {
-        "coolingLoad": 18500, "heatingLoad": 9200, "requiredAirflow": 5522,
-        "internalLoad": 12000, "envelopeLoad": 6500,
+        "coolingLoad": 18500,
+        "heatingLoad": 9200,
+        "requiredAirflow": 5522,
+        "internalLoad": 12000,
+        "envelopeLoad": 6500,
         "perimeterLoadBreakdown": [
           { "orientation": "S", "solarCorrectionFactor": 1.15, "envelopeLoadContribution": 4200 },
-          { "orientation": "W", "solarCorrectionFactor": 0.90, "envelopeLoadContribution": 2300 }
+          { "orientation": "W", "solarCorrectionFactor": 0.9, "envelopeLoadContribution": 2300 }
         ],
         "status": "success"
       }
@@ -127,15 +347,23 @@
       "ceilingHeight": 2.7,
       "occupantDensity": 0.5,
       "boundary": [[10, 0], [16, 0], [16, 5], [10, 5]],
-      "designConditions": { "coolingSetpoint": 26, "heatingSetpoint": 22, "relativeHumidity": 50, "supplyAirTempDiff": 10 },
+      "designConditions": {
+        "coolingSetpoint": 26,
+        "heatingSetpoint": 22,
+        "relativeHumidity": 50,
+        "supplyAirTempDiff": 10
+      },
       "perimeterSegments": [
         { "orientation": "S", "wallArea": 21.0, "glazingRatio": 0.5 },
         { "orientation": "E", "wallArea": 17.5, "glazingRatio": 0.3 }
       ],
       "systemId": "system_pA",
       "calcResult": {
-        "coolingLoad": 8800, "heatingLoad": 3600, "requiredAirflow": 2627,
-        "internalLoad": 5500, "envelopeLoad": 3300,
+        "coolingLoad": 8800,
+        "heatingLoad": 3600,
+        "requiredAirflow": 2627,
+        "internalLoad": 5500,
+        "envelopeLoad": 3300,
         "perimeterLoadBreakdown": [
           { "orientation": "S", "solarCorrectionFactor": 1.15, "envelopeLoadContribution": 2100 },
           { "orientation": "E", "solarCorrectionFactor": 0.85, "envelopeLoadContribution": 1200 }
@@ -157,12 +385,20 @@
       "ceilingHeight": 2.7,
       "occupantDensity": 0.01,
       "boundary": [[0, 0], [10, 0], [10, 5], [0, 5]],
-      "designConditions": { "coolingSetpoint": 24, "heatingSetpoint": 18, "relativeHumidity": 50, "supplyAirTempDiff": 10 },
+      "designConditions": {
+        "coolingSetpoint": 24,
+        "heatingSetpoint": 18,
+        "relativeHumidity": 50,
+        "supplyAirTempDiff": 10
+      },
       "perimeterSegments": [],
       "systemId": "system_pB",
       "calcResult": {
-        "coolingLoad": 40000, "heatingLoad": 0, "requiredAirflow": 11940,
-        "internalLoad": 40000, "envelopeLoad": 0,
+        "coolingLoad": 40000,
+        "heatingLoad": 0,
+        "requiredAirflow": 11940,
+        "internalLoad": 40000,
+        "envelopeLoad": 0,
         "perimeterLoadBreakdown": [],
         "status": "success"
       }
@@ -177,7 +413,11 @@
       "systemName": "系統A（1F事務・会議）",
       "servedZoneIds": ["hvac_zone_p01", "hvac_zone_p02"],
       "ahuId": "ahu_pA",
-      "aggregatedLoad": { "totalCoolingLoad": 27300, "totalHeatingLoad": 12800, "totalAirflow": 8149 },
+      "aggregatedLoad": {
+        "totalCoolingLoad": 27300,
+        "totalHeatingLoad": 12800,
+        "totalAirflow": 8149
+      },
       "status": "equipment_selected",
       "selectionMargin": 1.1,
       "equipmentCandidates": ["AHU-S-5000"],
@@ -216,8 +456,22 @@
       "rotation": [0, 0, 0],
       "dimensions": { "width": 1.5, "height": 0.5, "depth": 0.8 },
       "ports": [
-        { "id": "port_sa", "label": "SA", "medium": "supply_air", "position": [0.75, 0, 0], "direction": [1, 0, 0], "connectedSegmentId": null },
-        { "id": "port_ra", "label": "RA", "medium": "return_air", "position": [-0.75, 0, 0], "direction": [-1, 0, 0], "connectedSegmentId": null }
+        {
+          "id": "port_sa",
+          "label": "SA",
+          "medium": "supply_air",
+          "position": [0.75, 0, 0],
+          "direction": [1, 0, 0],
+          "connectedSegmentId": null
+        },
+        {
+          "id": "port_ra",
+          "label": "RA",
+          "medium": "return_air",
+          "position": [-0.75, 0, 0],
+          "direction": [-1, 0, 0],
+          "connectedSegmentId": null
+        }
       ],
       "airflowRate": 5000,
       "coolingCapacity": 30,
@@ -238,8 +492,22 @@
       "rotation": [0, 0, 0],
       "dimensions": { "width": 2.0, "height": 0.5, "depth": 1.0 },
       "ports": [
-        { "id": "port_sa", "label": "SA", "medium": "supply_air", "position": [1.0, 0, 0], "direction": [1, 0, 0], "connectedSegmentId": null },
-        { "id": "port_ra", "label": "RA", "medium": "return_air", "position": [-1.0, 0, 0], "direction": [-1, 0, 0], "connectedSegmentId": null }
+        {
+          "id": "port_sa",
+          "label": "SA",
+          "medium": "supply_air",
+          "position": [1.0, 0, 0],
+          "direction": [1, 0, 0],
+          "connectedSegmentId": null
+        },
+        {
+          "id": "port_ra",
+          "label": "RA",
+          "medium": "return_air",
+          "position": [-1.0, 0, 0],
+          "direction": [-1, 0, 0],
+          "connectedSegmentId": null
+        }
       ],
       "airflowRate": 10000,
       "coolingCapacity": 60,
@@ -259,7 +527,14 @@
       "position": [5, 2.7, 5],
       "neckDiameter": 200,
       "airflowRate": 5522,
-      "port": { "id": "port_d", "label": "SA", "medium": "supply_air", "position": [0, 0.2, 0], "direction": [0, 1, 0], "connectedSegmentId": null },
+      "port": {
+        "id": "port_d",
+        "label": "SA",
+        "medium": "supply_air",
+        "position": [0, 0.2, 0],
+        "direction": [0, 1, 0],
+        "connectedSegmentId": null
+      },
       "hostDuctId": null,
       "systemId": "system_pA",
       "zoneId": "hvac_zone_p01"
@@ -276,7 +551,14 @@
       "position": [13, 2.7, 2.5],
       "neckDiameter": 150,
       "airflowRate": 2627,
-      "port": { "id": "port_d", "label": "SA", "medium": "supply_air", "position": [0, 0.2, 0], "direction": [0, 1, 0], "connectedSegmentId": null },
+      "port": {
+        "id": "port_d",
+        "label": "SA",
+        "medium": "supply_air",
+        "position": [0, 0.2, 0],
+        "direction": [0, 1, 0],
+        "connectedSegmentId": null
+      },
       "hostDuctId": null,
       "systemId": "system_pA",
       "zoneId": "hvac_zone_p02"
@@ -293,7 +575,14 @@
       "position": [5, 6.2, 2.5],
       "neckDiameter": 400,
       "airflowRate": 11940,
-      "port": { "id": "port_d", "label": "SA", "medium": "supply_air", "position": [0, 0.2, 0], "direction": [0, 1, 0], "connectedSegmentId": null },
+      "port": {
+        "id": "port_d",
+        "label": "SA",
+        "medium": "supply_air",
+        "position": [0, 0.2, 0],
+        "direction": [0, 1, 0],
+        "connectedSegmentId": null
+      },
       "hostDuctId": null,
       "systemId": "system_pB",
       "zoneId": "hvac_zone_p03"

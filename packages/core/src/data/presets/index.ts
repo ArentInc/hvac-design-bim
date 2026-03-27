@@ -3,13 +3,13 @@
  * 5段階のHVAC設計プリセットをパッケージ外部に提供する
  */
 
-import preset00 from './preset-00-empty.json'
-import preset01 from './preset-01-zones.json'
 import {
   buildPresetStage02,
   buildPresetStage03,
   buildPresetStage04,
 } from './generated-hvac-presets'
+import preset00 from './preset-00-empty.json'
+import preset01 from './preset-01-zones.json'
 
 export type PresetData = {
   nodes: Record<string, unknown>

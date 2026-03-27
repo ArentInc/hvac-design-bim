@@ -7,6 +7,8 @@ import { CeilingTool } from './ceiling/ceiling-tool'
 import { DoorTool } from './door/door-tool'
 import { AhuPlaceTool } from './hvac/ahu-place-tool'
 import { DiffuserPlaceTool } from './hvac/diffuser-place-tool'
+import { DuctRouteTool } from './hvac/duct-route-tool'
+import { PipeRouteTool } from './hvac/pipe-route-tool'
 import { ZoneDrawTool } from './hvac/zone-draw-tool'
 import { ItemTool } from './item/item-tool'
 import { MoveTool } from './item/move-tool'
@@ -45,7 +47,10 @@ const tools: Record<Phase, Partial<Record<Tool, React.FC>>> = {
     ahu_place: AhuPlaceTool,
     diffuser_place: DiffuserPlaceTool,
   },
-  route: {},
+  route: {
+    duct_route: DuctRouteTool,
+    pipe_route: PipeRouteTool,
+  },
   calc: {},
 }
 

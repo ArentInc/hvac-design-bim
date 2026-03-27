@@ -11,14 +11,9 @@
 import { describe, expect, it } from 'vitest'
 import type { AnyNode } from '../../../schema/types'
 import { distributeAirflow } from '../airflow-distribution'
-import { calcDuctSize, findDirtyDuctSegmentsForSizing, selectDuctVelocity } from '../duct-sizing'
-import {
-  calculateCoolingLoad,
-  calculateInternalLoad,
-  calculateRequiredAirflow,
-  calculateZoneLoad,
-} from '../load-calc'
-import { aggregateSystemLoad, findSystemsForZone } from '../system-aggregation'
+import { calcDuctSize, findDirtyDuctSegmentsForSizing } from '../duct-sizing'
+import { calculateZoneLoad } from '../load-calc'
+import { aggregateSystemLoad } from '../system-aggregation'
 import {
   checkAirflowNotSet,
   checkSizeNotDetermined,
@@ -140,9 +135,10 @@ function makeSystem(
     systemName: `System-${id}`,
     servedZoneIds: opts.servedZoneIds ?? [ZONE_1_ID, ZONE_2_ID],
     ahuId: opts.ahuId !== undefined ? opts.ahuId : AHU_ID,
-    aggregatedLoad: opts.aggregatedLoad !== undefined
-      ? opts.aggregatedLoad
-      : { totalCoolingLoad: 30000, totalHeatingLoad: 16000, totalAirflow: 3000 },
+    aggregatedLoad:
+      opts.aggregatedLoad !== undefined
+        ? opts.aggregatedLoad
+        : { totalCoolingLoad: 30000, totalHeatingLoad: 16000, totalAirflow: 3000 },
     equipmentCandidates: [],
     selectionStatus: 'pending',
     recommendedEquipmentId: null,
@@ -216,7 +212,9 @@ describe('TASK-0041: 再計算カスケード統合テスト', () => {
     // 面積が2倍なら冷房負荷も2倍（外皮なしの純内部負荷のみなので線形）
     expect(result200.coolingLoad).toBe(result100.coolingLoad * 2)
     // Math.round の丸め誤差を許容（1 m³/h 以内）
-    expect(Math.abs(result200.requiredAirflow - result100.requiredAirflow * 2)).toBeLessThanOrEqual(1)
+    expect(Math.abs(result200.requiredAirflow - result100.requiredAirflow * 2)).toBeLessThanOrEqual(
+      1,
+    )
   })
 
   it('テスト2: ゾーン条件変更→警告再生成（velocity_exceeded 警告が新たに発生）', () => {
@@ -294,7 +292,7 @@ describe('TASK-0041: 再計算カスケード統合テスト', () => {
     const nodesWithZone3: Record<string, AnyNode> = {
       [ZONE_1_ID]: zone1,
       [ZONE_2_ID]: zone2,
-      'hvac_zone_003': zone3,
+      hvac_zone_003: zone3,
     }
 
     // 2ゾーン合算
@@ -304,7 +302,9 @@ describe('TASK-0041: 再計算カスケード統合テスト', () => {
 
     expect(result3.totalCoolingLoad).toBeGreaterThan(result2.totalCoolingLoad)
     const zone3Hvac = zone3 as Extract<AnyNode, { type: 'hvac_zone' }>
-    expect(result3.totalCoolingLoad).toBe(result2.totalCoolingLoad + zone3Hvac.calcResult!.coolingLoad)
+    expect(result3.totalCoolingLoad).toBe(
+      result2.totalCoolingLoad + zone3Hvac.calcResult!.coolingLoad,
+    )
     expect(result3.totalAirflow).toBe(result2.totalAirflow + zone3Hvac.calcResult!.requiredAirflow)
   })
 

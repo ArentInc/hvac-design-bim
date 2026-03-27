@@ -56,9 +56,12 @@ vi.mock('@pascal-app/core', () => ({
     byType: { duct_segment: new Set(), pipe_segment: new Set(), hvac_zone: new Set() },
     nodes: new Map(),
   },
-  useScene: Object.assign(vi.fn(() => undefined), {
-    getState: vi.fn(() => ({ nodes: {}, dirtyNodes: new Set() })),
-  }),
+  useScene: Object.assign(
+    vi.fn(() => undefined),
+    {
+      getState: vi.fn(() => ({ nodes: {}, dirtyNodes: new Set() })),
+    },
+  ),
   useRegistry: vi.fn(),
   useNodeEvents: vi.fn(() => ({})),
   ZONE_USAGE_COLORS: {

@@ -87,6 +87,12 @@ export {
 } from './systems/hvac/airflow-distribution'
 // HVAC Systems
 export { AirflowDistributionSystem } from './systems/hvac/airflow-distribution-system'
+// HVAC Duct Sizing + Pressure Loss
+export {
+  calcDuctSize,
+  findDirtyDuctSegmentsForSizing,
+  selectDuctVelocity,
+} from './systems/hvac/duct-sizing'
 export type { AhuCatalogEntry, EquipmentSelectionResult } from './systems/hvac/equipment-selection'
 export {
   DEFAULT_SELECTION_MARGIN,
@@ -95,6 +101,8 @@ export {
   sortAhuCandidates,
 } from './systems/hvac/equipment-selection'
 export { EquipmentSelectionSystem } from './systems/hvac/equipment-selection-system'
+// HVAC Load Calc
+export { calculateZoneLoad } from './systems/hvac/load-calc'
 // 🔵 配管口径選定 — TASK-0036 (REQ-1103, REQ-1104)
 export type { SelectPipeSizeResult } from './systems/hvac/pipe-sizing'
 export {
@@ -106,6 +114,12 @@ export {
   snapToStandardSize,
   validateVelocityConstraint,
 } from './systems/hvac/pipe-sizing'
+export {
+  calcAllPathPressureLosses,
+  calcRequiredFanPressure,
+  calcStraightDuctLoss,
+  findMaxPathPressureLoss,
+} from './systems/hvac/pressure-loss'
 export type { AggregatedLoadResult } from './systems/hvac/system-aggregation'
 export {
   aggregateSystemLoad,

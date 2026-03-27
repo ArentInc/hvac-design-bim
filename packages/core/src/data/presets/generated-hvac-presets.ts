@@ -1,13 +1,13 @@
-import stage1 from './preset-01-zones.json'
+import type { AnyNode } from '../../schema/types'
 import { calcDuctSize } from '../../systems/hvac/duct-sizing'
+import { selectPipeSize } from '../../systems/hvac/pipe-sizing'
 import {
   calcAllPathPressureLosses,
   calcRequiredFanPressure,
   calcStraightDuctLoss,
   findMaxPathPressureLoss,
 } from '../../systems/hvac/pressure-loss'
-import { selectPipeSize } from '../../systems/hvac/pipe-sizing'
-import type { AnyNode } from '../../schema/types'
+import stage1 from './preset-01-zones.json'
 
 type MutablePresetData = {
   _description?: string
@@ -1231,12 +1231,16 @@ function addStage4Sizing(nodes: Record<string, any>) {
 
   nodes.system_pA.requiredFanPressure = Number(
     calcRequiredFanPressure(
-      findMaxPathPressureLoss(calcAllPathPressureLosses('system_pA', nodes as Record<string, AnyNode>)),
+      findMaxPathPressureLoss(
+        calcAllPathPressureLosses('system_pA', nodes as Record<string, AnyNode>),
+      ),
     ).toFixed(0),
   )
   nodes.system_pB.requiredFanPressure = Number(
     calcRequiredFanPressure(
-      findMaxPathPressureLoss(calcAllPathPressureLosses('system_pB', nodes as Record<string, AnyNode>)),
+      findMaxPathPressureLoss(
+        calcAllPathPressureLosses('system_pB', nodes as Record<string, AnyNode>),
+      ),
     ).toFixed(0),
   )
 }
