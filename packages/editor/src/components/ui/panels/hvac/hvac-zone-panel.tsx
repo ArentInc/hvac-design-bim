@@ -9,6 +9,17 @@ import { useScene } from '@pascal-app/core'
 import { useViewer } from '@pascal-app/viewer'
 
 import type { HvacZoneNode } from '@pascal-app/core'
+import {
+  getViewerSelectedIds,
+  HvacEmptyState,
+  HvacField,
+  HvacInput,
+  HvacPanelBody,
+  HvacPanelSection,
+  HvacPanelShell,
+  HvacSelect,
+  HvacStackField,
+} from './hvac-panel-shell'
 
 // 【定数定義】: ZoneUsageの日本語ラベルマッピング
 // 【設計方針】: hvac-shared.tsのZoneUsage enum定義と1対1対応させることで保守性を確保
@@ -19,13 +30,6 @@ const USAGE_LABELS: Record<HvacZoneNode['usage'], string> = {
   conference: '会議室',
   reception: '受付/ロビー',
   corridor: '廊下',
-}
-
-// 【useSceneセレクター型】: HvacZonePanelが必要とするuseSceneの状態型
-// 【再利用性】: 型定義を明示することでセレクターの意図を明確化
-interface SceneState {
-  nodes: Record<string, { type: string } & Partial<HvacZoneNode>>
-  updateNode: (id: string, data: Partial<HvacZoneNode>) => void
 }
 
 /**
@@ -60,23 +64,19 @@ function BasicInfoSection({
   onUpdate: (data: Partial<HvacZoneNode>) => void
 }) {
   return (
-    <div>
-      <h3>基本情報</h3>
-
+    <HvacPanelSection title="基本情報">
       {/* 【ゾーン名入力】: REQ-203 zoneName フィールド（編集可、テキスト入力） */}
-      <label>
-        ゾーン名
-        <input
+      <HvacStackField label="ゾーン名">
+        <HvacInput
           onChange={(e) => onUpdate({ zoneName: e.target.value })}
           type="text"
           value={node.zoneName}
         />
-      </label>
+      </HvacStackField>
 
       {/* 【用途選択】: REQ-203 usage フィールド（5種類のselect、USAGE_LABELSで日本語化） */}
-      <label>
-        用途
-        <select
+      <HvacStackField label="用途">
+        <HvacSelect
           onChange={(e) => onUpdate({ usage: e.target.value as HvacZoneNode['usage'] })}
           value={node.usage}
         >
@@ -87,37 +87,32 @@ function BasicInfoSection({
               </option>
             ),
           )}
-        </select>
-      </label>
+        </HvacSelect>
+      </HvacStackField>
 
       {/* 【床面積表示】: REQ-203 floorArea（読み取り専用、境界ポリゴンから自動算出、小数点1桁） */}
-      <div>
-        <span>床面積 (m²)</span>
-        <span>{node.floorArea.toFixed(1)}</span>
-      </div>
+      <HvacField label="床面積 (m²)" value={node.floorArea.toFixed(1)} />
 
       {/* 【天井高入力】: REQ-203 ceilingHeight フィールド（編集可、デフォルト2.7m） */}
-      <label>
-        天井高 (m)
-        <input
+      <HvacStackField label="天井高 (m)">
+        <HvacInput
           onChange={(e) => onUpdate({ ceilingHeight: Number(e.target.value) })}
           step={0.1}
           type="number"
           value={node.ceilingHeight}
         />
-      </label>
+      </HvacStackField>
 
       {/* 【在室密度入力】: REQ-203 occupantDensity フィールド（編集可、step=0.01、デフォルト0.15人/m²） */}
-      <label>
-        在室密度 (人/m²)
-        <input
+      <HvacStackField label="在室密度 (人/m²)">
+        <HvacInput
           onChange={(e) => onUpdate({ occupantDensity: Number(e.target.value) })}
           step={0.01}
           type="number"
           value={node.occupantDensity}
         />
-      </label>
-    </div>
+      </HvacStackField>
+    </HvacPanelSection>
   )
 }
 
@@ -154,39 +149,34 @@ function DesignConditionsSection({
   }
 
   return (
-    <div>
-      <h3>設計条件</h3>
-
+    <HvacPanelSection title="設計条件">
       {/* 【冷房設定温度】: REQ-204 coolingSetpoint（編集可、デフォルト26°C） */}
-      <label>
-        冷房設定温度 (°C)
-        <input
+      <HvacStackField label="冷房設定温度 (°C)">
+        <HvacInput
           onChange={(e) => updateDesignConditions({ coolingSetpoint: Number(e.target.value) })}
           type="number"
           value={node.designConditions.coolingSetpoint}
         />
-      </label>
+      </HvacStackField>
 
       {/* 【暖房設定温度】: REQ-204 heatingSetpoint（編集可、デフォルト22°C） */}
-      <label>
-        暖房設定温度 (°C)
-        <input
+      <HvacStackField label="暖房設定温度 (°C)">
+        <HvacInput
           onChange={(e) => updateDesignConditions({ heatingSetpoint: Number(e.target.value) })}
           type="number"
           value={node.designConditions.heatingSetpoint}
         />
-      </label>
+      </HvacStackField>
 
       {/* 【送風温度差】: REQ-204/206 supplyAirTempDiff（編集可、デフォルト10K） */}
-      <label>
-        送風温度差 (K)
-        <input
+      <HvacStackField label="送風温度差 (K)">
+        <HvacInput
           onChange={(e) => updateDesignConditions({ supplyAirTempDiff: Number(e.target.value) })}
           type="number"
           value={node.designConditions.supplyAirTempDiff}
         />
-      </label>
-    </div>
+      </HvacStackField>
+    </HvacPanelSection>
   )
 }
 
@@ -206,41 +196,41 @@ function PerimeterSection({
   // 【早期リターン】: perimeterSegmentsが空配列の場合は誘導メッセージを表示（エッジ3対応）
   if (segments.length === 0) {
     return (
-      <div>
-        <h3>外皮条件</h3>
+      <HvacPanelSection title="外皮条件">
         {/* 【誘導メッセージ】: PerimeterEditToolでの入力を促すメッセージ（REQ-205）*/}
-        <p>未設定（PerimeterEditToolで入力してください）</p>
-      </div>
+        <HvacEmptyState>未設定（PerimeterEditToolで入力してください）</HvacEmptyState>
+      </HvacPanelSection>
     )
   }
 
   return (
-    <div>
-      <h3>外皮条件</h3>
+    <HvacPanelSection title="外皮条件">
       {/* 【テーブル表示】: 方位/壁面積/ガラス面積比のテーブル（requirements.md 2.2「外皮条件一覧」） */}
-      <table>
+      <table className="w-full border-separate border-spacing-0 overflow-hidden rounded-md">
         <thead>
-          <tr>
-            <th>方位</th>
-            <th>壁面積 (m²)</th>
-            <th>ガラス面積比</th>
+          <tr className="bg-background/40 text-left text-muted-foreground text-xs">
+            <th className="px-3 py-2 font-medium">方位</th>
+            <th className="px-3 py-2 font-medium">壁面積 (m²)</th>
+            <th className="px-3 py-2 font-medium">ガラス面積比</th>
           </tr>
         </thead>
         <tbody>
           {segments.map((seg, idx) => (
             // 【行表示】: 各セグメントを方位/壁面積/ガラス面積比%で表示
             // 【キー設計】: orientation+idxで一意性を保証（同方位が複数ある場合に対応）
-            <tr key={`${seg.orientation}-${idx}`}>
-              <td>{seg.orientation}</td>
+            <tr className="border-t border-border/30 text-sm" key={`${seg.orientation}-${idx}`}>
+              <td className="border-border/20 border-t px-3 py-2">{seg.orientation}</td>
               {/* 【壁面積】: requirements.md 3.4「wallArea: m²（小数点1桁）」 */}
-              <td>{seg.wallArea.toFixed(1)}</td>
+              <td className="border-border/20 border-t px-3 py-2">{seg.wallArea.toFixed(1)}</td>
               {/* 【glazingRatio変換】: 0.0〜1.0 → %表示（x100, 整数、requirements.md 3.4） */}
-              <td>{Math.round(seg.glazingRatio * 100)}%</td>
+              <td className="border-border/20 border-t px-3 py-2">
+                {Math.round(seg.glazingRatio * 100)}%
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
-    </div>
+    </HvacPanelSection>
   )
 }
 
@@ -259,20 +249,23 @@ function PerimeterSection({
  */
 export function HvacZonePanel() {
   // 【selectedIds取得】: useViewerからselectedIdsのみ参照（Viewer隔離ルール遵守）
-  const selectedIds = useViewer((s: { selectedIds: string[] }) => s.selectedIds)
+  const selectedIds = useViewer(getViewerSelectedIds)
 
   // 【ストア状態取得】: useSceneを1回呼び出しでnodes + updateNodeを同時取得
   // 【パフォーマンス改善】: Greenフェーズの2回呼び出しを1回に削減
-  const { nodes, updateNode } = useScene((s: SceneState) => ({
+  const { nodes, updateNode } = useScene((s) => ({
     nodes: s.nodes,
     updateNode: s.updateNode,
-  }))
+  })) as {
+    nodes: Record<string, { type: string } & Partial<HvacZoneNode>>
+    updateNode: (id: string, data: Partial<HvacZoneNode>) => void
+  }
 
   // 【早期リターン】: 選択なし → null（エッジ4対応）
   if (selectedIds.length === 0) return null
 
   // 【ノード取得】: 最初の選択IDでノードを取得
-  const zoneId = selectedIds[0]
+  const zoneId = selectedIds[0]!
   const node = nodes[zoneId]
 
   // 【型ガード適用】: isHvacZoneNode で安全な型チェック（非HvacZoneノード選択時はnull: エッジ1対応）
@@ -284,14 +277,15 @@ export function HvacZonePanel() {
   }
 
   return (
-    <div>
-      <h2>ゾーンプロパティ</h2>
-      {/* 【基本情報セクション】: REQ-203 zoneName/usage/floorArea/ceilingHeight/occupantDensity */}
-      <BasicInfoSection node={node} onUpdate={handleUpdate} />
-      {/* 【設計条件セクション】: REQ-204 coolingSetpoint/heatingSetpoint/supplyAirTempDiff */}
-      <DesignConditionsSection node={node} onUpdate={handleUpdate} />
-      {/* 【外皮条件セクション】: REQ-205 perimeterSegmentsテーブルまたは誘導メッセージ */}
-      <PerimeterSection segments={node.perimeterSegments} />
-    </div>
+    <HvacPanelShell dataTestId="hvac-zone-panel" title="ゾーンプロパティ">
+      <HvacPanelBody>
+        {/* 【基本情報セクション】: REQ-203 zoneName/usage/floorArea/ceilingHeight/occupantDensity */}
+        <BasicInfoSection node={node} onUpdate={handleUpdate} />
+        {/* 【設計条件セクション】: REQ-204 coolingSetpoint/heatingSetpoint/supplyAirTempDiff */}
+        <DesignConditionsSection node={node} onUpdate={handleUpdate} />
+        {/* 【外皮条件セクション】: REQ-205 perimeterSegmentsテーブルまたは誘導メッセージ */}
+        <PerimeterSection segments={node.perimeterSegments} />
+      </HvacPanelBody>
+    </HvacPanelShell>
   )
 }

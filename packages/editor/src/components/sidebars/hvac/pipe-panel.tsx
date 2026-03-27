@@ -8,18 +8,19 @@
 import type { PipeSegmentNode } from '@pascal-app/core'
 import { useScene } from '@pascal-app/core'
 import { useViewer } from '@pascal-app/viewer'
+import {
+  getViewerSelectedIds,
+  HvacField,
+  HvacPanelBody,
+  HvacPanelSection,
+  HvacPanelShell,
+} from '../../ui/panels/hvac/hvac-panel-shell'
 
 // 【定数定義】: PipeMediumの日本語ラベルマッピング
 const MEDIUM_LABELS: Record<PipeSegmentNode['medium'], string> = {
   chilled_water: '冷水',
   hot_water: '温水',
   condensate: '冷媒ドレン',
-}
-
-// 【useSceneセレクター型】
-interface SceneState {
-  nodes: Record<string, { type: string } & Partial<PipeSegmentNode>>
-  updateNode: (id: string, data: Partial<PipeSegmentNode>) => void
 }
 
 /**
@@ -53,18 +54,20 @@ function calcDistance(start: [number, number, number], end: [number, number, num
  */
 export function PipePanel() {
   // 【selectedIds取得】: useViewerからselectedIdsのみ参照（Viewer隔離ルール遵守）
-  const selectedIds = useViewer((s: { selectedIds: string[] }) => s.selectedIds)
+  const selectedIds = useViewer(getViewerSelectedIds)
 
   // 【ストア状態取得】: useSceneを1回呼び出しでnodesを取得
-  const { nodes } = useScene((s: SceneState) => ({
+  const { nodes } = useScene((s) => ({
     nodes: s.nodes,
-  }))
+  })) as {
+    nodes: Record<string, { type: string } & Partial<PipeSegmentNode>>
+  }
 
   // 【早期リターン】: 選択なし → null
   if (selectedIds.length === 0) return null
 
   // 【ノード取得】: 最初の選択IDでノードを取得
-  const pipeId = selectedIds[0]
+  const pipeId = selectedIds[0]!
   const node = nodes[pipeId]
 
   // 【型ガード適用】: isPipeSegmentNode で安全な型チェック
@@ -74,44 +77,33 @@ export function PipePanel() {
   const length = calcDistance(node.start, node.end)
 
   return (
-    <div>
-      <h2>配管プロパティ</h2>
+    <HvacPanelShell dataTestId="pipe-panel" title="配管プロパティ">
+      <HvacPanelBody>
+        <HvacPanelSection title="基本情報">
+          {/* 【口径】: 呼び径 A 表記、読み取り専用 */}
+          <HvacField label="口径" value={node.nominalSize != null ? `${node.nominalSize}A` : '未選定'} />
 
-      {/* 【口径】: 呼び径 A 表記、読み取り専用 */}
-      <div>
-        <span>口径</span>
-        <span>{node.nominalSize != null ? `${node.nominalSize}A` : '未選定'}</span>
-      </div>
+          {/* 【外径】: mm、読み取り専用 */}
+          <HvacField label="外径 (mm)" value={node.outerDiameter != null ? node.outerDiameter : '未選定'} />
 
-      {/* 【外径】: mm、読み取り専用 */}
-      <div>
-        <span>外径 (mm)</span>
-        <span>{node.outerDiameter != null ? node.outerDiameter : '未選定'}</span>
-      </div>
+          {/* 【媒体】: 日本語ラベル表示 */}
+          <HvacField label="媒体" value={MEDIUM_LABELS[node.medium] ?? node.medium} />
 
-      {/* 【流速】: m/s、読み取り専用 */}
-      <div>
-        <span>流速 (m/s)</span>
-        <span>{node.calcResult != null ? node.calcResult.velocity : '未計算'}</span>
-      </div>
+          {/* 【配管長】: start→end距離（m）読み取り専用 */}
+          <HvacField label="配管長 (m)" value={length.toFixed(2)} />
+        </HvacPanelSection>
 
-      {/* 【圧損】: kPa、読み取り専用 */}
-      <div>
-        <span>圧損 (kPa)</span>
-        <span>{node.calcResult != null ? node.calcResult.pressureDrop : '未計算'}</span>
-      </div>
+        <HvacPanelSection title="計算結果">
+          {/* 【流速】: m/s、読み取り専用 */}
+          <HvacField label="流速 (m/s)" value={node.calcResult != null ? node.calcResult.velocity : '未計算'} />
 
-      {/* 【媒体】: 日本語ラベル表示 */}
-      <div>
-        <span>媒体</span>
-        <span>{MEDIUM_LABELS[node.medium] ?? node.medium}</span>
-      </div>
-
-      {/* 【配管長】: start→end距離（m）読み取り専用 */}
-      <div>
-        <span>配管長 (m)</span>
-        <span>{length.toFixed(2)}</span>
-      </div>
-    </div>
+          {/* 【圧損】: kPa、読み取り専用 */}
+          <HvacField
+            label="圧損 (kPa)"
+            value={node.calcResult != null ? node.calcResult.pressureDrop : '未計算'}
+          />
+        </HvacPanelSection>
+      </HvacPanelBody>
+    </HvacPanelShell>
   )
 }

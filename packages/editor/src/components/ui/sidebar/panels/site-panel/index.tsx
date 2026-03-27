@@ -36,6 +36,7 @@ import { cn } from './../../../../../lib/utils'
 import useEditor from './../../../../../store/use-editor'
 import { useUploadStore } from '../../../../../store/use-upload'
 import { PresetSelector } from '../../../preset-selector'
+import { HvacSidebarContent } from '../hvac-sidebar-content'
 import { InlineRenameInput } from './inline-rename-input'
 import { focusTreeNode, TreeNode } from './tree-node'
 import { TreeNodeDragProvider } from './tree-node-drag'
@@ -1464,7 +1465,7 @@ export interface SitePanelProps {
   onDeleteAsset?: (projectId: string, url: string) => void
 }
 
-export function SitePanel({ projectId, onUploadAsset, onDeleteAsset }: SitePanelProps = {}) {
+function ArchitectureSitePanel({ projectId, onUploadAsset, onDeleteAsset }: SitePanelProps = {}) {
   const nodes = useScene((state) => state.nodes)
   const rootNodeIds = useScene((state) => state.rootNodeIds)
   const updateNode = useScene((state) => state.updateNode)
@@ -1588,4 +1589,14 @@ export function SitePanel({ projectId, onUploadAsset, onDeleteAsset }: SitePanel
       </div>
     </LayoutGroup>
   )
+}
+
+export function SitePanel(props: SitePanelProps = {}) {
+  const editorMode = useEditor((state) => state.editorMode)
+
+  if (editorMode === 'hvac') {
+    return <HvacSidebarContent />
+  }
+
+  return <ArchitectureSitePanel {...props} />
 }

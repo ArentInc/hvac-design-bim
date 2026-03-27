@@ -76,6 +76,7 @@ describe('TASK-0026: SystemPanel', () => {
   it('テスト1: 系統名と3ゾーン一覧が表示される', () => {
     render(<SystemPanel nodeId="system_001" />)
 
+    expect(screen.getByTestId('system-panel')).toBeDefined()
     expect(screen.getByDisplayValue('AHU系統-1')).toBeDefined()
     expect(screen.getByText('hvac_zone_001')).toBeDefined()
     expect(screen.getByText('hvac_zone_002')).toBeDefined()
@@ -85,9 +86,12 @@ describe('TASK-0026: SystemPanel', () => {
   it('テスト2: aggregatedLoadが正しく表示される', () => {
     render(<SystemPanel nodeId="system_001" />)
 
-    expect(screen.getByText('冷房: 45.0kW')).toBeDefined()
-    expect(screen.getByText('暖房: 36.0kW')).toBeDefined()
-    expect(screen.getByText('風量: 4500m3/h')).toBeDefined()
+    expect(screen.getByText('冷房')).toBeDefined()
+    expect(screen.getByText('45.0kW')).toBeDefined()
+    expect(screen.getByText('暖房')).toBeDefined()
+    expect(screen.getByText('36.0kW')).toBeDefined()
+    expect(screen.getByText('風量')).toBeDefined()
+    expect(screen.getByText('4500m3/h')).toBeDefined()
   })
 
   it('テスト3: 紐付きAHU情報が表示される', () => {

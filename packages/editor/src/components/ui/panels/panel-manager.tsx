@@ -1,6 +1,6 @@
 'use client'
 
-import { type AnyNodeId, useScene, useValidation } from '@pascal-app/core'
+import { type AnyNodeId, useScene } from '@pascal-app/core'
 import { useViewer } from '@pascal-app/viewer'
 import useEditor from '../../../store/use-editor'
 import { DuctPanel } from '../../sidebars/hvac/duct-panel'
@@ -10,7 +10,6 @@ import { DoorPanel } from './door-panel'
 import { AhuPanel } from './hvac/ahu-panel'
 import { CalcResultPanel } from './hvac/calc-result-panel'
 import { DiffuserPanel } from './hvac/diffuser-panel'
-import { EquipmentCatalogPanel } from './hvac/equipment-catalog-panel'
 import { HvacPhaseWelcomePanel } from './hvac/phase-welcome-panel'
 import { HvacZonePanel } from './hvac/hvac-zone-panel'
 import { SystemPanel } from './hvac/system-panel'
@@ -20,7 +19,6 @@ import { RoofPanel } from './roof-panel'
 import { RoofSegmentPanel } from './roof-segment-panel'
 import { SlabPanel } from './slab-panel'
 import { WallPanel } from './wall-panel'
-import { WarningListPanel } from '../sidebar/panels/warning-list-panel'
 import { WindowPanel } from './window-panel'
 
 export function PanelManager() {
@@ -37,7 +35,7 @@ export function PanelManager() {
 
   // Show appropriate panel based on selected node type
   if (selectedIds.length === 1) {
-    const selectedNode = selectedIds[0]
+    const selectedNode = selectedIds[0]!
     const node = nodes[selectedNode as AnyNodeId]
     if (node) {
       switch (node.type) {
@@ -75,9 +73,10 @@ export function PanelManager() {
 
   // HVAC mode default panels when nothing is selected
   if (editorMode === 'hvac') {
-    if (phase === 'equip') return <EquipmentCatalogPanel />
-    if (phase === 'calc') return <WarningListPanel />
-    return <HvacPhaseWelcomePanel phase={phase as any} />
+    if (phase === 'zone' || phase === 'route') {
+      return <HvacPhaseWelcomePanel phase={phase} />
+    }
+    return null
   }
 
   return null

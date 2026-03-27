@@ -69,6 +69,7 @@ describe('TASK-0037: PipePanel', () => {
 
     render(<PipePanel />)
 
+    expect(screen.getByTestId('pipe-panel')).toBeDefined()
     // 【結果検証】: 口径「50A」が表示されていること
     expect(screen.getByText('50A')).toBeDefined()
 

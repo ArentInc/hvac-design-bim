@@ -107,6 +107,7 @@ describe('TASK-0016: CalcResultPanel', () => {
 
     render(<CalcResultPanel />)
 
+    expect(screen.getByTestId('calc-result-panel')).toBeDefined() // 【確認内容】: 右パネルwrapper内に描画されること 🔵
     // 【結果検証】: 冷房負荷が '17.4 kW' で表示されること
     expect(screen.getByText('17.4 kW')).toBeDefined() // 【確認内容】: 冷房負荷のkW表記 🔵
   })

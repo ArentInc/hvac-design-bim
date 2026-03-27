@@ -1,15 +1,18 @@
 'use client'
 
-import type { DiffuserNode } from '@pascal-app/core'
+import type { AnyNode, DiffuserNode } from '@pascal-app/core'
 import { useScene } from '@pascal-app/core'
+import {
+  HvacField,
+  HvacInput,
+  HvacPanelBody,
+  HvacPanelSection,
+  HvacPanelShell,
+  HvacStackField,
+} from './hvac-panel-shell'
 
 interface DiffuserPanelProps {
   nodeId: string
-}
-
-interface SceneState {
-  nodes: Record<string, { type: string } & Partial<DiffuserNode>>
-  updateNode: (id: string, data: Partial<DiffuserNode>) => void
 }
 
 function isDiffuserNode(
@@ -27,46 +30,39 @@ const SUB_TYPE_LABELS: Record<DiffuserNode['subType'], string> = {
 }
 
 export function DiffuserPanel({ nodeId }: DiffuserPanelProps) {
-  const { nodes, updateNode } = useScene((s: SceneState) => ({
+  const { nodes, updateNode } = useScene((s) => ({
     nodes: s.nodes,
     updateNode: s.updateNode,
-  }))
+  })) as {
+    nodes: Record<string, AnyNode>
+    updateNode: (id: string, data: Partial<DiffuserNode>) => void
+  }
 
-  const node = nodes[nodeId]
+  const node = nodes[nodeId] as ({ type: string } & Partial<DiffuserNode>) | undefined
   if (!node || !isDiffuserNode(node)) return null
 
   return (
-    <div>
-      <h3>制気口プロパティ</h3>
+    <HvacPanelShell dataTestId="diffuser-panel" title="制気口プロパティ">
+      <HvacPanelBody>
+        <HvacPanelSection title="基本情報">
+          <HvacStackField label="タグ">
+            <HvacInput
+              onChange={(e) => updateNode(nodeId, { tag: e.target.value })}
+              type="text"
+              value={node.tag}
+            />
+          </HvacStackField>
+          <HvacField label="タイプ" value={SUB_TYPE_LABELS[node.subType]} />
+          <HvacField label="ネック径" value={`${node.neckDiameter}mm`} />
+          <HvacField label="風量" value={`${Math.round(node.airflowRate)}m3/h`} />
+        </HvacPanelSection>
 
-      <label>
-        タグ
-        <input
-          onChange={(e) => updateNode(nodeId, { tag: e.target.value })}
-          type="text"
-          value={node.tag}
-        />
-      </label>
-
-      <div>
-        <span>タイプ</span>
-        <span>{SUB_TYPE_LABELS[node.subType]}</span>
-      </div>
-
-      <div>
-        <span>ネック径</span>
-        <span>{node.neckDiameter}mm</span>
-      </div>
-
-      <div>
-        <span>風量</span>
-        <span>{Math.round(node.airflowRate)}m3/h</span>
-      </div>
-
-      <div>
-        <span>接続先ダクト</span>
-        <span>{node.hostDuctId ?? '未接続'}</span>
-      </div>
-    </div>
+        <HvacPanelSection title="接続情報">
+          <HvacField label="接続先ダクト" value={node.hostDuctId ?? '未接続'} />
+          <HvacField label="系統" value={node.systemId ?? '未割当'} />
+          <HvacField label="ゾーン" value={node.zoneId ?? '未割当'} />
+        </HvacPanelSection>
+      </HvacPanelBody>
+    </HvacPanelShell>
   )
 }

@@ -10,11 +10,12 @@
  * 🔵 信頼性レベル: TASK-0027 要件定義（REQ-1404）に明示
  */
 
-import type { AhuNode, HvacZoneNode, SystemNode } from '@pascal-app/core'
+import type { AnyNode, AhuNode, HvacZoneNode } from '@pascal-app/core'
 import { useScene } from '@pascal-app/core'
 import { useViewer } from '@pascal-app/viewer'
 
-type AnyNodeMap = Record<string, { type: string } & Record<string, unknown>>
+type SystemNode = Extract<AnyNode, { type: 'system' }>
+type AnyNodeMap = Record<string, AnyNode>
 
 function isSystemNode(node: { type: string }): node is SystemNode {
   return node.type === 'system'
@@ -68,21 +69,21 @@ export function SystemTreePanel() {
 
   if (systemNodes.length === 0) {
     return (
-      <div style={{ padding: '8px', color: '#6b7280', fontSize: '14px' }}>
+      <div className="rounded-md border border-dashed border-border/40 bg-background/20 px-3 py-2 text-muted-foreground text-sm">
         系統が登録されていません
       </div>
     )
   }
 
   return (
-    <div>
-      <h3 style={{ margin: '0 0 8px', fontSize: '14px', fontWeight: '600' }}>系統ツリー</h3>
+    <div className="flex flex-col gap-2" data-testid="system-tree-panel">
+      <h3 className="font-medium text-foreground text-sm">系統ツリー</h3>
       {systemNodes.map((system) => {
         const isSystemSelected = selectedIds.includes(system.id)
 
         const zones: HvacZoneNode[] = system.servedZoneIds
-          .map((id) => nodes[id])
-          .filter((n): n is AnyNodeMap[string] & HvacZoneNode => !!n && isHvacZoneNode(n))
+          .map((id: string) => nodes[id])
+          .filter((n): n is HvacZoneNode => !!n && isHvacZoneNode(n))
 
         const ahuNode =
           system.ahuId && nodes[system.ahuId] && isAhuNode(nodes[system.ahuId] as { type: string })
@@ -90,7 +91,7 @@ export function SystemTreePanel() {
             : null
 
         return (
-          <div key={system.id} style={{ marginBottom: '8px' }}>
+          <div className="rounded-lg border border-border/40 bg-background/20 p-2" key={system.id}>
             {/* 系統ルート */}
             <TreeItem isSelected={isSystemSelected} nodeId={system.id} onClick={handleSelect}>
               <span aria-hidden="true">📁 </span>

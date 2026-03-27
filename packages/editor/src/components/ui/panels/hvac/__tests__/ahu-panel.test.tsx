@@ -91,6 +91,7 @@ describe('TASK-0026: AhuPanel', () => {
   it('テスト3: タグ・機種名・4ポート一覧が表示される', () => {
     render(<AhuPanel nodeId="ahu_001" />)
 
+    expect(screen.getByTestId('ahu-panel')).toBeDefined()
     expect(screen.getByDisplayValue('AHU-01')).toBeDefined()
     expect(screen.getByText('型式A-80')).toBeDefined()
     expect(screen.getByText('給気口')).toBeDefined()
@@ -102,9 +103,12 @@ describe('TASK-0026: AhuPanel', () => {
   it('テスト4: 定格値（冷房・暖房・風量）が表示される', () => {
     render(<AhuPanel nodeId="ahu_001" />)
 
-    expect(screen.getByText('冷房: 80.0kW')).toBeDefined()
-    expect(screen.getByText('暖房: 70.0kW')).toBeDefined()
-    expect(screen.getByText('風量: 15000m3/h')).toBeDefined()
+    expect(screen.getByText('冷房')).toBeDefined()
+    expect(screen.getByText('80.0kW')).toBeDefined()
+    expect(screen.getByText('暖房')).toBeDefined()
+    expect(screen.getByText('70.0kW')).toBeDefined()
+    expect(screen.getByText('風量')).toBeDefined()
+    expect(screen.getByText('15000m3/h')).toBeDefined()
   })
 
   it('タグ変更でupdateNodeが呼ばれる', () => {

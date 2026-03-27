@@ -73,6 +73,7 @@ describe('TASK-0037: DuctPanel', () => {
 
     render(<DuctPanel />)
 
+    expect(screen.getByTestId('duct-panel')).toBeDefined()
     // 【結果検証】: width=400 が入力フィールドに表示されていること
     expect(screen.getByDisplayValue('400')).toBeDefined()
 

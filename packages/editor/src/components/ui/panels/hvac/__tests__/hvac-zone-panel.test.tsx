@@ -78,6 +78,7 @@ describe('TASK-0016: HvacZonePanel', () => {
     // 【実際の処理実行】: HvacZonePanelをレンダリング
     render(<HvacZonePanel />)
 
+    expect(screen.getByTestId('hvac-zone-panel')).toBeDefined() // 【確認内容】: 右パネルwrapper内に描画されること 🔵
     // 【結果検証】: ゾーン名が表示されていること
     expect(screen.getByDisplayValue('オフィスA')).toBeDefined() // 【確認内容】: zoneName入力フィールドに正しい値が設定 🔵
 

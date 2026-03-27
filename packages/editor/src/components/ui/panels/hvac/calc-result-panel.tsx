@@ -10,6 +10,14 @@ import { useViewer } from '@pascal-app/viewer'
 
 import type { HvacZoneNode } from '@pascal-app/core'
 import { formatLoad } from './format-load'
+import {
+  getViewerSelectedIds,
+  HvacEmptyState,
+  HvacField,
+  HvacPanelBody,
+  HvacPanelSection,
+  HvacPanelShell,
+} from './hvac-panel-shell'
 
 // 【型エイリアス】: HvacZoneNodeのcalcResult型からnullを除いた型
 // 【改善内容】: Greenフェーズのローカル型定義をコア型から派生させて型の重複を除去
@@ -19,16 +27,6 @@ type CalcResult = NonNullable<HvacZoneNode['calcResult']>
 // 【型エイリアス】: perimeterLoadBreakdownの各エントリ型
 // 【設計方針】: CalcResultから派生させることでスキーマ変更時の追従箇所を1か所に集約
 type PerimeterLoadEntry = CalcResult['perimeterLoadBreakdown'][number]
-
-// 【useSceneセレクター型】: CalcResultPanelが必要とするuseSceneの状態型
-// 【改善内容】: 全ノードマップではなく、対象ノードを直接取得するセレクター向けの型定義
-// 🟡 信頼性レベル: useScene.nodesの型からIDアクセス結果を表現
-interface SceneState {
-  nodes: Record<
-    string,
-    ({ type: string; calcResult?: CalcResult | null } & Partial<HvacZoneNode>) | undefined
-  >
-}
 
 /**
  * 【ヘルパー関数】: ノードがHvacZoneNodeで計算結果を持つかを検証するtype guard
@@ -94,45 +92,37 @@ function CalcResultDetails({ calcResult }: { calcResult: CalcResult }) {
   )
 
   return (
-    <div>
+    <>
       {/* 【負荷サマリーセクション】: REQ-1505フォーマット（冷暖房負荷kW, 必要風量m³/h） */}
-      <section>
-        <h3>負荷サマリー</h3>
-        <dl>
+      <HvacPanelSection title="負荷サマリー">
+        <div className="flex flex-col gap-3">
           {/* 【冷房負荷】: formatLoad使用、REQ-1505「1000W以上はkW表記」 */}
-          <dt>冷房負荷</dt>
-          <dd>{formatLoad(calcResult.coolingLoad)}</dd>
+          <HvacField label="冷房負荷" value={formatLoad(calcResult.coolingLoad)} />
 
           {/* 【暖房負荷】: formatLoad使用 */}
-          <dt>暖房負荷</dt>
-          <dd>{formatLoad(calcResult.heatingLoad)}</dd>
+          <HvacField label="暖房負荷" value={formatLoad(calcResult.heatingLoad)} />
 
           {/* 【必要風量】: toLocaleString()でカンマ区切り、m³/h単位（REQ-1505） */}
-          <dt>必要風量</dt>
-          <dd>{calcResult.requiredAirflow.toLocaleString()} m³/h</dd>
-        </dl>
-      </section>
+          <HvacField label="必要風量" value={`${calcResult.requiredAirflow.toLocaleString()} m³/h`} />
+        </div>
+      </HvacPanelSection>
 
       {/* 【負荷内訳セクション】: 内部負荷/外皮負荷の内訳（dl形式） */}
-      <section>
-        <h3>負荷内訳</h3>
-        <dl>
+      <HvacPanelSection title="負荷内訳">
+        <div className="flex flex-col gap-3">
           {/* 【内部負荷】: formatLoad使用（照明・人体・機器発熱の合計） */}
-          <dt>内部負荷</dt>
-          <dd>{formatLoad(calcResult.internalLoad)}</dd>
+          <HvacField label="内部負荷" value={formatLoad(calcResult.internalLoad)} />
 
           {/* 【外皮負荷】: formatLoad使用（壁・窓の熱貫流の合計） */}
-          <dt>外皮負荷</dt>
-          <dd>{formatLoad(calcResult.envelopeLoad)}</dd>
-        </dl>
-      </section>
+          <HvacField label="外皮負荷" value={formatLoad(calcResult.envelopeLoad)} />
+        </div>
+      </HvacPanelSection>
 
       {/* 【方位別外皮負荷テーブル】: REQ-306「perimeterLoadBreakdownを含む」 */}
-      <section>
-        <h3>方位別外皮負荷</h3>
-        <table>
+      <HvacPanelSection title="方位別外皮負荷">
+        <table className="w-full border-separate border-spacing-0 overflow-hidden rounded-md">
           <thead>
-            <tr>
+            <tr className="bg-background/40 text-left text-muted-foreground text-xs">
               <th>方位</th>
               {/* 【ヘッダー】: 負荷(W)と割合ヘッダー（requirements.md 2.2） */}
               <th>負荷 (W)</th>
@@ -150,8 +140,8 @@ function CalcResultDetails({ calcResult }: { calcResult: CalcResult }) {
             ))}
           </tbody>
         </table>
-      </section>
-    </div>
+      </HvacPanelSection>
+    </>
   )
 }
 
@@ -171,18 +161,20 @@ function CalcResultDetails({ calcResult }: { calcResult: CalcResult }) {
  */
 export function CalcResultPanel() {
   // 【selectedIds取得】: useViewerからselectedIdsのみ参照（Viewer隔離ルール遵守）
-  const selectedIds = useViewer((s: { selectedIds: string[] }) => s.selectedIds)
+  const selectedIds = useViewer(getViewerSelectedIds)
 
   // 【zoneId確定】: 選択なし時は空文字（useSceneのセレクターはフックルール上条件分岐不可）
   const zoneId = selectedIds[0] ?? ''
 
-  // 【対象ノードのみ取得】: 選択IDのノードだけをセレクトして不要な再レンダーを防ぐ
-  // 【パフォーマンス改善】: s.nodes全体取得 → s.nodes[zoneId]取得に変更
-  // 🟡 信頼性レベル: Reactフックルール（条件分岐不可）に対応した選択ノード絞り込みパターン
-  const node = useScene((s: SceneState) => s.nodes[zoneId])
+  const nodes = useScene((s) => s.nodes) as Record<
+    string,
+    ({ type: string; calcResult?: CalcResult | null } & Partial<HvacZoneNode>) | undefined
+  >
 
   // 【早期リターン】: 選択なし → null（エッジ4対応）
   if (selectedIds.length === 0) return null
+
+  const node = nodes[zoneId]
 
   // 【型ガード適用】: isHvacZoneNodeで安全な型チェック（非HvacZoneノード選択時はnull）
   if (!node || !isHvacZoneNode(node)) return null
@@ -193,18 +185,21 @@ export function CalcResultPanel() {
   // 【calcResult未設定時】: エッジ2対応 - 誘導メッセージを表示
   if (!calcResult) {
     return (
-      <div>
-        {/* 【誘導メッセージ】: requirements.md エッジ2「計算結果なし時のメッセージ」 */}
-        <p>計算結果がありません。ゾーンの設定を完了してください。</p>
-      </div>
+      <HvacPanelShell dataTestId="calc-result-panel" title="負荷計算結果">
+        <HvacPanelBody>
+          {/* 【誘導メッセージ】: requirements.md エッジ2「計算結果なし時のメッセージ」 */}
+          <HvacEmptyState>計算結果がありません。ゾーンの設定を完了してください。</HvacEmptyState>
+        </HvacPanelBody>
+      </HvacPanelShell>
     )
   }
 
   // 【計算結果表示】: calcResultが設定済みの場合はCalcResultDetailsを表示
   return (
-    <div>
-      <h2>負荷計算結果</h2>
-      <CalcResultDetails calcResult={calcResult} />
-    </div>
+    <HvacPanelShell dataTestId="calc-result-panel" title="負荷計算結果">
+      <HvacPanelBody>
+        <CalcResultDetails calcResult={calcResult} />
+      </HvacPanelBody>
+    </HvacPanelShell>
   )
 }

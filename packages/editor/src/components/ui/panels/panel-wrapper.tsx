@@ -13,6 +13,7 @@ interface PanelWrapperProps {
   children: React.ReactNode
   className?: string
   width?: number | string
+  dataTestId?: string
 }
 
 export function PanelWrapper({
@@ -24,6 +25,7 @@ export function PanelWrapper({
   children,
   className,
   width = 320, // default width
+  dataTestId,
 }: PanelWrapperProps) {
   return (
     <div
@@ -31,6 +33,8 @@ export function PanelWrapper({
         'pointer-events-auto fixed top-20 right-4 z-50 flex max-h-[calc(100dvh-100px)] flex-col overflow-hidden rounded-xl border border-border/50 bg-sidebar/95 shadow-2xl backdrop-blur-xl dark:text-foreground',
         className,
       )}
+      data-panel-wrapper="true"
+      data-testid={dataTestId}
       style={{ width }}
     >
       {/* Header */}

@@ -12,7 +12,7 @@
  * 🔵 信頼性レベル: TASK-0027 要件定義（REQ-1404）に明示
  */
 
-import type { AhuNode, DiffuserNode, SystemNode } from '@pascal-app/core'
+import type { AnyNode, AhuNode, DiffuserNode } from '@pascal-app/core'
 import { useScene } from '@pascal-app/core'
 
 // --- Catalog data (AHU) ---
@@ -97,7 +97,8 @@ const DIFFUSER_CATALOG: DiffuserCatalogEntry[] = [
 
 type SelectionStatus = '推奨' | '選定済み' | '未選定'
 
-type AnyNodeMap = Record<string, { type: string } & Record<string, unknown>>
+type SystemNode = Extract<AnyNode, { type: 'system' }>
+type AnyNodeMap = Record<string, AnyNode>
 
 // --- Helpers ---
 
@@ -236,18 +237,18 @@ export function EquipmentCatalogPanel() {
   const nodes = useScene((state) => state.nodes) as AnyNodeMap
 
   return (
-    <div>
-      <h3 style={{ margin: '0 0 8px', fontSize: '14px', fontWeight: '600' }}>機器カタログ</h3>
+    <div className="flex flex-col gap-3" data-testid="equipment-catalog-panel">
+      <h3 className="font-medium text-foreground text-sm">機器カタログ</h3>
 
-      <section>
-        <h4 style={{ margin: '0 0 4px', fontSize: '13px', fontWeight: '600', color: '#374151' }}>
+      <section className="rounded-lg border border-border/40 bg-background/20 p-3">
+        <h4 className="mb-2 font-medium text-foreground text-xs uppercase tracking-[0.03em]">
           AHU
         </h4>
         <AhuCatalogList nodes={nodes} />
       </section>
 
-      <section style={{ marginTop: '12px' }}>
-        <h4 style={{ margin: '0 0 4px', fontSize: '13px', fontWeight: '600', color: '#374151' }}>
+      <section className="rounded-lg border border-border/40 bg-background/20 p-3">
+        <h4 className="mb-2 font-medium text-foreground text-xs uppercase tracking-[0.03em]">
           制気口
         </h4>
         <DiffuserCatalogList nodes={nodes} />

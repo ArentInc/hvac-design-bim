@@ -1,16 +1,21 @@
 'use client'
 
-import type { AhuNode, SystemNode } from '@pascal-app/core'
+import type { AnyNode, AhuNode } from '@pascal-app/core'
 import { useScene } from '@pascal-app/core'
+import {
+  HvacField,
+  HvacInput,
+  HvacPanelBody,
+  HvacPanelSection,
+  HvacPanelShell,
+  HvacStackField,
+} from './hvac-panel-shell'
 
 interface SystemPanelProps {
   nodeId: string
 }
 
-interface SceneState {
-  nodes: Record<string, { type: string } & Partial<SystemNode> & Partial<AhuNode>>
-  updateNode: (id: string, data: Partial<SystemNode>) => void
-}
+type SystemNode = Extract<AnyNode, { type: 'system' }>
 
 function isSystemNode(
   node: { type: string } & Partial<SystemNode>,
@@ -19,59 +24,62 @@ function isSystemNode(
 }
 
 export function SystemPanel({ nodeId }: SystemPanelProps) {
-  const { nodes, updateNode } = useScene((s: SceneState) => ({
+  const { nodes, updateNode } = useScene((s) => ({
     nodes: s.nodes,
     updateNode: s.updateNode,
-  }))
+  })) as {
+    nodes: Record<string, AnyNode>
+    updateNode: (id: string, data: Partial<SystemNode>) => void
+  }
 
-  const node = nodes[nodeId]
+  const node = nodes[nodeId] as ({ type: string } & Partial<SystemNode>) | undefined
   if (!node || !isSystemNode(node)) return null
 
   const ahuNode = node.ahuId ? nodes[node.ahuId] : null
   const isAhu = ahuNode && ahuNode.type === 'ahu'
 
   return (
-    <div>
-      <h3>系統プロパティ</h3>
+    <HvacPanelShell dataTestId="system-panel" title="系統プロパティ">
+      <HvacPanelBody>
+        <HvacPanelSection title="基本情報">
+          <HvacStackField label="系統名">
+            <HvacInput
+              onChange={(e) => updateNode(nodeId, { systemName: e.target.value })}
+              type="text"
+              value={node.systemName}
+            />
+          </HvacStackField>
+          <HvacField label="ステータス" value={node.status} />
+          <HvacField label="対象ゾーン数" value={node.servedZoneIds.length.toString()} />
+        </HvacPanelSection>
 
-      <label>
-        系統名
-        <input
-          onChange={(e) => updateNode(nodeId, { systemName: e.target.value })}
-          type="text"
-          value={node.systemName}
-        />
-      </label>
+        <HvacPanelSection title="所属ゾーン">
+          <div className="flex flex-wrap gap-2">
+            {node.servedZoneIds.map((zoneId) => (
+              <span
+                className="rounded-full border border-border/40 bg-background/20 px-2 py-1 text-xs text-foreground"
+                key={zoneId}
+              >
+                {zoneId}
+              </span>
+            ))}
+          </div>
+        </HvacPanelSection>
 
-      <div>
-        <h4>所属ゾーン</h4>
-        <ul>
-          {node.servedZoneIds.map((zoneId) => (
-            <li key={zoneId}>{zoneId}</li>
-          ))}
-        </ul>
-      </div>
+        {node.aggregatedLoad && (
+          <HvacPanelSection title="合算負荷">
+            <HvacField label="冷房" value={`${node.aggregatedLoad.totalCoolingLoad.toFixed(1)}kW`} />
+            <HvacField label="暖房" value={`${node.aggregatedLoad.totalHeatingLoad.toFixed(1)}kW`} />
+            <HvacField label="風量" value={`${Math.round(node.aggregatedLoad.totalAirflow)}m3/h`} />
+          </HvacPanelSection>
+        )}
 
-      {node.aggregatedLoad && (
-        <div>
-          <h4>合算負荷</h4>
-          <div>冷房: {node.aggregatedLoad.totalCoolingLoad.toFixed(1)}kW</div>
-          <div>暖房: {node.aggregatedLoad.totalHeatingLoad.toFixed(1)}kW</div>
-          <div>風量: {Math.round(node.aggregatedLoad.totalAirflow)}m3/h</div>
-        </div>
-      )}
-
-      <div>
-        <h4>ステータス</h4>
-        <span>{node.status}</span>
-      </div>
-
-      {isAhu && (
-        <div>
-          <h4>AHU情報</h4>
-          <div>{(ahuNode as AhuNode).equipmentName}</div>
-        </div>
-      )}
-    </div>
+        {isAhu && (
+          <HvacPanelSection title="AHU情報">
+            <HvacField label="機種名" value={(ahuNode as AhuNode).equipmentName} />
+          </HvacPanelSection>
+        )}
+      </HvacPanelBody>
+    </HvacPanelShell>
   )
 }

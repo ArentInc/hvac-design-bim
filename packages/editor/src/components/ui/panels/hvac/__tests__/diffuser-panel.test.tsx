@@ -61,6 +61,7 @@ describe('TASK-0026: DiffuserPanel', () => {
   it('テスト5: タグ・タイプ「給気」・ネック径300mm・風量1000m3/hが表示される', () => {
     render(<DiffuserPanel nodeId="diffuser_001" />)
 
+    expect(screen.getByTestId('diffuser-panel')).toBeDefined()
     expect(screen.getByDisplayValue('SA-01')).toBeDefined()
     expect(screen.getByText('給気')).toBeDefined()
     expect(screen.getByText('300mm')).toBeDefined()
