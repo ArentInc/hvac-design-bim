@@ -27,6 +27,7 @@ const makeZone = (
     zoneName: `Zone ${id}`,
     usage: 'office_general',
     floorArea: 100,
+    floorHeight: 0,
     ceilingHeight: 2.7,
     occupantDensity: 0.15,
     boundary: [],
